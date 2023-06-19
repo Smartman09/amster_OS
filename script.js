@@ -4,7 +4,7 @@ var MediaPlayer = android.media.MediaPlayer;
 var DownloadManager = android.app.DownloadManager;
 var actualuser = "";var putherse = [];var firstputh = sdcard+"/";
 var animation = android.R.style.Animation_InputMethod;
-var context = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
+var context = getContext();
 var ctx = context;
 var MainActivity = ctx;
 var Runnable = java.lang.Runnable;
