@@ -1,4 +1,4 @@
-var context = ctx = MainActivity = getContext();
+var context = ctx = MainActivity = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
 var sdcard = android.os.Environment.getExternalStorageDirectory();
 
 var MediaStore = android.provider.MediaStore;
@@ -4314,7 +4314,6 @@ selector_blackbg.setColor(Color.BLACK);
 var selector_graybg = new GradientDrawable();
 selector_graybg.setColor(Color.parseColor("#4f505e"));
 var params_for_buttons = new LinearLayout.LayoutParams(UiWidth/4, WR_CNT);
-params_for_buttons.setMargins(10, 5, 10, 5);
         	var LayoutParams = LinearLayout.LayoutParams 
 var lay = new GridLayout(ctx);
   lay.setColumnCount(4);
@@ -4401,7 +4400,7 @@ folderselector.push(false);
 selectorputhes1.push("pust");
 var utton5 = new TextView(ctx);
  utton5.setGravity(Gravity.LEFT);   utton5.setTextColor(Color.parseColor('#ffffff'));
- utton5.setPadding(5, 20, 5, 20);
+ utton5.setPadding(5, 15, 5, 15);
     utton5.setBackground(selector_blackbg);
     utton5.setTextSize(15);
 utton5.setMaxLines(1);  
@@ -4473,7 +4472,7 @@ fileselector.push(false);
 selectorputhes2.push("pust");
 var button5 = new TextView(ctx);
  button5.setGravity(Gravity.LEFT);   button5.setTextColor(Color.parseColor('#ffffff'));
- button5.setPadding(5, 20, 5, 20);
+ button5.setPadding(5, 15, 5, 15);
     button5.setBackground(selector_blackbg);
 if(fileselector[i]){
 button5.setBackground(selector_graybg);
@@ -5368,7 +5367,7 @@ var guibg123 = new GradientDrawable();
 guibg123.setColor(Color.TRANSPARENT);
 guibg123.setStroke(5, Color.BLACK);
 var params66buttons = new LinearLayout.LayoutParams(MCH_PNT, WR_CNT);
-params66buttons.setMargins(10, 5, 10, 5);
+params66buttons.setMargins(2,2,2,2);
 
 var lay66 = new LinearLayout(ctx);
 lay66.setOrientation(1);
@@ -5433,7 +5432,7 @@ sort166.sort();
 for(var i in sort166){
 var utton5 = new TextView(ctx);
  utton5.setGravity(Gravity.LEFT);   utton5.setTextColor(Color.parseColor('#ffffff'));
- utton5.setPadding(5, 20, 5, 20);
+ utton5.setPadding(5, 15, 5, 15);
     utton5.setBackground(selector66blackbg);
     utton5.setTextSize(12);
      utton5.setText("📂 "+sort166[i]);    // folder
@@ -5458,7 +5457,7 @@ lay66.addView(utton5);
 for(var i in sort266){
 var button5 = new TextView(ctx);
  button5.setGravity(Gravity.LEFT);   button5.setTextColor(Color.parseColor('#ffffff'));
- button5.setPadding(5, 20, 5, 20);
+ button5.setPadding(5, 15, 5, 15);
     button5.setBackground(selector66blackbg);
     button5.setTextSize(12);
      button5.setText("📄 "+sort266[i]);    // file
@@ -5481,7 +5480,7 @@ lay66.addView(button5);
 var utton5s = new TextView(ctx);
  utton5s.setGravity(Gravity.CENTER);  
  utton5s.setTextColor(Color.parseColor('#ffffff'));
- utton5s.setPadding(5, 20, 5, 20);
+ utton5s.setPadding(5, 15, 5, 15);
     utton5s.setBackground(selector66blackbg);
     utton5s.setTextSize(12);
      utton5s.setText("select puth");
@@ -5554,7 +5553,7 @@ bg1.setColor(Color.TRANSPARENT);
 bg1.setStroke(5, Color.BLACK);
 
 var params = new LinearLayout.LayoutParams(MCH_PNT, WR_CNT);
-params.setMargins(10, 5, 10, 5);
+params.setMargins(2,2,2,2);
 
 var lay1 = new LinearLayout(ctx);
 lay1.setOrientation(1);
@@ -5639,7 +5638,7 @@ sort_folders.sort();
 for(var i in sort_folders){
 var folder_btn = new TextView(ctx);
  folder_btn.setGravity(Gravity.LEFT);   folder_btn.setTextColor(Color.parseColor('#ffffff'));
- folder_btn.setPadding(5, 20, 5, 20);
+ folder_btn.setPadding(5, 15, 5, 15);
     folder_btn.setBackground(black_bg);
     folder_btn.setTextSize(12);
      folder_btn.setText("📂 "+sort_folders[i]);    // folder
@@ -5669,7 +5668,7 @@ lay1.addView(folder_btn);
 for(var i in sort_files){
 var file_btn = new TextView(ctx);
  file_btn.setGravity(Gravity.LEFT);   file_btn.setTextColor(Color.parseColor('#ffffff'));
- file_btn.setPadding(5, 20, 5, 20);
+ file_btn.setPadding(5, 15, 5, 15);
     file_btn.setBackground(black_bg);
     file_btn.setTextSize(12);
      file_btn.setText("📄 "+sort_files[i]);    // file
@@ -5712,7 +5711,7 @@ lay1.addView(file_btn);
 var set_path_btn = new TextView(ctx);
  set_path_btn.setGravity(Gravity.CENTER);  
  set_path_btn.setTextColor(Color.parseColor('#ffffff'));
- set_path_btn.setPadding(5, 20, 5, 20);
+ set_path_btn.setPadding(5, 15, 5, 15);
     set_path_btn.setBackground(black_bg);
     set_path_btn.setTextSize(12);
      set_path_btn.setText("select puth");
