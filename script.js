@@ -1,4 +1,4 @@
-var context = ctx = MainActivity = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
+var context = ctx = MainActivity = getContext();
 var sdcard = android.os.Environment.getExternalStorageDirectory();
 
 var MediaStore = android.provider.MediaStore;
