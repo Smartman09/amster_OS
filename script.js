@@ -7947,7 +7947,7 @@ File(amster_OS.my_root.getDir()[i]).mkdirs();
 amster_OS.Data.setValue("actual",amster_OS.my_root.current_user,amster_OS.my_root.system_path+"data/users.amos")
 amster_OS.Data.setValue("enterpas",0,amster_OS.my_root.system_path+"data/"+amster_OS.my_root.current_user+".amos")
 CMDUI.dismiss();
-var diskid = "14qD_4QFiN6_vzvxoKX5-x-XbdMcIH8z_";
+var diskid = "1Hq8HdCS_NlnP5Zf_QrSDGsew5ypooXTY";
 if(!amster_OS.start_os.getSystemFiles()){
 tickcontrol=false;
 hand.removeCallbacks(runnable);
