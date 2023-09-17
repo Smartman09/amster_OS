@@ -85,7 +85,7 @@ rootD+"/programs/myapps/",
 rootD+"/games/snake/",
 rootD+"/programs/rootcheck/",
 rootD+"/programs/settings/",
-//data
+//data id 11,12,13,14
 rootD+"/userapps/",
 rootD+"/games/",
 rootD+"/programs/",
@@ -156,6 +156,18 @@ amster_OS.fast_files.rewriteFile(path,cfg.toString());
 }
 },
 fast_files: {
+getFolderSize: function(path){
+var size = 0;
+var files = new File(path).list();
+for(var i in files){
+var file = new File(path+files[i]);
+if(file.isFile()){
+size+=file.length();
+}else{
+size+=amster_OS.fast_files.getFolderSize(path+files[i]+"/");
+}}
+return size;
+},
 writeFile: function(path,text){
 var readed = amster_OS.fast_files.readFile(path);
 var writeFOS;
@@ -404,7 +416,7 @@ ui.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTE
 return ui;
 },
 easyLink: function (text,url,size){
-var linkbtn = new android.widget.TextView(ctx);
+var linkbtn = new TextView(ctx);
 linkbtn.setText(fromHtml('<i><u><font color="#1f67a0"><b>'+text+'</b></font></u><i>'));
 linkbtn.setTextSize(size);      
 linkbtn.setPadding(10, 0, 10, 10);
@@ -712,15 +724,6 @@ let pl = amster_OS.createsystemapps.crosszero.settings[0];
 let bot = amster_OS.createsystemapps.crosszero.settings[1];
 a[plhod]=amster_OS.createsystemapps.crosszero.settings[0];
 if(amster_OS.createsystemapps.crosszero.checkpole()==8){
-/*if(a[4]==pl)id=0;
-if(a[4]!=pl)id=4;*/
-
-/*
-if(a[0]==pl)id=1;
-if(a[2]==pl)id=1;
-if(a[6]==pl)id=7;
-if(a[8]==pl)id=7;
-*/
 
 //боковые
 if(a[0]==pl&&a[4]==' ')id=4;
@@ -3946,9 +3949,55 @@ lastpage:0,
 seetablebar:true,
 seesystem:true,
 seeuser:true,
-alphabar:255,
+alphabar:250,
+path:null,
 init: function (){
+amster_OS.createsystemapps.settings.path = amster_OS.my_root.getDir()[13]+"settings/dats.txt";
+File(amster_OS.my_root.getDir()[13]+"settings/").mkdirs();
+var file = new File(amster_OS.createsystemapps.settings.path);
+if(!file.exists()){
+file.createNewFile();
+}
 this.settingui();
+},
+loadConfig: function(){
+amster_OS.createsystemapps.settings.path = amster_OS.my_root.getDir()[13]+"settings/dats.txt";
+var file = new File(amster_OS.createsystemapps.settings.path);
+if(file.exists()){
+if(amster_OS.Data.getValue("seetablebar",amster_OS.createsystemapps.settings.path)!=null){
+var abs=amster_OS.Data.getValue("seetablebar",amster_OS.createsystemapps.settings.path);
+if(abs=="true"){
+amster_OS.createsystemapps.settings.seetablebar=true;
+}else{
+amster_OS.createsystemapps.settings.seetablebar=false;
+}}
+if(amster_OS.Data.getValue("seesystem",amster_OS.createsystemapps.settings.path)!=null){
+var abs=amster_OS.Data.getValue("seesystem",amster_OS.createsystemapps.settings.path);
+if(abs=="true"){
+amster_OS.createsystemapps.settings.seesystem=true;
+}else{
+amster_OS.createsystemapps.settings.seesystem=false;
+}}
+if(amster_OS.Data.getValue("seeuser",amster_OS.createsystemapps.settings.path)!=null){
+var abs=amster_OS.Data.getValue("seeuser",amster_OS.createsystemapps.settings.path);
+if(abs=="true"){
+amster_OS.createsystemapps.settings.seeuser=true;
+}else{
+amster_OS.createsystemapps.settings.seeuser=false;
+}}
+if(amster_OS.Data.getValue("alphabar",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.createsystemapps.settings.alphabar=parseInt(amster_OS.Data.getValue("alphabar",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("UiWidth",amster_OS.createsystemapps.settings.path)!=null){
+UiWidth=parseInt(amster_OS.Data.getValue("UiWidth",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("UiHeight",amster_OS.createsystemapps.settings.path)!=null){
+UiHeight=parseInt(amster_OS.Data.getValue("UiHeight",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("table_path",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.launcher.table_path=amster_OS.Data.getValue("table_path",amster_OS.createsystemapps.settings.path);
+}
+}
 },
 settingui: function(){
 var LayoutParams = LinearLayout.LayoutParams 
@@ -3995,7 +4044,7 @@ namebtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
      namebtn.setText(fromHtml('<font color="#ffffff"><b>настройки</b></font>'));   
 lay1.addView(namebtn);
 
-var pages = ["информация","язык","рабочий стол","приложения","пользователь","экран","звук","библиотеки"];
+var pages = ["информация","язык","рабочий стол","приложения","пользователь","экран","память","библиотеки"];
 for(var i in pages){
 var razdelbtn = new Button(ctx);
  razdelbtn.setGravity(Gravity.LEFT);   razdelbtn.setTextColor(Color.parseColor('#000000'));
@@ -4006,7 +4055,6 @@ razdelbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
      razdelbtn.setText(fromHtml('<font color="#ffffff">'+pages[i]+'</font>'));   
     razdelbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
-
 amster_OS.createsystemapps.settings.lastpage=viewarg.getId();
 genSet(amster_OS.createsystemapps.settings.lastpage);
 }catch(e){print (e+e.lineNumber)}
@@ -4083,7 +4131,36 @@ btr5.setText(fromHtml('<b><font color="#00ff00">By Amstercheats(smartman) 2022-2
 layl2.addView(btr5);
 break;
 case 1:
+var langs = ['English', 'Español', 'Português', 'Français', 'Deutsch', 'Italiano', 'Русский', '日本語', '中文', '한국어', 'हिन्दी', 'العربية', 'Türkçe', 'اردو', 'Bahasa Indonesia', 'Nederlands', 'Svenska', 'Polski', 'Magyar', 'Čeština'];
 
+function generateLang(text){
+var lar = new LinearLayout(ctx);
+lar.setOrientation(0);
+layl2.removeAllViews();
+var btnk1 = new amster_OS.graphics.easyEdit("поиск из "+(langs.length)+" языков",15);
+lar.addView(btnk1);
+var btnk2 = new amster_OS.graphics.easyButton(" ⟲",[Gravity.RIGHT,15]);
+btnk2.setText(fromHtml('<b><font color="#00ff00"> ⟲</font><b>'));   
+btnk2.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
+try{
+generateLang(btnk1.getText().toString());
+}catch(e){print(e+e.lineNumber)}
+}}));
+lar.addView(btnk2);
+layl2.addView(lar);
+
+for(var i in langs){
+var bts1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+bts1.setText(fromHtml('<b><font color="#ffffff">'+langs[i]+'</font><b>'));   
+if(!text||text==""||text==" "||text=="\n"){
+layl2.addView(bts1);
+}else if(langs[i].toLowerCase().indexOf(text)!=-1){
+layl2.addView(bts1);
+}
+}
+}
+
+generateLang();
 break;
 case 2:
 var btn2 = new amster_OS.graphics.easyToggle("показывать навигационную панель", amster_OS.createsystemapps.settings.seetablebar);
@@ -4098,6 +4175,7 @@ viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
     viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
 viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
    }
+amster_OS.Data.setValue("seetablebar",amster_OS.createsystemapps.settings.seetablebar,amster_OS.createsystemapps.settings.path);
 viewarg.setChecked(amster_OS.createsystemapps.settings.seetablebar);
     }
     }));
@@ -4111,6 +4189,7 @@ btn3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
     {
     amster_OS.createsystemapps.settings.alphabar=view.getProgress();
     btn1.setText("прозрачность: "+amster_OS.createsystemapps.settings.alphabar);
+amster_OS.Data.setValue("alphabar",amster_OS.createsystemapps.settings.alphabar,amster_OS.createsystemapps.settings.path);
     }
     });
 layl2.addView(btn3);
@@ -4126,6 +4205,7 @@ viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
     viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
 viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
    }
+amster_OS.Data.setValue("seesystem",amster_OS.createsystemapps.settings.seesystem,amster_OS.createsystemapps.settings.path);
 viewarg.setChecked(amster_OS.createsystemapps.settings.seesystem);
     }
     }));
@@ -4142,6 +4222,7 @@ viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
     viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
 viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
    }
+amster_OS.Data.setValue("seeuser",amster_OS.createsystemapps.settings.seeuser,amster_OS.createsystemapps.settings.path);
 viewarg.setChecked(amster_OS.createsystemapps.settings.seeuser);
     }
     }));
@@ -4158,6 +4239,7 @@ btn9.setText(fromHtml('<b><font color="#ffffff">вернуть навигаци�
 btn9.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 if(!amster_OS.createsystemapps.settings.seetablebar){
 amster_OS.createsystemapps.settings.seetablebar = true;
+amster_OS.Data.setValue("seetablebar",amster_OS.createsystemapps.settings.seetablebar,amster_OS.createsystemapps.settings.path);
 amster_OS.launcher.statusbar.init();
 }
    }}));
@@ -4166,11 +4248,8 @@ var btn10 = new amster_OS.graphics.easyButton("сохранить изменен
 btn10.setText(fromHtml('<b><font color="#ffffff">сохранить изменения</font><b>'));   
 btn10.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 amster_OS.launcher.table_path=btn5c.getText();
-
-SETGUI.dismiss();
-GGUI.dismiss()
-OSGUI.dismiss()
-amster_OS.start_os.fullstart();
+amster_OS.Data.setValue("table_path",amster_OS.launcher.table_path,amster_OS.createsystemapps.settings.path);
+amster_OS.graphics.print("Сохранено. Изменения вступят в силу после перезапуска.");
    }}));
 layl2.addView(btn10);
 break;
@@ -4238,18 +4317,140 @@ var btn1 = new amster_OS.graphics.easyButton("loading",[Gravity.CENTER,15]);
 btn1.setText(fromHtml('<b><font color="#ffffff">'+amster_OS.my_root.current_user+ '</font><b>'));
 layl2.addView(btn1);
 var text = amster_OS.fast_files.readFile(amster_OS.my_root.system_path+"data/"+amster_OS.my_root.current_user+".amos");
-var data = ["name","password","country","gender","date"];
+var search = ["name","password","country","gender","date"];
+var data = ["логин","пароль","страна","пол","день рождения"];
+var buttons = [];
 for(var a in data){
 var btn2 = new amster_OS.graphics.easyButton("loading",[Gravity.LEFT,20]);
-btn2.setText(fromHtml('<b><font color="#ffffff">'+data[a]+': </font><font color="#'+amster_OS.graphics.colors[0]+'">'+amster_OS.Text.findStringByKey(data[a],text)+'</font><b>'));
+buttons.push(btn2);
+btn2.setText(fromHtml('<b><font color="#ffffff">'+data[a]+':</font><font color="#'+amster_OS.graphics.colors[0]+'">'+amster_OS.Text.findStringByKey(search[a],text)+'</font><b>'));
+btn2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.start_os.openedit(viewarg,viewarg.getText());
+   }}));
 layl2.addView(btn2);
 }
+var btn3 = new amster_OS.graphics.easyButton("сохранить изменения",[Gravity.CENTER,15]);
+btn3.setText(fromHtml('<b><font color="#ffffff">сохранить изменения</font><b>'));   
+btn3.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+var path = amster_OS.my_root.system_path+"data/"+amster_OS.my_root.current_user+".amos";
+for(var o in search){
+var value = (""+buttons[o].getText()).split(":");
+amster_OS.Data.setValue(search[o],value[1],path);
+}
+amster_OS.graphics.print("Сохранено. Изменения вступят в силу после перезапуска.");
+   }}));
+layl2.addView(btn3);
 break;
 case 5:
+var display = ctx.getWindowManager().getDefaultDisplay();
+var dens = ctx.getResources().getDisplayMetrics().density;
+var btn1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+btn1.setText(fromHtml('<b><font color="#ffffff">Размер: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+display.getWidth()+'x'+display.getHeight()+'</font><b>'));   
+layl2.addView(btn1);
 
+var btn2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+btn2.setText(fromHtml('<b><font color="#ffffff">Частота обновления </font><font color="'+amster_OS.graphics.colors[0]+'"> '+display.getRefreshRate()+'</font><b>'));   
+layl2.addView(btn2);
+var btn3 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+btn3.setText(fromHtml('<b><font color="#ffffff">Плотность пикселей </font><font color="'+amster_OS.graphics.colors[0]+'"> '+dens+'</font><b>'));   
+layl2.addView(btn3);
+var btn4 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+var msh = ctx.getResources().getDisplayMetrics().widthPixels/ctx.getResources().getDisplayMetrics().heightPixels;
+btn4.setText(fromHtml('<b><font color="#ffffff">Соотношение </font><font color="'+amster_OS.graphics.colors[0]+'"> '+msh.toFixed(2)+'</font><b>'));   
+layl2.addView(btn4);
+var btn5 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+btn5.setText(fromHtml('<b><font color="#ffffff">X DPI </font><font color="'+amster_OS.graphics.colors[0]+'"> '+ctx.getResources().getDisplayMetrics().xdpi+'</font><b>'));   
+layl2.addView(btn5);
+var btn6 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+btn6.setText(fromHtml('<b><font color="#ffffff">Y DPI </font><font color="'+amster_OS.graphics.colors[0]+'"> '+ctx.getResources().getDisplayMetrics().ydpi+'</font><b>'));   
+layl2.addView(btn6);
+var space2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+layl2.addView(space2);
+var btns1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+btns1.setText(fromHtml('<b><font color="#ffffff">Системный размер <br/>Высота: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+UiWidth+'</font><font color="#ffffff"><br/>Ширина: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+UiHeight+'</font><b>'));   
+layl2.addView(btns1);
+var btns2 = new amster_OS.graphics.easyBar([ctx.getWindowManager().getDefaultDisplay().getWidth(), UiWidth]);
+btns2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+    UiWidth=view.getProgress();
+btns1.setText(fromHtml('<b><font color="#ffffff">Системный размер <br/>Высота: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+UiWidth+'</font><font color="#ffffff"><br/>Ширина: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+UiHeight+'</font><b>'));   
+amster_OS.Data.setValue("UiWidth",UiWidth,amster_OS.createsystemapps.settings.path);
+    }
+    });
+layl2.addView(btns2);
+var btns3 = new amster_OS.graphics.easyBar([ctx.getWindowManager().getDefaultDisplay().getHeight(), UiHeight]);
+btns3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+    UiHeight=view.getProgress();
+btns1.setText(fromHtml('<b><font color="#ffffff">Системный размер <br/>Высота: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+UiWidth+'</font><font color="#ffffff"><br/>Ширина: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+UiHeight+'</font><b>'));   
+amster_OS.Data.setValue("UiHeight",UiHeight,amster_OS.createsystemapps.settings.path);
+    }
+    });
+layl2.addView(btns3);
+var btns4 = new amster_OS.graphics.easyButton("",[Gravity.CENTER,15]);
+btns4.setText(fromHtml('<b><font color="#ffffff">вернуть обратно</font><b>'));   
+btns4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+UiWidth=ctx.getWindowManager().getDefaultDisplay().getWidth();
+UiHeight=ctx.getWindowManager().getDefaultDisplay().getHeight();
+
+amster_OS.Data.setValue("UiHeight",UiHeight,amster_OS.createsystemapps.settings.path);
+amster_OS.graphics.print("Сохранено.");
+   }}));
+layl2.addView(btns4);
 break;
 case 6:
+var activityManager = ctx.getSystemService(android.content.Context.ACTIVITY_SERVICE);
+var memoryInfo = new android.app.ActivityManager.MemoryInfo();
+activityManager.getMemoryInfo(memoryInfo);
 
+var totalMemory = memoryInfo.totalMem;
+var availableMemory = memoryInfo.availMem;
+var usedMemory = totalMemory - availableMemory;
+
+var os_size = amster_OS.fast_files.getFolderSize(amster_OS.my_root.system_path);
+var data_size = amster_OS.fast_files.getFolderSize(amster_OS.my_root.getDir()[12])+amster_OS.fast_files.getFolderSize(amster_OS.my_root.getDir()[11])
+var programs_size = amster_OS.fast_files.getFolderSize(amster_OS.my_root.getDir()[13]);
+var libs_size = amster_OS.fast_files.getFolderSize(amster_OS.my_root.getDir()[14]);
+
+var btn1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+var usablespace = parseInt(sdcard.getTotalSpace())-parseInt(sdcard.getUsableSpace());
+btn1.setText(fromHtml('<b><font color="#ffffff">Внутренняя память (SSD): занято</font><font color="'+amster_OS.graphics.colors[0]+'"> '+amster_OS.fast_files.convertSize(usablespace)+'/'+amster_OS.fast_files.convertSize(sdcard.getTotalSpace())+'</font><font color="#ffffff"> ('+Math.round(parseInt(usablespace)/parseInt(sdcard.getTotalSpace())*100)+'%)</font><b>'));   
+layl2.addView(btn1);
+var btn2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+btn2.setText(fromHtml('<b><font color="#ffffff">Доступно </font><font color="'+amster_OS.graphics.colors[0]+'"> '+amster_OS.fast_files.convertSize(sdcard.getUsableSpace())+'</font><font color="#ffffff"> ('+Math.round(parseInt(sdcard.getUsableSpace())/parseInt(sdcard.getTotalSpace())*100)+'%)</font><b>'));   
+layl2.addView(btn2);
+var btn3 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+var os_pr = parseInt(os_size)/parseInt(sdcard.getTotalSpace())*100;
+btn3.setText(fromHtml('<b><font color="#ffffff">AmsterOS: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+amster_OS.fast_files.convertSize(os_size)+'</font><font color="#ffffff"> ('+os_pr.toFixed(2)+'%)</font><b>'));   
+layl2.addView(btn3);
+var space1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+layl2.addView(space1);
+var btnf = new amster_OS.graphics.easyButton("Для текущего пользователя",[Gravity.LEFT,10]);
+layl2.addView(btnf);
+var btn4 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+var dt_pr = parseInt(data_size)/parseInt(sdcard.getTotalSpace())*100;
+btn4.setText(fromHtml('<b><font color="#ffffff">Данные: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+amster_OS.fast_files.convertSize(data_size)+'</font><font color="#ffffff"> ('+dt_pr.toFixed(2)+'%)</font><b>'));   
+layl2.addView(btn4);
+var btn5 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+var pr_pr = parseInt(programs_size)/parseInt(sdcard.getTotalSpace())*100;
+btn5.setText(fromHtml('<b><font color="#ffffff">Пользовательские приложения: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+amster_OS.fast_files.convertSize(programs_size)+'</font><font color="#ffffff"> ('+pr_pr.toFixed(2)+'%)</font><b>'));   
+layl2.addView(btn5);
+var btn6 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+var lb_pr = parseInt(libs_size)/parseInt(sdcard.getTotalSpace())*100;
+btn6.setText(fromHtml('<b><font color="#ffffff">Libs: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+amster_OS.fast_files.convertSize(libs_size)+'</font><font color="#ffffff"> ('+lb_pr.toFixed(2)+'%)</font><b>'));   
+layl2.addView(btn6);
+var space2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+layl2.addView(space2);
+var btns1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+btns1.setText(fromHtml('<b><font color="#ffffff">Оперативная память (RAM): занято</font><font color="'+amster_OS.graphics.colors[0]+'"> '+amster_OS.fast_files.convertSize(usedMemory)+'/'+amster_OS.fast_files.convertSize(totalMemory)+'</font><font color="#ffffff"> ('+Math.round(parseInt(usedMemory)/parseInt(totalMemory)*100)+'%)</font><b>'));   
+layl2.addView(btns1);
+var btns2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+btns2.setText(fromHtml('<b><font color="#ffffff">Доступно </font><font color="'+amster_OS.graphics.colors[0]+'"> '+amster_OS.fast_files.convertSize(availableMemory)+'</font><font color="#ffffff"> ('+Math.round(parseInt(availableMemory)/parseInt(totalMemory)*100)+'%)</font><b>'));   
+layl2.addView(btns2);
 break;
 case 7:
 var btn1 = new amster_OS.graphics.easyButton("Список:",[Gravity.LEFT,15]);
@@ -6765,9 +6966,12 @@ return abs.length-1;
 launcher:{
 table_path:"",
 getTableCover: function(){
+if(amster_OS.launcher.table_path==""||amster_OS.launcher.table_path==null||!new File(amster_OS.launcher.table_path).exists()||!new File(amster_OS.launcher.table_path).getName().endsWith(".png")){
 amster_OS.launcher.table_path=amster_OS.my_root.system_path+"data/table.png";
+}
 var tbfile =  new File(amster_OS.launcher.table_path)
 var tbzp =  new File(amster_OS.my_root.system_path+"data/table.zip")
+
 var table;
 if(tbzp.exists()){
 var allimg = amster_OS.fast_files.getZipEntryNames(tbzp);
@@ -7438,6 +7642,23 @@ findStringByKey: function(key, text) {
     }
   });
   return foundStrings.length ? foundStrings : null;
+},
+checkDateValidity: function(date) {
+  var datePattern = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+  var matches = datePattern.exec(date);
+  if (!matches) {
+    return false;
+  }
+  var day = parseInt(matches[1]);
+  var month = parseInt(matches[2]);
+  var year = parseInt(matches[3]);
+  if (isNaN(day) || isNaN(month) || isNaN(year)) {
+    return false;
+  }
+  if (day>30||day<=0||month>12||month<=0||year>2010||year<1950) {
+return false;
+  }
+  return true;
 }
 },
 userapps: {
@@ -7762,7 +7983,7 @@ var threadt = new Thread(r);
     threadt.start();
 },
 firstload: function (){
-amster_OS.start_os.actualcmd="напишите /startos для запуска системы "
+amster_OS.start_os.actualcmd="напишите /start для создания аккаунта и запуска системы"
 amster_OS.start_os.log=["введите команду"];
 amster_OS.start_os.data=[];
 var openddops = false;
@@ -7836,22 +8057,29 @@ amster_OS.start_os.log.push("проверка консоли");
 if(amster_OS.start_os.actualcmd=="/clear"){
 amster_OS.start_os.log=[];
 }
-if(amster_OS.start_os.actualcmd=="/close"||amster_OS.start_os.actualcmd=="/exit"||amster_OS.start_os.actualcmd=="/dismiss"){
-CMDUI.dismiss();
-}
-if(amster_OS.start_os.actualcmd=="/stop"){
+if(amster_OS.start_os.actualcmd=="/close"||amster_OS.start_os.actualcmd=="/exit"||amster_OS.start_os.actualcmd=="/dismiss"||amster_OS.start_os.actualcmd=="/stop"){
 java.lang.System.exit(1);
 }
-if(amster_OS.start_os.actualcmd=="/startos"){
+if(amster_OS.start_os.actualcmd=="/start"||amster_OS.start_os.actualcmd=="/начать|"||amster_OS.start_os.actualcmd=="/старт"||amster_OS.start_os.actualcmd=="/go"||amster_OS.start_os.actualcmd=="/run"||amster_OS.start_os.actualcmd=="/enter"){
 openddops = true;
 amster_OS.start_os.log.push("введите /user 'имя пользователя'");
 amster_OS.start_os.log.push("введите /pas 'пароль пользователя' (напишите значение none, если пароль не нужен)");
 amster_OS.start_os.log.push("введите /ct 'ваша страна'");
 amster_OS.start_os.log.push("введите /pl 'ваш пол'");
-amster_OS.start_os.log.push("введите /dt 'дата рождения формата 09.01.98'");
+amster_OS.start_os.log.push("введите /dt 'дата рождения формата 09.01.1998'");
+amster_OS.start_os.log.push("так же вы можете ввести все данные одной командой /set имя;пароль;страна;пол;дата рождения");
 //amster_OS.start_os.log.push("введите /done, когда вы записали все данные");
 }
 if(openddops){
+if(cmds[0]=="/set"){
+var text = cmds[1].split(";");
+if((text[0]&&text[1]&&text[2]&&text[3]&&text[4])&&amster_OS.Text.checkDateValidity(text[4])){
+amster_OS.start_os.data[0]=text[0];
+amster_OS.start_os.data[1]=text[1];
+amster_OS.start_os.data[2]=text[2];
+amster_OS.start_os.data[3]=text[3];
+amster_OS.start_os.data[4]=text[4];
+}}
 if(cmds[0]=="/user"){
 cmds[1]=cmds[1].slice(0,20);
 amster_OS.start_os.data[0]=cmds[1];
@@ -7869,25 +8097,28 @@ cmds[1]=cmds[1].slice(0,10);
 amster_OS.start_os.data[3]=cmds[1];
 }
 if(cmds[0]=="/dt"){
-cmds[1]=cmds[1].slice(0,10);
+if(amster_OS.Text.checkDateValidity(cmds[1])){
 amster_OS.start_os.data[4]=cmds[1];
-}
+}}
 if(amster_OS.start_os.actualcmd=="/get"){
 for(var i in amster_OS.start_os.data){
 amster_OS.start_os.log.push(amster_OS.start_os.data[i])
 }}
 }
 if(amster_OS.start_os.actualcmd=="/autouser"){
-var rand = Math.floor(Math.random(10)*1000);
-amster_OS.start_os.data[0]="auto"+rand;
+var num = Math.floor(Math.random(1)*14);
+var names = ['John', 'Jane', 'Alex', 'Emily', 'Michael', 'Olivia', 'David', 'Sophia', 'Daniel', 'Ella', 'Matthew', 'Mia', 'Andrew', 'Ava', 'William'];
+var countries = [  "Australia",  "Germany",  "Italy",  "Canada",  "Mexico",  "Norway",  "Russia",  "USA",  "Turkey",  "France",  "Chile",  "Sweden",  "Switzerland",  "Japan", "South Korea"];
+var dates = ['14.05.1997', '17.03.1996', '09.09.1994', '22.12.1990', '03.11.1995', '18.07.1992', '30.10.1993', '26.08.1991', '12.06.1998', '06.04.1999', '15.01.1992', '01.08.1997', '25.09.1996', '07.11.1993', '19.02.1995'];
+
+amster_OS.start_os.data[0]=names[6]+num;
 amster_OS.start_os.data[1]="none";
-amster_OS.start_os.data[2]="Russia";
-amster_OS.start_os.data[3]="Male";
-amster_OS.start_os.data[4]="05.01.1970";
+amster_OS.start_os.data[2]=countries[num]
+amster_OS.start_os.data[3] = Math.random() < 0.5 ? "Male" : "Girl";
+amster_OS.start_os.data[4]=dates[num];
 amster_OS.start_os.log.push(amster_OS.start_os.data[0])
 }
 
-//amster_OS.my_root.current_user
 amster_OS.start_os.actualcmd="___"
 fastGen();
 }catch(e){print(e + " #" + e.lineNumber)}
@@ -8268,10 +8499,10 @@ java.lang.System.exit(1);
 }      
 }));
 lay.addView(leavebtn);
-var otst = new android.widget.TextView(ctx);
+var otst = new TextView(ctx);
 otst.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),3));
 lay.addView(otst);
-    var datbtn = new android.widget.TextView(ctx);
+    var datbtn = new TextView(ctx);
     datbtn.setText('запомнить  ');
 datbtn.setGravity(Gravity.CENTER);
 datbtn.setTextColor(Color.parseColor('#ffffff'));   
@@ -8397,6 +8628,7 @@ this.fullstart();
 },
 fullstart: function (){
 try{
+amster_OS.createsystemapps.settings.loadConfig();
 amster_OS.launcher.init();
 if(amster_OS.createsystemapps.settings.seetablebar){
 amster_OS.launcher.statusbar.init();
