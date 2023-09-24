@@ -3804,18 +3804,18 @@ tick.postDelayed(this, 100);
    }
 };
 tick.postDelayed(runb, 100);
-panelui= new PopupWindow(lays, MCH_PNT, WR_CNT);      
-panelui.setOnDismissListener(new PopupWindow.OnDismissListener({
+paneluis= new PopupWindow(lays, MCH_PNT, WR_CNT);      
+paneluis.setOnDismissListener(new PopupWindow.OnDismissListener({
 onDismiss: function(){
 if(runb!=null){
 tick.removeCallbacks(runb);
 }
 }}));
-panelui.setBackgroundDrawable(bg);
-panelui.setFocusable(true);
+paneluis.setBackgroundDrawable(bg);
+paneluis.setFocusable(true);
 ctx.runOnUiThread(new Runnable({ run: function(){
-panelui.setAnimationStyle(animations.toast);
-panelui.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM,0, 0);
+paneluis.setAnimationStyle(animations.toast);
+paneluis.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM,0, 0);
 }}));
 }
 },
@@ -5260,7 +5260,7 @@ infoobtn.setText(amster_OS.createsystemapps.my_explorer.explor_dir+"\n"+countsel
 };
 handler.postDelayed(runnable, 100);
 GUILAB = new PopupWindow(layoutc, MCH_PNT, WR_CNT);
-panelui.setOnDismissListener(new PopupWindow.OnDismissListener({
+GUILAB.setOnDismissListener(new PopupWindow.OnDismissListener({
 onDismiss: function(){
 if(runnable!=null){
 handler.removeCallbacks(runnable);
