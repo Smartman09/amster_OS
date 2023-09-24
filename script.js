@@ -342,6 +342,8 @@ dipSize: function(dips){
 },
 graphics : {
 colors:["#2aa8d8","#5296b3","#0e1122"],
+system_design:{cl1:"#1565c0",cl2:"#81d4fa",gr:"TL_BR"},
+print_design:{size:15,cl:"#ffffff",cl2:"#000000",al:150,cor:50},
 easyColor: function (clrs){
 amster_OS.graphics.colors[0]=clrs[0];
 amster_OS.graphics.colors[1]=clrs[1];
@@ -376,11 +378,17 @@ fasttxt.setTypeface(null, Typeface.BOLD);
 return fasttxt;
 },
 easyBar: function (par){
+var bg = new GradientDrawable();
+bg.setAlpha(50);
+bg.setCornerRadius(30);
+bg.setStroke(5, Color.BLACK);
+bg.setColor(Color.parseColor(amster_OS.graphics.colors[1]));
+
 var bartes = new SeekBar(ctx);
     bartes.setMax(par[0]);
-    bartes.getThumb().setColorFilter(Color.parseColor(amster_OS.graphics.colors[0]), android.graphics.PorterDuff.Mode.SRC_IN);
-    bartes.setProgress(par[1]);
-    bartes.getProgressDrawable().setColorFilter(Color.parseColor(amster_OS.graphics.colors[0]), android.graphics.PorterDuff.Mode.SRC_IN);
+bartes.getThumb().setColorFilter(Color.parseColor(amster_OS.graphics.colors[1]), android.graphics.PorterDuff.Mode.SRC);
+bartes.setProgressDrawable(bg);
+   bartes.setProgress(par[1]);
 return bartes;
 },
 easyEdit: function (txt,size){
@@ -437,30 +445,157 @@ var webs = new android.webkit.WebView(ctx);
 return webs;
 },
 print: function(text){
-  ctx.runOnUiThread(new Runnable({
-   run: function () {
-   	try{
     var thetoast = android.widget.Toast.makeText(ctx,text,0.1);
     var layout = new LinearLayout(ctx);
     var msg = new Button(ctx);
-    msg.setTextSize(15);
-    msg.setPadding(10, 10, 10, 10);
-    msg.setTextColor(Color.parseColor("#ffffff"));    
+    msg.setTextSize(amster_OS.graphics.print_design.size);
+    msg.setTextColor(Color.parseColor(amster_OS.graphics.print_design.cl));    
     msg.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-    msg.setText((fromHtml('<b><font color="white">'+text+'</font></b>')));   
+    msg.setText(fromHtml('<b><font color="'+amster_OS.graphics.print_design.cl+'">'+text+'</font></b>'));   
     msg.setGravity(Gravity.CENTER);
     var btnpic = new GradientDrawable();
-    btnpic.setColor(Color.parseColor('#000000'));
-btnpic.setAlpha(150);
-btnpic.setCornerRadius(50);
+    btnpic.setColor(Color.parseColor(amster_OS.graphics.print_design.cl2));
+btnpic.setAlpha(amster_OS.graphics.print_design.al);
+btnpic.setCornerRadius(amster_OS.graphics.print_design.cor);
     layout.addView(msg);
     layout.setBackground(btnpic);
     thetoast.setView(layout);
+if(amster_OS.createsystemapps.settings.seeprints){
+ctx.runOnUiThread(new Runnable({
+   run: function () {
     thetoast.show();    
-    }catch(e){print(e+". #"+e.lineNumber)}
-   }
-  }));
+}}));
+}},
+black_back: function (){
+var black_bg = new GradientDrawable();
+black_bg.setColor(Color.parseColor('#000000'));
+black_bg.setAlpha(150);
+var lays = new LinearLayout(ctx);
+lays.setOrientation(1);
+return amster_OS.graphics.easyPopup(lays,black_bg);
 },
+colorPicker: function(v,text){
+try{
+var current_color = "#ff0000";
+var lays = new LinearLayout(ctx);
+  lays.setOrientation(1);
+var lay = new LinearLayout(ctx);
+  lay.setOrientation(0);
+lays.addView(lay);
+
+var params = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(150), amster_OS.screen.dipSize(150));
+params.setMargins(1,5,7,5);
+
+var param = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(150));
+param.setMargins(5,5,7,1);
+
+var paramss = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(175), amster_OS.screen.dipSize(20));
+paramss.setMargins(1,7,1,1);
+
+
+function generate(){
+lay.removeAllViews();
+lays.removeAllViews();
+lays.addView(lay);
+var paintt = new Paint();
+var bmp = new Bitmap.createBitmap(amster_OS.screen.dipSize(150), amster_OS.screen.dipSize(150),Bitmap.Config.ARGB_8888)
+var canvass = new android.graphics.Canvas(bmp);
+
+var shader = new android.graphics.LinearGradient(0, 0, amster_OS.screen.dipSize(150) ,amster_OS.screen.dipSize(150), [Color.parseColor("#ffffff"),Color.parseColor(current_color),Color.parseColor("#000000")], null, android.graphics.Shader.TileMode.CLAMP);
+        paintt.setShader(shader);
+        canvass.drawRect(0,0, amster_OS.screen.dipSize(150), amster_OS.screen.dipSize(150), paintt);
+
+var paint = new Paint();
+var bmo = new Bitmap.createBitmap(amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(150),Bitmap.Config.ARGB_8888)
+var canvas = new android.graphics.Canvas(bmo);
+
+var colors = [
+  Color.parseColor("#FF0000"),
+  Color.parseColor("#800080"),
+  Color.parseColor("#0000FF"),
+  Color.parseColor("#00FFFF"),
+  Color.parseColor("#00FF00"),
+  Color.parseColor("#FFFF00"),
+Color.parseColor("#FFA500"),
+Color.parseColor("#FF0000")
+];
+
+var shader = new android.graphics.LinearGradient(0, 0, 0 ,amster_OS.screen.dipSize(150), colors, null, android.graphics.Shader.TileMode.CLAMP);
+        paint.setShader(shader);
+        canvas.drawRect(0,0, amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(150), paint);
+
+var txt = new TextView(ctx);
+//txt.getPaint().setShader(shader);
+txt.setLayoutParams(params);
+txt.setBackgroundDrawable(new BitmapDrawable(bmp))
+txt.setOnTouchListener(new android.view.View.OnTouchListener( { 
+onTouch: function (view, m) {
+try{
+switch (m.getAction()) {
+case android.view.MotionEvent.ACTION_UP:
+if(m.getY()<bmp.height&&m.getX()<bmp.width){
+var pixel = bmp.getPixel(m.getX(),m.getY());
+current_color = "#" + java.lang.Integer.toHexString(pixel).substring(2);
+generate();
+}
+break;
+}
+}catch(e){print(e)}
+return true;
+}}));
+lay.addView(txt);
+
+var txt1 = new TextView(ctx);
+txt1.setLayoutParams(param);
+txt1.setBackgroundDrawable(new BitmapDrawable(bmo)); 
+txt1.setOnTouchListener(new android.view.View.OnTouchListener( { 
+onTouch: function (view, m) {
+try{
+switch (m.getAction()) {
+case android.view.MotionEvent.ACTION_UP:
+if(m.getY()<bmo.height){
+var pixel = bmo.getPixel(10,m.getY());
+current_color = "#" + java.lang.Integer.toHexString(pixel).substring(2);
+generate();
+}
+break;
+}
+}catch(e){print(e)}
+return true;
+}}));
+lay.addView(txt1);
+
+var txt2 = new TextView(ctx);
+txt2.setTextSize(15);
+txt2.setLayoutParams(paramss);
+txt2.setTextColor(Color.parseColor('#FFFFFF'));    
+txt2.setBackgroundDrawable(new ColorDrawable(Color.parseColor(current_color))); 
+if(text){
+txt2.setText(fromHtml('<b><font color="white">'+text+current_color+'</font></b>'));
+}else{
+txt2.setText(fromHtml('<b><font color="white">'+current_color+'</font></b>'));
+}
+txt2.setOnClickListener(new View.OnClickListener({ onClick: function(view) {        
+v.setText(view.getText());
+ui.dismiss();
+}}));
+txt2.setOnLongClickListener(new View.OnLongClickListener( {
+onLongClick: function (v, t) {
+amster_OS.start_os.openedit(v,v.getText());
+return true;
+}}));
+lays.addView(txt2);
+}
+generate();
+var ui= new PopupWindow(lays, WR_CNT, WR_CNT);      
+ui.setFocusable(true);
+ui.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
+ctx.runOnUiThread(new Runnable({ run: function(){
+ui.setAnimationStyle(animations.toast);
+ui.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
+}}));
+}catch(e){print(e+e.lineNumber)}
+}
 },
 createsystemapps:{
 crosszero : {
@@ -471,10 +606,6 @@ click_player:new MediaPlayer(),
 music_ploz:new MediaPlayer(),
 fontS:null,
 texturespath:null,
-hand:null,
-runnable:null,
-hand1:null,
-runnable1:null,
 score:[0,0],
 ochered:0,
 volume:0.5,
@@ -560,7 +691,7 @@ if(file1.exists()){
 this.startlevel();
 } else {
 try{
-amster_OS.downloadManager.setupmenu(amster_OS.my_root.getDir()[0]+"use_textures",false,amster_OS.createsystemapps.crosszero,["res.aour"],amster_OS.my_root.getDir()[0],["https://drive.Google.com/uc?export=download&id=16LD-unJQiUgyo7LnC4V1WJIUzhB-iS4a"]);
+amster_OS.downloadManager.setupmenu(amster_OS.my_root.getDir()[0]+"use_textures",false,amster_OS.createsystemapps.crosszero,["res.aour"],amster_OS.my_root.getDir()[0],["https://drive.Google.com/uc?export=download&id=16LD-unJQiUgyo7LnC4V1WJIUzhB-iS4a"],true);
 }catch(e){print (e)}
 }
 },
@@ -953,8 +1084,8 @@ amster_OS.createsystemapps.crosszero.setfontbtn(btna3)
 amster_OS.createsystemapps.crosszero.setPlayerHod(viewarg.getId());
    }}));
 lay3.addView(btna3);
-amster_OS.createsystemapps.crosszero.hand = android.os.Handler();
-amster_OS.createsystemapps.crosszero.runnable = new Runnable() {
+var tick = android.os.Handler();
+var runb = new Runnable() {
    run() {
                 try{
 btn1.setText(amster_OS.createsystemapps.crosszero.kletki[0])
@@ -971,12 +1102,18 @@ amster_OS.createsystemapps.crosszero.getname();
                                  }catch(e){
                     print("Error(" + e.lineNumber + "): " + e.message);
                 }
-amster_OS.createsystemapps.crosszero.hand.postDelayed(this, 100);
+tick.postDelayed(this, 100);
    }
 };
-amster_OS.createsystemapps.crosszero.hand.postDelayed(amster_OS.createsystemapps.crosszero.runnable, 100);
+tick.postDelayed(runb, 100);
     
 GUYA = new PopupWindow(layout, amster_OS.screen.dipSize(300), amster_OS.screen.dipSize(300));
+GUYA.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runb!=null){
+tick.removeCallbacks(runb);
+}
+}}));
 GUYA.setBackgroundDrawable(amster_OS.createsystemapps.crosszero.getbgimg("bg_1"));  
 GUYA.setAnimationStyle(animation);
  	GUYA.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
@@ -1001,8 +1138,6 @@ amster_OS.createsystemapps.crosszero.setfontbtn(exitbtn);
      exitbtn.setText("выход");   
     exitbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 amster_OS.createsystemapps.crosszero.settings[3]="счёт 0 : 0";
-amster_OS.createsystemapps.crosszero.hand.removeCallbacks(amster_OS.createsystemapps.crosszero.runnable);
-amster_OS.createsystemapps.crosszero.hand1.removeCallbacks(amster_OS.createsystemapps.crosszero.runnable1);
 amster_OS.createsystemapps.crosszero.poleclear();
 GUYA.dismiss();
 GUY.dismiss();
@@ -1036,17 +1171,23 @@ scorebtm.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
     scorebtm.setTextSize(33);
 
 layout.addView(scorebtm);
-amster_OS.createsystemapps.crosszero.hand1 = android.os.Handler();
-amster_OS.createsystemapps.crosszero.runnable1 = new Runnable() {
+var tick = android.os.Handler();
+var runb = new Runnable() {
    run() {
 try{
 scorebtm.setText(amster_OS.createsystemapps.crosszero.settings[3]);   
 } catch (e){print(e + e.lineNumber)}
-                                  amster_OS.createsystemapps.crosszero.hand1.postDelayed(this, 100);
+                                  tick.postDelayed(this, 100);
    }
 };
-amster_OS.createsystemapps.crosszero.hand1.postDelayed(amster_OS.createsystemapps.crosszero.runnable1, 100);
+tick.postDelayed(runb, 100);
 GUYs= new PopupWindow(layout, WR_CNT, amster_OS.screen.dipSize(60));
+GUYs.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runb!=null){
+tick.removeCallbacks(runb);
+}
+}}));
 GUYs.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
 	GUYs.setTouchable(false);
 GUYs.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.TOP, 0, 0);
@@ -1114,22 +1255,7 @@ GUYLD.setBackgroundDrawable(amster_OS.createsystemapps.crosszero.getbgimg("bg_3"
     }}));
 },
 backgroundblack: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
-     var black_bg = new GradientDrawable();
-black_bg.setColor(Color.parseColor('#000000'));
-black_bg.setAlpha(150);
-var LayoutParams = LinearLayout.LayoutParams 
-   var lays = new LinearLayout(ctx);
-  lays.setOrientation(1);
-  GUYKS= new PopupWindow(lays, MCH_PNT, MCH_PNT);      
-GUYKS.setAnimationStyle(animation);
-GUYKS.setBackgroundDrawable(black_bg); 
-            GUYKS.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
+  GUYKS= new amster_OS.graphics.black_back();
 },
 startgamingmenu: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
@@ -1529,10 +1655,6 @@ headpos : "right",
 max:65,
 savetime:0,
 gametimer : 0,
-hand:null,
-hand1:null,
-runnable:null,
-runnable1:null,
 gamestarted : false,
 scoreint : 0,
 fdcr : [[4,4]],
@@ -1560,8 +1682,8 @@ b1utton1.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
 b1utton1.setBackgroundDrawable(BitmapDrawable(bmp))
      layout.addView(b1utton1);
 
-amster_OS.createsystemapps.simple_snake.hand = android.os.Handler();
-amster_OS.createsystemapps.simple_snake.runnable = new Runnable() {
+var tick = android.os.Handler();
+var runb = new Runnable() {
    run() {
 try{
                     if(amster_OS.createsystemapps.simple_snake.gamestarted){
@@ -1642,10 +1764,10 @@ amster_OS.createsystemapps.simple_snake.gametimer = amster_OS.createsystemapps.s
                 }catch(e){
                     print("Error(" + e.lineNumber + "): " + e.message);
                 }
-amster_OS.createsystemapps.simple_snake.hand.postDelayed(this, 10);
+tick.postDelayed(this, 10);
    }
 };
-amster_OS.createsystemapps.simple_snake.hand.postDelayed(amster_OS.createsystemapps.simple_snake.runnable, 10);
+tick.postDelayed(runb, 10);
 
 function drawElements(cords,bmps,clr){
 for(var i in cords){
@@ -1692,6 +1814,12 @@ check = true;
 return check;
 }
   KSUI= new PopupWindow(layout, amster_OS.screen.dipSize(400), amster_OS.screen.dipSize(400));      
+KSUI.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runb!=null){
+tick.removeCallbacks(runb);
+}
+}}));
 KSUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 KSUI.setAnimationStyle(animation);
 ctx.runOnUiThread(new Runnable({ run: function(){
@@ -1744,17 +1872,23 @@ b1utton2.setText("");
 }));
     layout.addView(b1utton2);
 
-amster_OS.createsystemapps.simple_snake.hand1 = android.os.Handler();
-amster_OS.createsystemapps.simple_snake.runnable1 = new Runnable() {
+var tick = android.os.Handler();
+var runb = new Runnable() {
    run() {
 if(!amster_OS.createsystemapps.simple_snake.gamestarted)b1utton2.setText("начать игру");   
 b1utton1.setText("счёт: "+amster_OS.createsystemapps.simple_snake.scoreint)
-              amster_OS.createsystemapps.simple_snake.hand1.postDelayed(this, 100);
+              tick.postDelayed(this, 100);
    }
 };
-amster_OS.createsystemapps.simple_snake.hand1.postDelayed(amster_OS.createsystemapps.simple_snake.runnable1, 100);
+tick.postDelayed(runb, 100);
 
   FSUI= new PopupWindow(layout, UiWidth/2, MCH_PNT);      
+FSUI.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runb!=null){
+tick.removeCallbacks(runb);
+}
+}}));
 FSUI.setBackgroundDrawable(bg_s1);
 FSUI.setAnimationStyle(animation);
 FSUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.CENTER,0, 0);
@@ -1784,8 +1918,6 @@ GGYUL.dismiss();
 FSUI.dismiss();
 KSUI.dismiss();
 amster_OS.createsystemapps.simple_snake.gamestarted=false;
-amster_OS.createsystemapps.simple_snake.hand.removeCallbacks(amster_OS.createsystemapps.simple_snake.runnable);
-amster_OS.createsystemapps.simple_snake.hand1.removeCallbacks(amster_OS.createsystemapps.simple_snake.runnable1);
 }catch(e){print(e)}
   	}
 }));
@@ -1948,10 +2080,6 @@ name:"Калькулятор",
 version:"1.0",
 labels:"none",
 page:true,
-runnable:null,
-hand:null,
-runnable1:null,
-hand1:null,
 textd:null,
 calc1:['1','2','3','-','4','5','6','+','7','8','9','*','0','(',')','÷'],
 calc2:['.','PI','E','!','^','E^','cos','sin','√','round','floor','ceil','log'],
@@ -2269,12 +2397,6 @@ simple_clicker:{
 name:"Кликер",
 version:"1.0",
 labels:"none",
-hand:null,
-runnable:null,
-hand1:null,
-runnable1:null,
-hand2:null,
-runnable2:null,
 money_player:new MediaPlayer(),
 bg_player:new MediaPlayer(),
 tlcost:[150,400,1200,14300,45000,110000,250000,400000,1000000,5000000,20500000,60000000,100000000,350000000,650000000,1000000000,1450000000],
@@ -2301,7 +2423,7 @@ if(file1.exists()){
 this.fullstart();
 }else{
 //download
-amster_OS.downloadManager.setupmenu(amster_OS.my_root.getDir()[1]+"use_textures",true,amster_OS.createsystemapps.simple_clicker,["res.aour"],amster_OS.my_root.getDir()[1],["https://drive.Google.com/uc?export=download&id=16OzVB7h0kBRWgf73fXPj2xrPf7ZgY323"])
+amster_OS.downloadManager.setupmenu(amster_OS.my_root.getDir()[1]+"use_textures",true,amster_OS.createsystemapps.simple_clicker,["res.aour"],amster_OS.my_root.getDir()[1],["https://drive.Google.com/uc?export=download&id=16OzVB7h0kBRWgf73fXPj2xrPf7ZgY323"],true);
 }
 },
 getimgbg: function (name){
@@ -2391,6 +2513,7 @@ exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSiz
      exitsetbtn.setText('');   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
+amster_OS.Data.setValue("monets",amster_OS.createsystemapps.simple_clicker.money,amster_OS.my_root.getDir()[1]+"dats.txt");
 CLICKGAMEGUI.dismiss();
 CLICKGAMEEXIT.dismiss();
 CLICKSETOPEN.dismiss();
@@ -2401,12 +2524,6 @@ amster_OS.createsystemapps.simple_clicker.bg_player.pause();
 amster_OS.createsystemapps.simple_clicker.bg_player.reset();
 amster_OS.createsystemapps.simple_clicker.money_player.pause();
 amster_OS.createsystemapps.simple_clicker.money_player.reset();
-if(amster_OS.createsystemapps.simple_clicker.runnable2!=null){
-amster_OS.createsystemapps.simple_clicker.hand2.removeCallbacks(amster_OS.createsystemapps.simple_clicker.runnable2);
-}
-if(amster_OS.createsystemapps.simple_clicker.runnable!=null){
-amster_OS.createsystemapps.simple_clicker.hand.removeCallbacks(amster_OS.createsystemapps.simple_clicker.runnable);
-}
 }catch(e){print(e)}
    }}));
 lays.addView(exitsetbtn);
@@ -2449,9 +2566,6 @@ exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSiz
      exitsetbtn.setText('');   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
-if(amster_OS.createsystemapps.simple_clicker.runnable1!=null){
-amster_OS.createsystemapps.simple_clicker.hand1.removeCallbacks(amster_OS.createsystemapps.simple_clicker.runnable1);
-}
 CLICKSHOPGUI.dismiss();
 CLICKSHOPEXIT.dismiss();
 SHOPUI.dismiss();
@@ -2560,26 +2674,23 @@ exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSiz
      exitsetbtn.setText('');    
 lays.addView(exitsetbtn);
 
-amster_OS.createsystemapps.simple_clicker.hand2 = android.os.Handler();
-amster_OS.createsystemapps.simple_clicker.runnable2 = new Runnable() {
-   run() {
-exitsetbtn.setText(fromHtml('<b><font color="#ffffff">'+amster_OS.createsystemapps.simple_clicker.valueconverter(amster_OS.createsystemapps.simple_clicker.money)+'</font></b>'))                
-amster_OS.createsystemapps.simple_clicker.hand2.postDelayed(this, 1);
-   }
-};
-amster_OS.createsystemapps.simple_clicker.hand2.postDelayed(amster_OS.createsystemapps.simple_clicker.runnable2, 1);
-
-amster_OS.createsystemapps.simple_clicker.hand = android.os.Handler();
-amster_OS.createsystemapps.simple_clicker.runnable = new Runnable() {
+var tick = android.os.Handler();
+var runb = new Runnable() {
    run() {
 amster_OS.createsystemapps.simple_clicker.money=amster_OS.createsystemapps.simple_clicker.money+amster_OS.createsystemapps.simple_clicker.getcoins;
-amster_OS.Data.setValue("monets",amster_OS.createsystemapps.simple_clicker.money,amster_OS.my_root.getDir()[1]+"dats.txt")
-amster_OS.createsystemapps.simple_clicker.hand.postDelayed(this, 1000);
+exitsetbtn.setText(fromHtml('<b><font color="#ffffff">'+amster_OS.createsystemapps.simple_clicker.valueconverter(amster_OS.createsystemapps.simple_clicker.money)+'</font></b>'))                
+tick.postDelayed(this, 1000);
    }
 };
-amster_OS.createsystemapps.simple_clicker.hand.postDelayed(amster_OS.createsystemapps.simple_clicker.runnable, 1000);
+tick.postDelayed(runb, 1000);
 
   moneyUI= new PopupWindow(lays, amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(50));      
+moneyUI.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runb!=null){
+tick.removeCallbacks(runb);
+}
+}}));
 moneyUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
            moneyUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.TOP,0, 0);
    }catch(err){
@@ -2709,19 +2820,25 @@ createbtns();
 
 
 var magaztimer = 120;
-amster_OS.createsystemapps.simple_clicker.hand1 = android.os.Handler();
-amster_OS.createsystemapps.simple_clicker.runnable1= new Runnable() {
+var tick = android.os.Handler();
+var runb= new Runnable() {
    run() {
 magaztimer--;
 if(magaztimer<0){
 createbtns();
 magaztimer=120;
 }
-                                 amster_OS.createsystemapps.simple_clicker.hand1.postDelayed(this, 1);
+                                 tick.postDelayed(this, 1);
    }
 };
-amster_OS.createsystemapps.simple_clicker.hand1.postDelayed(amster_OS.createsystemapps.simple_clicker.runnable1, 1);
+tick.postDelayed(runb, 1);
   SHOPUI= new PopupWindow(lays, MCH_PNT, UiHeight/2);      
+SHOPUI.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runb!=null){
+tick.removeCallbacks(runb);
+}
+}}));
 SHOPUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             SHOPUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM,0, 0);
    }catch(err){
@@ -3240,23 +3357,29 @@ amster_OS.createsystemapps.mpplayer.trackinfo(pathu,idgg);
 lay1.addView(btm2)
 
 lay.addView(lay1);
-amster_OS.createsystemapps.mpplayer.hand = android.os.Handler();
-  amster_OS.createsystemapps.mpplayer.runnable = new Runnable() {
+var tick = android.os.Handler();
+  var runb = new Runnable() {
    run() {
                                 if(amster_OS.createsystemapps.mpplayer.main_player.isPlaying()){
   button53.setText("| |");   
 }else{
 button53.setText("▶");   
 }
-amster_OS.createsystemapps.mpplayer.hand.postDelayed(this, 100);
+tick.postDelayed(this, 100);
    }
 };
-amster_OS.createsystemapps.mpplayer.hand.postDelayed(amster_OS.createsystemapps.mpplayer.runnable, 100);
+tick.postDelayed(runb, 100);
 
 
 
         GTT = new PopupWindow(lays, MCH_PNT, UiHeight/9);
-            GTT.setBackgroundDrawable(amster_OS.createsystemapps.mpplayer.getbg("bg_nN3")); 
+         GTT.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runb!=null){
+tick.removeCallbacks(runb);
+}
+}}));
+   GTT.setBackgroundDrawable(amster_OS.createsystemapps.mpplayer.getbg("bg_nN3")); 
             GTT.setAnimationStyle(animation);
             	GTT.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM, 0, 0);
             
@@ -3271,7 +3394,7 @@ ctx.runOnUiThread(new Runnable({ run: function(){
             var layout = new LinearLayout(ctx);
             layout.setOrientation(1);
             
-var exitsetbtn = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var exitsetbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(50)));
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
@@ -3281,12 +3404,7 @@ GTT.dismiss();
 amster_OS.createsystemapps.mpplayer.check=false;
 RUF.dismiss();
 JGUI.dismiss();
-if(amster_OS.createsystemapps.mpplayer.runnable!=null){
-amster_OS.createsystemapps.mpplayer.hand.removeCallbacks(amster_OS.createsystemapps.mpplayer.runnable);
-}
-if(amster_OS.createsystemapps.mpplayer.runnable1!=null){
-amster_OS.createsystemapps.mpplayer.hand1.removeCallbacks(amster_OS.createsystemapps.mpplayer.runnable1);
-}
+
 }catch(e){print(e)}
    }}));
 exitsetbtn.setOnLongClickListener(new View.OnLongClickListener( {
@@ -3387,7 +3505,11 @@ btn33.setText(" ");
         var musicsbp = new SeekBar(ctx);
     musicsbp.setMax(amster_OS.createsystemapps.mpplayer.main_player.getDuration());
     musicsbp.getThumb().setColorFilter(Color.WHITE, android.graphics.PorterDuff.Mode.SRC);
-    musicsbp.setProgress(amster_OS.createsystemapps.mpplayer.main_player.getCurrentPosition());
+var bg = new GradientDrawable();
+bg.setStroke(10, android.graphics.Color.parseColor('#ffffff'));
+bg.setColor(android.graphics.Color.parseColor('#111D3D'));
+ musicsbp.setProgressDrawable(bg);
+   musicsbp.setProgress(amster_OS.createsystemapps.mpplayer.main_player.getCurrentPosition());
     musicsbp.getProgressDrawable().setColorFilter(Color.parseColor("#3D4352"), android.graphics.PorterDuff.Mode.SRC_IN);
     musicsbp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
     {
@@ -3474,8 +3596,8 @@ amster_OS.graphics.print("скопировано "+amster_OS.createsystemapps.mp
   }
    }));
 layss.addView(btn33);
-amster_OS.createsystemapps.mpplayer.hand1 = android.os.Handler();
-amster_OS.createsystemapps.mpplayer.runnable1 = new Runnable() {
+var tick = android.os.Handler();
+var runb = new Runnable() {
    run() {
 if(amster_OS.createsystemapps.mpplayer.main_player.isPlaying()){
   btn22.setText("| |");   
@@ -3485,15 +3607,21 @@ btn22.setText("▶");
                                 musicsbp.setProgress(amster_OS.createsystemapps.mpplayer.main_player.getCurrentPosition());
 button07.setText(""+amster_OS.createsystemapps.mpplayer.milliSecToMinString(amster_OS.createsystemapps.mpplayer.main_player.getDuration()))
 button007.setText(""+amster_OS.createsystemapps.mpplayer.milliSecToMinString(amster_OS.createsystemapps.mpplayer.main_player.getCurrentPosition()));         
-amster_OS.createsystemapps.mpplayer.hand1.postDelayed(this, 100);
+tick.postDelayed(this, 100);
    }
 };
-amster_OS.createsystemapps.mpplayer.hand1.postDelayed(amster_OS.createsystemapps.mpplayer.runnable1, 100);
+tick.postDelayed(runb, 100);
 
 
 
         TTTC = new PopupWindow(lays, MCH_PNT, MCH_PNT);
-            TTTC.setBackgroundDrawable(amster_OS.createsystemapps.mpplayer.getbg("bg_nN3")); 
+           TTTC.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runb!=null){
+tick.removeCallbacks(runb);
+}
+}}));
+ TTTC.setBackgroundDrawable(amster_OS.createsystemapps.mpplayer.getbg("bg_nN3")); 
             TTTC.setAnimationStyle(animation);
             	TTTC.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
             
@@ -3715,7 +3843,7 @@ var scr = new ScrollView(ctx);
 scr.addView(lay);
 lays.addView(lay1);
 lays.addView(scr);
-var exit = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var exit = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 exit.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
 exit.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 menu_ui.dismiss();
@@ -3804,7 +3932,7 @@ scsr.addView(lay);
 lays.addView(lay1);
 lays.addView(scsr);
 
-var exit = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var exit = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 exit.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
 exit.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 note_ui.dismiss();
@@ -3865,21 +3993,7 @@ note_ui.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.
 }}));
 },
 openblack: function (){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
-     var black_bg = new GradientDrawable();
-black_bg.setColor(Color.parseColor('#000000'));
-black_bg.setAlpha(150);
-
-   var lays = new LinearLayout(ctx);
-  lays.setOrientation(1);
-  BLACKPHONE= new PopupWindow(lays, UiWidth/1, UiHeight/1);      
-BLACKPHONE.setBackgroundDrawable(black_bg); 
-            BLACKPHONE.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
+  BLACKPHONE= new amster_OS.graphics.black_back();
 },
 create: function(){
 amster_OS.createsystemapps.notes.openblack();
@@ -3948,6 +4062,7 @@ labels:"none",
 lastpage:0,
 seetablebar:true,
 seesystem:true,
+seeprints:true,
 seeuser:true,
 alphabar:250,
 path:null,
@@ -3997,6 +4112,46 @@ UiHeight=parseInt(amster_OS.Data.getValue("UiHeight",amster_OS.createsystemapps.
 if(amster_OS.Data.getValue("table_path",amster_OS.createsystemapps.settings.path)!=null){
 amster_OS.launcher.table_path=amster_OS.Data.getValue("table_path",amster_OS.createsystemapps.settings.path);
 }
+if(amster_OS.Data.getValue("colors1",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.colors[0]=amster_OS.Data.getValue("colors1",amster_OS.createsystemapps.settings.path);
+}
+if(amster_OS.Data.getValue("colors2",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.colors[1]=amster_OS.Data.getValue("colors2",amster_OS.createsystemapps.settings.path);
+}
+if(amster_OS.Data.getValue("colors3",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.colors[2]=amster_OS.Data.getValue("colors3",amster_OS.createsystemapps.settings.path);
+}
+if(amster_OS.Data.getValue("cl1",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.system_design.cl1=amster_OS.Data.getValue("cl1",amster_OS.createsystemapps.settings.path);
+}
+if(amster_OS.Data.getValue("cl2",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.system_design.cl2=amster_OS.Data.getValue("cl2",amster_OS.createsystemapps.settings.path);
+}
+if(amster_OS.Data.getValue("gr",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.system_design.gr=amster_OS.Data.getValue("gr",amster_OS.createsystemapps.settings.path);
+}
+if(amster_OS.Data.getValue("cr1",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.print_design.cl=amster_OS.Data.getValue("cr1",amster_OS.createsystemapps.settings.path);
+}
+if(amster_OS.Data.getValue("cr2",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.print_design.cl2=amster_OS.Data.getValue("cr2",amster_OS.createsystemapps.settings.path);
+}
+if(amster_OS.Data.getValue("size",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.print_design.size=parseInt(amster_OS.Data.getValue("size",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("al",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.print_design.al=parseInt(amster_OS.Data.getValue("al",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("seeprints",amster_OS.createsystemapps.settings.path)!=null){
+var abs=amster_OS.Data.getValue("seeprints",amster_OS.createsystemapps.settings.path);
+if(abs=="true"){
+amster_OS.createsystemapps.settings.seeprints=true;
+}else{
+amster_OS.createsystemapps.settings.seeprints=false;
+}}
+if(amster_OS.Data.getValue("cor",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.graphics.print_design.cor=parseInt(amster_OS.Data.getValue("cor",amster_OS.createsystemapps.settings.path));
+}
 }
 },
 settingui: function(){
@@ -4031,7 +4186,7 @@ exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.scree
 exitsetbtn.setAllCaps(false);
 exitsetbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
      exitsetbtn.setText(fromHtml('<font color="#ffffff"><b>выход</b></font>'));   
-    exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+    exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
 SETGUI.dismiss();
    }}));
 lay1.addView(exitsetbtn);
@@ -4044,7 +4199,7 @@ namebtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
      namebtn.setText(fromHtml('<font color="#ffffff"><b>настройки</b></font>'));   
 lay1.addView(namebtn);
 
-var pages = ["информация","язык","рабочий стол","приложения","пользователь","экран","память","библиотеки"];
+var pages = ["информация","язык","рабочий стол","приложения","пользователь","экран","память","библиотеки","персонализация"];
 for(var i in pages){
 var razdelbtn = new Button(ctx);
  razdelbtn.setGravity(Gravity.LEFT);   razdelbtn.setTextColor(Color.parseColor('#000000'));
@@ -4126,8 +4281,8 @@ var btr3 = new amster_OS.graphics.easyLink("Vk","https://vk.com/idkomandavk",10)
 layl2.addView(btr3);
 var btr4 = new amster_OS.graphics.easyLink("Tg channel","https://t.me/amstercheats",10);
 layl2.addView(btr4);
-var btr5 = new amster_OS.graphics.easyButton("By Amstercheats(smartman) 2022-2204",[Gravity.LEFT,10]);
-btr5.setText(fromHtml('<b><font color="#00ff00">By Amstercheats(smartman) 2022-2204</font><b>'));   
+var btr5 = new amster_OS.graphics.easyButton("By Amstercheats(smartman) 2022-2024",[Gravity.LEFT,10]);
+btr5.setText(fromHtml('<b><font color="#00ff00">By Amstercheats(smartman) 2022-2024</font><b>'));   
 layl2.addView(btr5);
 break;
 case 1:
@@ -4168,12 +4323,12 @@ btn2.setOnClickListener(new View.OnClickListener({
     onClick: function(viewarg){
       if(!amster_OS.createsystemapps.settings.seetablebar){
     amster_OS.createsystemapps.settings.seetablebar = true;
-    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
-viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
     }else{
     amster_OS.createsystemapps.settings.seetablebar = false;
-    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
-viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
    }
 amster_OS.Data.setValue("seetablebar",amster_OS.createsystemapps.settings.seetablebar,amster_OS.createsystemapps.settings.path);
 viewarg.setChecked(amster_OS.createsystemapps.settings.seetablebar);
@@ -4198,12 +4353,12 @@ btn7.setOnClickListener(new View.OnClickListener({
     onClick: function(viewarg){
       if(!amster_OS.createsystemapps.settings.seesystem){
     amster_OS.createsystemapps.settings.seesystem = true;
-    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
-viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
     }else{
     amster_OS.createsystemapps.settings.seesystem = false;
-    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
-viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
    }
 amster_OS.Data.setValue("seesystem",amster_OS.createsystemapps.settings.seesystem,amster_OS.createsystemapps.settings.path);
 viewarg.setChecked(amster_OS.createsystemapps.settings.seesystem);
@@ -4215,12 +4370,12 @@ btn8.setOnClickListener(new View.OnClickListener({
     onClick: function(viewarg){
       if(!amster_OS.createsystemapps.settings.seeuser){
     amster_OS.createsystemapps.settings.seeuser = true;
-    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
-viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
     }else{
     amster_OS.createsystemapps.settings.seeuser = false;
-    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
-viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
    }
 amster_OS.Data.setValue("seeuser",amster_OS.createsystemapps.settings.seeuser,amster_OS.createsystemapps.settings.path);
 viewarg.setChecked(amster_OS.createsystemapps.settings.seeuser);
@@ -4240,7 +4395,7 @@ btn9.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {
 if(!amster_OS.createsystemapps.settings.seetablebar){
 amster_OS.createsystemapps.settings.seetablebar = true;
 amster_OS.Data.setValue("seetablebar",amster_OS.createsystemapps.settings.seetablebar,amster_OS.createsystemapps.settings.path);
-amster_OS.launcher.statusbar.init();
+amster_OS.launcher.bar.init();
 }
    }}));
 layl2.addView(btn9);
@@ -4396,7 +4551,7 @@ btns4.setText(fromHtml('<b><font color="#ffffff">вернуть обратно</
 btns4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 UiWidth=ctx.getWindowManager().getDefaultDisplay().getWidth();
 UiHeight=ctx.getWindowManager().getDefaultDisplay().getHeight();
-
+amster_OS.Data.setValue("UiWidth",UiWidth,amster_OS.createsystemapps.settings.path);
 amster_OS.Data.setValue("UiHeight",UiHeight,amster_OS.createsystemapps.settings.path);
 amster_OS.graphics.print("Сохранено.");
    }}));
@@ -4473,6 +4628,258 @@ layl2.addView(btn2);
 }
 }
 break;
+case 8:
+var text1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+text1.setText(fromHtml('<b><font color="#ffffff">Уведомления</font><b>'));   
+layl2.addView(text1);
+
+var btn2 = new amster_OS.graphics.easyToggle("показывать ", amster_OS.createsystemapps.settings.seeprints);
+btn2.setOnClickListener(new View.OnClickListener({
+    onClick: function(viewarg){
+      if(!amster_OS.createsystemapps.settings.seeprints){
+    amster_OS.createsystemapps.settings.seeprints = true;
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+    }else{
+    amster_OS.createsystemapps.settings.seeprints = false;
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+   }
+viewarg.setChecked(amster_OS.createsystemapps.settings.seeprints);
+    }
+    }));
+layl2.addView(btn2);
+
+var btn1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btn1.setText(fromHtml('<b><font color="#ffffff">Цвет текста:</font><b>'));   
+layl2.addView(btn1);
+
+var btn2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btn2.setText(fromHtml('<b><font color="'+amster_OS.graphics.print_design.cl+'">'+amster_OS.graphics.print_design.cl+'</font><b>'));   
+btn2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.graphics.colorPicker(viewarg);
+   }}));
+layl2.addView(btn2);
+
+var btn3 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btn3.setText(fromHtml('<b><font color="#ffffff">Цвет фона:</font><b>'));   
+layl2.addView(btn3);
+
+var btn4 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btn4.setShadowLayer(5,0,0,Color.WHITE);
+btn4.setText(fromHtml('<b><font color="'+amster_OS.graphics.print_design.cl2+'">'+amster_OS.graphics.print_design.cl2+'</font><b>'));   
+btn4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.graphics.colorPicker(viewarg);
+   }}));
+layl2.addView(btn4);
+
+var btn5 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btn5.setText(fromHtml('<b><font color="#ffffff">Прозрачность: </font><font color="'+amster_OS.graphics.colors[0]+'">'+amster_OS.graphics.print_design.al+'</font><b>'));   
+layl2.addView(btn5);
+
+var btn6 = new amster_OS.graphics.easyBar([200, amster_OS.graphics.print_design.al]);
+btn6.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+    amster_OS.graphics.print_design.al=view.getProgress();
+  btn5.setText(fromHtml('<b><font color="#ffffff">Прозрачность: </font><font color="'+amster_OS.graphics.colors[0]+'">'+amster_OS.graphics.print_design.al+'</font><b>'));   
+  }
+    });
+layl2.addView(btn6);
+
+var btn7 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btn7.setText(fromHtml('<b><font color="#ffffff">Углы: </font><font color="'+amster_OS.graphics.colors[0]+'">'+amster_OS.graphics.print_design.cor+'</font><b>'));   
+layl2.addView(btn7);
+
+var btn8 = new amster_OS.graphics.easyBar([100, amster_OS.graphics.print_design.cor]);
+btn8.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+    amster_OS.graphics.print_design.cor=view.getProgress();
+btn7.setText(fromHtml('<b><font color="#ffffff">Углы: </font><font color="'+amster_OS.graphics.colors[0]+'">'+amster_OS.graphics.print_design.cor+'</font><b>'));   
+    }
+    });
+layl2.addView(btn8);
+
+var space1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+layl2.addView(space1);
+
+var text2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+text2.setText(fromHtml('<b><font color="#ffffff">Интерфейс</font><b>'));   
+layl2.addView(text2);
+
+var bts1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+bts1.setText(fromHtml('<b><font color="#ffffff">Цвет градиента 1:</font><b>'));   
+layl2.addView(bts1);
+
+var bts2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+bts2.setText(fromHtml('<b><font color="'+amster_OS.graphics.system_design.cl1+'">'+amster_OS.graphics.system_design.cl1+'</font><b>'));   
+bts2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.graphics.colorPicker(viewarg);
+   }}));
+layl2.addView(bts2);
+
+var bts3 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+bts3.setText(fromHtml('<b><font color="#ffffff">Цвет градиента 2:</font><b>'));   
+layl2.addView(bts3);
+
+var bts4 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+bts4.setText(fromHtml('<b><font color="'+amster_OS.graphics.system_design.cl2+'">'+amster_OS.graphics.system_design.cl2+'</font><b>'));   
+bts4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.graphics.colorPicker(viewarg);
+   }}));
+layl2.addView(bts4);
+
+var bts5 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+bts5.setText(fromHtml('<b><font color="#ffffff">Тип: '+amster_OS.graphics.system_design.gr+'</font><b>'));   
+layl2.addView(bts5);
+
+var currentprogress = 0;
+
+if(amster_OS.graphics.system_design.gr=="TOP_BOTTOM"){
+currentprogress = 0;
+}else if(amster_OS.graphics.system_design.gr=="TR_BL"){
+currentprogress = 1;
+}else if(amster_OS.graphics.system_design.gr=="RIGHT_LEFT"){
+currentprogress = 2;
+}else if(amster_OS.graphics.system_design.gr=="BR_TL"){
+currentprogress = 3;
+}else if(amster_OS.graphics.system_design.gr=="BOTTOM_TOP"){
+currentprogress = 4;
+}else if(amster_OS.graphics.system_design.gr=="BL_TR"){
+currentprogress = 5;
+}else if(amster_OS.graphics.system_design.gr=="LEFT_RIGHT"){
+currentprogress = 6;
+}else if(amster_OS.graphics.system_design.gr=="TL_BR"){
+currentprogress = 7;
+}
+var bts6 = new amster_OS.graphics.easyBar([7, 2]);
+bts6.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+
+switch (view.getProgress()) {
+    case 0:
+        amster_OS.graphics.system_design.gr = "TOP_BOTTOM";
+        break;
+    case 1:
+        amster_OS.graphics.system_design.gr = "TR_BL";
+        break;
+    case 2:
+        amster_OS.graphics.system_design.gr = "RIGHT_LEFT";
+        break;
+    case 3:
+        amster_OS.graphics.system_design.gr = "BR_TL";
+        break;
+    case 4:
+        amster_OS.graphics.system_design.gr = "BOTTOM_TOP";
+        break;
+    case 5:
+        amster_OS.graphics.system_design.gr = "BL_TR";
+        break;
+    case 6:
+        amster_OS.graphics.system_design.gr = "LEFT_RIGHT";
+        break;
+    case 7:
+        amster_OS.graphics.system_design.gr = "TL_BR";
+        break;
+}
+bts5.setText(fromHtml('<b><font color="#ffffff">Тип: '+amster_OS.graphics.system_design.gr+'</font><b>'));   
+    }
+    });
+layl2.addView(bts6);
+
+var space2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+layl2.addView(space2);
+
+var text3 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+text3.setText(fromHtml('<b><font color="#ffffff">Приложения</font><b>'));   
+layl2.addView(text3);
+
+var btr1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btr1.setText(fromHtml('<b><font color="#ffffff">Цвет текста, переключателей:</font><b>'));   
+layl2.addView(btr1);
+
+var btr2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btr2.setText(fromHtml('<b><font color="'+amster_OS.graphics.colors[0]+'">'+amster_OS.graphics.colors[0]+'</font><b>'));   
+btr2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.graphics.colorPicker(viewarg);
+   }}));
+layl2.addView(btr2);
+
+var btr3 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btr3.setText(fromHtml('<b><font color="#ffffff">Прогресс бар:</font><b>'));   
+layl2.addView(btr3);
+
+var btr4 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btr4.setText(fromHtml('<b><font color="'+amster_OS.graphics.colors[1]+'">'+amster_OS.graphics.colors[1]+'</font><b>'));   
+btr4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.graphics.colorPicker(viewarg);
+   }}));
+layl2.addView(btr4);
+
+var btr5 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btr5.setText(fromHtml('<b><font color="#ffffff">Цвет фона:</font><b>'));   
+layl2.addView(btr5);
+
+var btr6 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,10]);
+btr6.setShadowLayer(5,0,0,Color.WHITE);
+btr6.setText(fromHtml('<b><font color="'+amster_OS.graphics.colors[2]+'">'+amster_OS.graphics.colors[2]+'</font><b>'));   
+btr6.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.graphics.colorPicker(viewarg);
+   }}));
+layl2.addView(btr6);
+
+var text4 = new amster_OS.graphics.easyButton("сохранить изменения",[Gravity.CENTER,15]);
+text4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.graphics.print_design.cl2=btn4.getText().toString();
+amster_OS.graphics.print_design.cl=btn2.getText().toString();
+amster_OS.graphics.system_design.cl2=bts4.getText().toString();
+amster_OS.graphics.system_design.cl1=bts2.getText().toString();
+amster_OS.graphics.colors[0]=btr2.getText().toString();
+amster_OS.graphics.colors[1]=btr4.getText().toString();
+amster_OS.graphics.colors[2]=btr6.getText().toString();
+amster_OS.Data.setValue("seeprints",amster_OS.createsystemapps.settings.seeprints,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("colors1",amster_OS.graphics.colors[0],amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("colors2",amster_OS.graphics.colors[1],amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("colors3",amster_OS.graphics.colors[2],amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cl1",amster_OS.graphics.system_design.cl1,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cl2",amster_OS.graphics.system_design.cl2,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("gr",amster_OS.graphics.system_design.gr,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cr1",amster_OS.graphics.print_design.cl,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cr2",amster_OS.graphics.print_design.cl2,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("size",amster_OS.graphics.print_design.size,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("al",amster_OS.graphics.print_design.al,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cor",amster_OS.graphics.print_design.cor,amster_OS.createsystemapps.settings.path);
+amster_OS.graphics.print("Сохранено. Изменения вступят в силу после перезапуска.");
+   }}));
+layl2.addView(text4);
+
+var text5 = new amster_OS.graphics.easyButton("откатить изменения",[Gravity.CENTER,15]);
+text5.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+amster_OS.createsystemapps.settings.seeprints=true;
+amster_OS.Data.setValue("seeprints",amster_OS.createsystemapps.settings.seeprints,amster_OS.createsystemapps.settings.path);
+amster_OS.graphics.colors=["#2aa8d8","#5296b3","#0e1122"];
+amster_OS.graphics.system_design={cl1:"#1565c0",cl2:"#81d4fa",gr:GradientDrawable.Orientation.TL_BR};
+amster_OS.graphics.print_design={size:15,cl:"#ffffff",cl2:"#000000",al:150,cor:50};
+amster_OS.Data.setValue("colors1",amster_OS.graphics.colors[0],amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("colors2",amster_OS.graphics.colors[1],amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("colors3",amster_OS.graphics.colors[2],amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cl1",amster_OS.graphics.system_design.cl1,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cl2",amster_OS.graphics.system_design.cl2,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("gr",amster_OS.graphics.system_design.gr,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cr1",amster_OS.graphics.print_design.cl,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cr2",amster_OS.graphics.print_design.cl2,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("size",amster_OS.graphics.print_design.size,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("al",amster_OS.graphics.print_design.al,amster_OS.createsystemapps.settings.path);
+amster_OS.Data.setValue("cor",amster_OS.graphics.print_design.cor,amster_OS.createsystemapps.settings.path);
+amster_OS.graphics.print("Откат. Изменения вступят в силу после перезапуска.");
+   }}));
+layl2.addView(text5);
+break;
 }
 }
  SETGUI= amster_OS.graphics.easyPopup(lays,amster_OS.graphics.easyBg());
@@ -4485,8 +4892,6 @@ labels:"none",
 init: function (){
 this.explorermenu();
 },
-hand:null,
-runnable:null,
 explor_dir:sdcard,
 explorermenu: function(){
 var file_search;
@@ -4843,18 +5248,24 @@ buttons();
    }}));
      layoutc.addView(cancelbtn);
 //knopki
-amster_OS.createsystemapps.my_explorer.hand = android.os.Handler();
-amster_OS.createsystemapps.my_explorer.runnable = new Runnable() {
+var handler = android.os.Handler();
+var runnable = new Runnable() {
    run() {
                                 
 try{
 infoobtn.setText(amster_OS.createsystemapps.my_explorer.explor_dir+"\n"+countselector+"/"+(sort1.length+sort2.length)); 
 } catch (e){print(e + e.lineNumber)}
-                                  amster_OS.createsystemapps.my_explorer.hand.postDelayed(this, 100);
+                                  handler.postDelayed(this, 100);
    }
 };
-amster_OS.createsystemapps.my_explorer.hand.postDelayed(amster_OS.createsystemapps.my_explorer.runnable, 100);
+handler.postDelayed(runnable, 100);
 GUILAB = new PopupWindow(layoutc, MCH_PNT, WR_CNT);
+panelui.setOnDismissListener(new PopupWindow.OnDismissListener({
+onDismiss: function(){
+if(runnable!=null){
+handler.removeCallbacks(runnable);
+}
+}}));
 GUILAB.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 	GUILAB.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.TOP, 0, 0);
  }catch(e){
@@ -6071,7 +6482,7 @@ return "нет"
 }
 },
 advertisement:{
-name:"Партнёрство",
+name:"Партнёр",
 version:"1.0",
 labels:"none",
 init: function (){
@@ -6080,7 +6491,7 @@ amster_OS.createsystemapps.advertisement.menu();
 menu: function(){
 var lays = new LinearLayout(ctx);
 lays.setOrientation(1);
-var exitbtn = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var exitbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 exitbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
     exitbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 menu_ui.dismiss();
@@ -6144,7 +6555,7 @@ layss.addView(lay1);
 lays.addView(lay);
 lays.addView(scroll);
 
-var exitbtn = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var exitbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 exitbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
     exitbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 menushka.dismiss();
@@ -6240,21 +6651,7 @@ menushka.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity
 }}));
 },
 openblack: function (){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
-     var black_bg = new GradientDrawable();
-black_bg.setColor(Color.parseColor('#000000'));
-black_bg.setAlpha(150);
-
-   var lays = new LinearLayout(ctx);
-  lays.setOrientation(1);
-  BLACKPHONE= new PopupWindow(lays, UiWidth/1, UiHeight/1);      
-BLACKPHONE.setBackgroundDrawable(black_bg); 
-            BLACKPHONE.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
+  BLACKPHONE= new amster_OS.graphics.black_back();
 },
 getwindbg: function(){
 var bg = new GradientDrawable();
@@ -6630,7 +7027,7 @@ ctx.runOnUiThread(new Runnable({ run: function(){
 var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(0);
-var exitsetbtn = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var exitsetbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(45), amster_OS.screen.dipSize(45)));
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 CRAGUI.dismiss();
@@ -6962,7 +7359,6 @@ return abs.length-1;
 }
 },
 
-
 launcher:{
 table_path:"",
 getTableCover: function(){
@@ -6987,25 +7383,14 @@ init: function(){
         try {
 var lays = new LinearLayout(ctx);
 lays.setOrientation(1);
-var lleft = new LinearLayout(ctx);
-lleft.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), MCH_PNT));
-var ltop = new LinearLayout(ctx);
-ltop.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, amster_OS.screen.dipSize(40)));
 
-var lcntr = new LinearLayout(ctx);
-lcntr.setOrientation(0);
 var menuScroll = new ScrollView(ctx);
 menuScroll.setVerticalScrollBarEnabled(false);
 var lay = new GridLayout(ctx);
 lay.setColumnCount(9); 
-lcntr.setLayoutParams(new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(UiWidth/1.1, UiHeight/1.3)));
 
 menuScroll.addView(lay);
-lcntr.addView(lleft)
-lcntr.addView(menuScroll)
-
-lays.addView(ltop);
-lays.addView(lcntr);
+lays.addView(menuScroll);
 
 for(var ah = 0; ah<amster_OS.Info.getsystemapps().length; ah++){
 if(amster_OS.createsystemapps.settings.seesystem||amster_OS.Info.getsystemapps()[ah].name=="Настройки"){
@@ -7019,11 +7404,26 @@ lay.addView(amster_OS.launcher.icon.addUserApp(ah));
 }
 }
 
-GGUI = new PopupWindow(lays, UiWidth/1, UiHeight/1);
+GGUI = new PopupWindow(lays, WR_CNT, UiHeight/1.2);
 GGUI.setAnimationStyle(animation);
-GGUI.setBackgroundDrawable(amster_OS.launcher.getTableCover());
+GGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 ctx.runOnUiThread(new Runnable({ run: function(){
  	GGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
+}}));
+ }catch(e){
+    print("ошибка:"+e+"#на строке: "+e.lineNumber);
+        }
+},
+loadBg: function(){
+try{
+var lays = new LinearLayout(ctx);
+lays.setOrientation(1);
+
+GGGUI = new PopupWindow(lays, UiWidth/1, UiHeight/1);
+GGGUI.setAnimationStyle(animation);
+GGGUI.setBackgroundDrawable(amster_OS.launcher.getTableCover());
+ctx.runOnUiThread(new Runnable({ run: function(){
+ 	GGGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
 }}));
  }catch(e){
     print("ошибка:"+e+"#на строке: "+e.lineNumber);
@@ -7037,10 +7437,19 @@ var app = list[id];
 
 var lay2=new LinearLayout(ctx);
  lay2.setOrientation(1);
-lay2.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(70), amster_OS.screen.dipSize(80)));
+var params = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
+params.setMargins(25,1,25,1);
+
+var param = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
+param.setMargins(25,1,25,25);
+
+var paramss = new LinearLayout.LayoutParams(WR_CNT,WR_CNT);
+paramss.setMargins(25,5,25,5);
+lay2.setLayoutParams(paramss);
+
 var iconbtn = new ImageView(ctx);
 iconbtn.setImageDrawable(amster_OS.userapps.getInfoByProject(app).Icon);
-iconbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40)));
+iconbtn.setLayoutParams(params);
 iconbtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){         
 try{
@@ -7051,7 +7460,8 @@ lay2.addView(iconbtn);
 var tablebtn = new TextView(ctx);
 tablebtn.setText(fromHtml('<b><font color="#ffffff">'+(amster_OS.userapps.getInfoByProject(app).Name).toString()+'</font><b>'));   
 tablebtn.setShadowLayer(7,0,0,Color.BLACK);
-tablebtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40)));
+tablebtn.setLayoutParams(param);
+tablebtn.setMaxLines(2);  
 tablebtn.setGravity(Gravity.CENTER);  
  tablebtn.setTextColor(Color.parseColor('#ffffff'));
     tablebtn.setTextSize(10);
@@ -7065,9 +7475,6 @@ lay2.addView(tablebtn);
 return lay2;
 },
 addSystemApp: function (id){
-var lay2=new LinearLayout(ctx);
- lay2.setOrientation(1);
-lay2.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(70), amster_OS.screen.dipSize(80)));
 let info = amster_OS.Info.getsystemapps()[id];
 if(info.icon!=null){
 var abobafile =new File(info.icon)
@@ -7076,9 +7483,20 @@ var abcd = BitmapDrawable(abobaimg);
 }else{
 var abcd = amster_OS.fast_files.containsEntry(amster_OS.my_root.system_path+"data/icons.zip","icon"+id+".png")
 }
+var lay2=new LinearLayout(ctx);
+ lay2.setOrientation(1);
+var params = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
+params.setMargins(25,1,25,1);
+
+var param = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
+param.setMargins(25,1,25,25);
+
+var paramss = new LinearLayout.LayoutParams(WR_CNT,WR_CNT);
+paramss.setMargins(25,5,25,5);
+lay2.setLayoutParams(paramss);
 
 var iconbtn = new ImageView(ctx);
-iconbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40)));
+iconbtn.setLayoutParams(params);
 iconbtn.setImageDrawable(abcd);
 iconbtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){         
@@ -7090,7 +7508,8 @@ lay2.addView(iconbtn);
 var tablebtn = new TextView(ctx);
 tablebtn.setText(fromHtml('<b><font color="#ffffff">'+info.name+'</font><b>'));   
 tablebtn.setShadowLayer(7,0,0,Color.BLACK);
-tablebtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40)));
+tablebtn.setLayoutParams(param);
+tablebtn.setMaxLines(2);  
 tablebtn.setGravity(Gravity.CENTER);  
  tablebtn.setTextColor(Color.parseColor('#ffffff'));
     tablebtn.setTextSize(10);
@@ -7104,27 +7523,19 @@ lay2.addView(tablebtn);
 return lay2;
 }
 },
-statusbar:{
+bar:{
 init: function(){
         try{
 var lays = new LinearLayout(ctx);
 lays.setOrientation(0);
 lays.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, amster_OS.screen.dipSize(27)));
 var black_bg = new GradientDrawable();
-black_bg.setColors([Color.parseColor('#1565c0'),Color.parseColor('#81d4fa')])
-black_bg.setOrientation(GradientDrawable.Orientation.TL_BR);
+black_bg.setColors([Color.parseColor(amster_OS.graphics.system_design.cl1),Color.parseColor(amster_OS.graphics.system_design.cl2)])
+eval("black_bg.setOrientation(GradientDrawable.Orientation."+amster_OS.graphics.system_design.gr+")");
 black_bg.setAlpha(amster_OS.createsystemapps.settings.alphabar);
 lays.setBackgroundDrawable(black_bg);
 
-/*
-lays.addView(amster_OS.launcher.statusbar.oldbar.createpanellayout("выход",0,0))
-lays.addView(amster_OS.launcher.statusbar.oldbar.createpanellayout("",1,1))
-lays.addView(amster_OS.launcher.statusbar.oldbar.createpanellayout("",1,2))
-lays.addView(amster_OS.launcher.statusbar.oldbar.createpanellayout("",1,3))
-lays.addView(amster_OS.launcher.statusbar.oldbar.createpanellayout("",1,4))
-lays.addView(amster_OS.launcher.statusbar.oldbar.createpanellayout("консоль",1,5))
-*/
-lays.addView(amster_OS.launcher.statusbar.newbar.createpanellayout());
+lays.addView(amster_OS.launcher.bar.createpanellayout());
 
   OSGUI= new PopupWindow(lays, MCH_PNT, amster_OS.screen.dipSize(27));      
 OSGUI.setAnimationStyle(animation);
@@ -7136,7 +7547,6 @@ ctx.runOnUiThread(new Runnable({ run: function(){
 print("An error occured: " + err + err.lineNumber);
         }
 },
-newbar:{
 createpanelbtn: function (text){
 var tablebtn = new TextView(ctx);
 tablebtn.setGravity(Gravity.CENTER);  
@@ -7162,17 +7572,16 @@ image.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(27)
 return image;
 },
 createpanellayout: function (){
-var hand = android.os.Handler();
-var runnable;
 var lay1= new LinearLayout(ctx);
 lay1.setOrientation(0);
 lay1.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, amster_OS.screen.dipSize(27)));
-var exit = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var exit = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 exit.setOnClickListener(new View.OnClickListener({
                 onClick: function(v){         
 hand.removeCallbacks(runnable);
 amster_OS.start_os.init();
 GGUI.dismiss();
+GGGUI.dismiss();
 OSGUI.dismiss();
 }}));
 lay1.addView(exit);
@@ -7182,23 +7591,23 @@ otstup.setText("");
 otstup.setTextSize(1);
 lay1.addView(otstup);
 
-var timeimg = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(1,96));
+var timeimg = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(1,96));
 lay1.addView(timeimg);
-var onebtn = new amster_OS.launcher.statusbar.newbar.createpanelbtn("999");
+var onebtn = new amster_OS.launcher.bar.createpanelbtn("999");
 lay1.addView(onebtn);
-var dateimg = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(1,1));
+var dateimg = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(1,1));
 lay1.addView(dateimg);
-var twobtn = new amster_OS.launcher.statusbar.newbar.createpanelbtn("999");
+var twobtn = new amster_OS.launcher.bar.createpanelbtn("999");
 lay1.addView(twobtn);
-var batar = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(47,47));
+var batar = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(47,47));
 lay1.addView(batar);
-var threebtn = new amster_OS.launcher.statusbar.newbar.createpanelbtn("999");
+var threebtn = new amster_OS.launcher.bar.createpanelbtn("999");
 lay1.addView(threebtn);
-var wifiimg = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(47,1));
+var wifiimg = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(47,1));
 lay1.addView(wifiimg);
-var blueimg = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,47));
+var blueimg = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,47));
 lay1.addView(blueimg);
-var cons = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(1,47));
+var cons = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(1,47));
 cons.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),2));
 cons.setOnClickListener(new View.OnClickListener({
                 onClick: function(v){         
@@ -7209,7 +7618,8 @@ function fixdate(dt){
 if(dt<10)return "0"+dt;
 return dt;
 }
-runnable = new Runnable() {
+var hand = android.os.Handler();
+var runnable = new Runnable() {
    run() {
         onebtn.setText(fromHtml('<b><font color="#ffffff">'+fixdate(new Date().getDate())+'.'+fixdate(new Date().getMonth()+1)+'.'+new Date().getFullYear()+' </font></b>')); 
 twobtn.setText(fromHtml('<b><font color="#ffffff">'+fixdate(new Date().getHours())+':'+fixdate(new Date().getMinutes())+':'+fixdate(new Date().getSeconds())+' </font></b>')); 
@@ -7217,9 +7627,9 @@ if(amster_OS.web.getBatteryLevel()<=20)threebtn.setText(fromHtml('<b><font color
 if(amster_OS.web.getBatteryLevel()>20)threebtn.setText(fromHtml('<b><font color="#ffffff">'+amster_OS.web.getBatteryLevel()+' % </font></b>'));
  
 if(amster_OS.web.getType()=="wifi"){
-wifiimg.setImageDrawable(amster_OS.launcher.statusbar.newbar.getbitmap(96,1));
+wifiimg.setImageDrawable(amster_OS.launcher.bar.getbitmap(96,1));
 }else{
-wifiimg.setImageDrawable(amster_OS.launcher.statusbar.newbar.getbitmap(47,1));
+wifiimg.setImageDrawable(amster_OS.launcher.bar.getbitmap(47,1));
 }
 if(amster_OS.web.getBluetooth()){
 blueimg.setVisibility(View.VISIBLE);
@@ -7232,85 +7642,9 @@ blueimg.setVisibility(View.GONE);
 hand.postDelayed(runnable, 100);
 return lay1;
 }
-},
-oldbar:{
-createpanellayout: function (text,type,event){
-var hand = android.os.Handler();
-var runnable;
-var lays = new LinearLayout(ctx);
-lays.setOrientation(0);
-var lay1= new LinearLayout(ctx);
-lay1.setOrientation(0);
-var lay3 = new LinearLayout(ctx);
-lay3.setOrientation(0);
-var lay2 = new LinearLayout(ctx);
-lay2.setOrientation(0);
-lay1.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(5), amster_OS.screen.dipSize(27)));
-lay2.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(5), amster_OS.screen.dipSize(27)));
-if(type==0){
-lay3.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, amster_OS.screen.dipSize(27)));
-}else{
-lay3.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27)));
 }
-lays.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27)));
 
-lays.addView(lay1);
-lays.addView(lay2);
-lays.addView(lay3);
-var tablebtn = new TextView(ctx);
-if(type==0){
-tablebtn.setGravity(Gravity.LEFT);  
-}else{
-tablebtn.setGravity(Gravity.RIGHT);  
-}
- tablebtn.setTextColor(Color.parseColor('#ffffff'));
-tablebtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-tablebtn.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, MCH_PNT));
-tablebtn.setText(fromHtml('<b><font color="#ffffff">'+text+'</font></b>')); 
-    tablebtn.setTextSize(12);
-tablebtn.setAllCaps(false);
-tablebtn.setOnClickListener(new View.OnClickListener({
-                onClick: function(viewarg){         
-try{
-if(event==0){
-amster_OS.start_os.init();
-GGUI.dismiss()
-OSGUI.dismiss()
-hand.removeCallbacks(runnable);
-}
-if(event==5){
-amster_OS.cmdclass.init()
-}
-}catch(e){print(e+". #"+e.lineNumber)}
-}}));
-lay3.addView(tablebtn);
-runnable = new Runnable() {
-   run() {
-try{
-if(event==1){
-tablebtn.setText(fromHtml('<b><font color="#ffffff">'+new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds()+'</font></b>')); 
-}
-if(event==4){
-tablebtn.setText(fromHtml('<b><font color="#ffffff">'+amster_OS.web.getType()+'</font></b>')); 
-}
-if(event==2){
-tablebtn.setText(fromHtml('<b><font color="#ffffff">'+new Date().getDate()+'.'+(new Date().getMonth()+1)+'.'+new Date().getFullYear()+'</font></b>')); 
-}
-if(event==3){
-tablebtn.setText(fromHtml('<b><font color="#ffffff">заряд '+amster_OS.web.getBatteryLevel()+' %</font></b>')); 
-}
-} catch (e){print(e + e.lineNumber)}
-                                  hand.postDelayed(this, 100);
-   }
-};
-hand.postDelayed(runnable, 100);
-return lays;
-}
-}
-}
 },//class laucnher
-
-
 
 
 web:{
@@ -7365,173 +7699,238 @@ var result = "";
 },
 
 
-
 downloadManager:{
 totalsize:0,
 actualsize:0,
 usemobile:false,
+isworking:false,
 allsizes:[],
-getConnection: function (useMob){
-var check = false;
-if(useMob){
-if(amster_OS.web.getType()=="mobile")check=true;
-}
-if(amster_OS.web.getType()=="wifi")check=true;
-return check;
+buttons:[],
+getConnection: function (mobile){
+return (amster_OS.web.getType()=="mobile"&&mobile)||amster_OS.web.getType()=="wifi";
 },
-setupmenu: function(testfile,musttextures,gameobject,filestt,puthtt,linkstt){
-var letsload=false;
-amster_OS.downloadManager.usemobile=false;
-amster_OS.downloadManager.totalsize=0;
-amster_OS.downloadManager.allsizes=[];
-amster_OS.downloadManager.actualsize=0;
-var infoarr = [];
-      try {
+setupmenu: function(testfile,do_res,obj,files,path,links,canleave){
+try{
+
+var gradient = new GradientDrawable();
+gradient.setColors([Color.parseColor(amster_OS.graphics.system_design.cl1),Color.parseColor(amster_OS.graphics.system_design.cl2)])
+eval("gradient.setOrientation(GradientDrawable.Orientation."+amster_OS.graphics.system_design.gr+")");
+var lays = new LinearLayout(ctx);
+lays.setOrientation(1);
+
+function createZag(){
+var zagal = new amster_OS.graphics.easyButton("",[Gravity.CENTER,30]);
+zagal.setAllCaps(false);
+zagal.setShadowLayer(35, 1, 1, Color.parseColor('#102e52'));
+zagal.setText(fromHtml('<b><font color="#ffffff">Загрузчик ресурсов для '+obj.name+'</font></b>')); 
+lays.addView(zagal);
+}
+
+function startMenu(){
 var lay = new LinearLayout(ctx);
 lay.setOrientation(1);
-var lay1 = new LinearLayout(ctx);
-lay1.setOrientation(0);
+lays.addView(lay);
 
-var zagal = new amster_OS.graphics.easyButton("",[Gravity.CENTER,40]);
-zagal.setText(fromHtml('<b><font color="#ffffff">Загрузчик ресурсов</font></b>')); 
-lay.addView(zagal);
-
-var otstup = new TextView(ctx);
-otstup.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(110)));
-otstup.setText(""); 
-otstup.setTextSize(1);
-var btn2 = new amster_OS.graphics.easyToggle("использовать мобильную сеть", amster_OS.downloadManager.usemobile);
-btn2.setOnClickListener(new View.OnClickListener({
+var btn = new amster_OS.graphics.easyToggle("", amster_OS.downloadManager.usemobile);
+btn.setText(fromHtml('<b><font color="#ffffff">использовать мобильную сеть</font></b>')); 
+btn.setOnClickListener(new View.OnClickListener({
     onClick: function(viewarg){
       if(!amster_OS.downloadManager.usemobile){
     amster_OS.downloadManager.usemobile = true;
-    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
-viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#2aa8d8")));
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
     }else{
     amster_OS.downloadManager.usemobile = false;
-    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
-viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#5296b3")));
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
    }
 viewarg.setChecked(amster_OS.downloadManager.usemobile);
     }
     }));
-lay.addView(btn2);
-//во 2 лайот
-var mbbtn = new amster_OS.graphics.easyButton("0",[Gravity.LEFT,20]);
-mbbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
-lay1.addView(mbbtn);
-var prgbtn = new amster_OS.graphics.easyButton("0%",[Gravity.RIGHT,20]);
-prgbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
-lay1.addView(prgbtn);
-var sbp1 = new amster_OS.graphics.easyBar([100,0]);
-    
-var openbtn2 = new amster_OS.graphics.easyButton("скачать",[Gravity.CENTER,25]);
-openbtn2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
-try{
+lay.addView(btn);
 
+var btn2 = new amster_OS.graphics.easyButton("",[Gravity.CENTER,25]);
+btn2.setText(fromHtml('<b><font color="#ffffff">продолжить</font></b>')); 
+btn2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 if(amster_OS.downloadManager.getConnection(amster_OS.downloadManager.usemobile)){
-letsload=true;
-amster_OS.downloadManager.getDownloadFileInfo(linkstt,puthtt,filestt);
-for(var i in linkstt){
-amster_OS.downloadManager.downloadFileFromURL(linkstt[i],puthtt+filestt[i]);
-}
-amster_OS.graphics.print("началась загрузка "+linkstt.length+" файлов");
-lay.removeAllViews();
-lay.addView(zagal);
-lay.addView(otstup);
-lay.addView(lay1);
-lay.addView(sbp1);
-getInfo();
+amster_OS.downloadManager.getDownloadFileInfo(links, path,files);
+downloadPage();
 }else{
-viewarg.setText("проверьте подключение к wifi");
+amster_OS.graphics.print("нет подключения к сети.")
 }
-//print(""+amster_OS.downloadManager.totalsize);
-}catch(e){print(e+". #"+e.lineNumber)}
    }}));
-lay.addView(openbtn2);
+lay.addView(btn2);
 
-function getInfo(){
-infoarr=[];
-for(var i in linkstt){
-var infobtn = new amster_OS.graphics.easyButton(""+filestt[i]+" "+amster_OS.fast_files.convertSize(amster_OS.downloadManager.allsizes[i]),[Gravity.LEFT,10]);
-infoarr.push(infobtn);
-lay.addView(infobtn);
-}}
-
-if(!musttextures){
-var openbtn3 = new amster_OS.graphics.easyButton("не скачивать",[Gravity.CENTER,25]);
-openbtn3.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+if(!do_res){
+var btn3 = new amster_OS.graphics.easyButton("",[Gravity.CENTER,25]);
+btn3.setText(fromHtml('<b><font color="#ffffff">запустить без текстур</font></b>')); 
+btn3.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 var file1 = new File(testfile);
 file1.createNewFile();
 SGUI.dismiss();
-gameobject.startlevel();
-hand.removeCallbacks(runnable);
+obj.startlevel();
    }}));
-lay.addView(openbtn3);
+lay.addView(btn3);
 }
-var openbtn4 = new amster_OS.graphics.easyButton("выход",[Gravity.CENTER,25]);
-openbtn4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+var brn4 = new amster_OS.graphics.easyButton("",[Gravity.CENTER,25]);
+brn4.setText(fromHtml('<b><font color="#ffffff">выход</font></b>')); 
+brn4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 SGUI.dismiss();
-hand.removeCallbacks(runnable);
+resetAll();
+amster_OS.downloadManager.usemobile = false;
    }}));
-//проверка в установке системы, что б не бвло кнопки "выйти"
-var usfl = new File(amster_OS.my_root.system_path+"data/icons.zip")
-if(usfl.exists()){
-lay.addView(openbtn4);
+if(canleave){
+lay.addView(brn4);
+}}
+createZag();
+startMenu();
+
+function downloadPage(){
+lays.removeAllViews();
+createZag();
+var lay = new LinearLayout(ctx);
+lay.setOrientation(1);
+lays.addView(lay);
+
+var btn = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+btn.setText(fromHtml('<b><font color="#ffffff">будут загружены данные файлы:</font></b>')); 
+lay.addView(btn);
+for(var i in links){
+var infobtn = new amster_OS.graphics.easyButton("loading",[Gravity.LEFT,10]);
+amster_OS.downloadManager.buttons.push(infobtn);
+lay.addView(infobtn);
 }
-hand = android.os.Handler();
-runnable = new Runnable() {
+
+var tick = android.os.Handler();
+var runb = new Runnable() {
    run() {
 try{
-if(letsload){
-if(amster_OS.downloadManager.actualsize>0&&amster_OS.downloadManager.totalsize>0){
-sbp1.setProgress(parseInt(amster_OS.downloadManager.actualsize/amster_OS.downloadManager.totalsize*100));
-mbbtn.setText(amster_OS.fast_files.convertSize(amster_OS.downloadManager.actualsize));
-prgbtn.setText(parseInt(amster_OS.downloadManager.actualsize/amster_OS.downloadManager.totalsize*100)+" %");
-for(var i in linkstt){
-infoarr[i].setText(""+filestt[i]+" "+amster_OS.fast_files.convertSize(amster_OS.downloadManager.allsizes[i]));
+for(var i in amster_OS.downloadManager.buttons){
+amster_OS.downloadManager.buttons[i].setText(fromHtml('<b><font color="#00ff00">'+files[i]+' '+amster_OS.fast_files.convertSize(amster_OS.downloadManager.allsizes[i])+'</font></b>')); 
+}
+}catch(e){print(e+". #"+e.lineNumber)}
+tick.postDelayed(this, 1);
+   }
+};
+tick.postDelayed(runb, 1);
+
+var btn2 = new amster_OS.graphics.easyButton("",[Gravity.CENTER,25]);
+btn2.setText(fromHtml('<b><font color="#ffffff">скачать</font></b>')); 
+btn2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+try{
+if(amster_OS.downloadManager.buttons.length<=amster_OS.downloadManager.allsizes.length){
+amster_OS.downloadManager.isworking=true;
+downloadingUi();
+tick.removeCallbacks(runb);
+}else{
+amster_OS.graphics.print("Идёт подготовка файлов.")
+}
+}catch(e){print(e)}
+   }}));
+lay.addView(btn2);
+
+var brn4 = new amster_OS.graphics.easyButton("выход",[Gravity.CENTER,25]);
+brn4.setText(fromHtml('<b><font color="#ffffff">выход</font></b>')); 
+brn4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
+SGUI.dismiss();
+tick.removeCallbacks(runb);
+resetAll();
+amster_OS.downloadManager.usemobile = false;
+   }}));
+if(canleave){
+lay.addView(brn4);
 }
 }
+
+function downloadingUi(){
+amster_OS.downloadManager.buttons=[];
+lays.removeAllViews();
+createZag();
+var lay = new LinearLayout(ctx);
+lay.setOrientation(1);
+
+var lau = new LinearLayout(ctx);
+lau.setOrientation(0);
+lays.addView(lay);
+lays.addView(lau);
+
+for(var i in links){
+var infobtn = new amster_OS.graphics.easyButton("loading",[Gravity.LEFT,10]);
+amster_OS.downloadManager.buttons.push(infobtn);
+lay.addView(infobtn);
+amster_OS.downloadManager.downloadFileFromURL(links[i],path+files[i]);
+}
+var bg = new GradientDrawable();
+bg.setAlpha(50);
+bg.setCornerRadius(30);
+bg.setStroke(5, Color.parseColor("#878787"));
+bg.setColor(Color.parseColor("#878787"));
+
+var loadbar = new SeekBar(ctx);
+    loadbar.setMax(1);
+    loadbar.setProgressDrawable(bg);
+    loadbar.getThumb().setColorFilter(Color.WHITE, android.graphics.PorterDuff.Mode.SRC);
+    loadbar.setProgress(1);
+    lay.addView(loadbar);
+var left = new amster_OS.graphics.easyButton("0b",[Gravity.LEFT,20]);
+left.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+lau.addView(left);
+var right = new amster_OS.graphics.easyButton("0%",[Gravity.RIGHT,20]);
+right.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+lau.addView(right);
+
+var tick = android.os.Handler();
+var runb = new Runnable() {
+   run() {
+try{
+for(var i in amster_OS.downloadManager.buttons){
+amster_OS.downloadManager.buttons[i].setText(fromHtml('<b><font color="#00ff00">'+files[i]+' '+amster_OS.fast_files.convertSize(amster_OS.downloadManager.allsizes[i])+'</font></b>')); 
+}
+
+if(amster_OS.downloadManager.isworking){
+loadbar.setMax(parseInt(amster_OS.downloadManager.totalsize));
+loadbar.setProgress(parseInt(amster_OS.downloadManager.actualsize));
+
+left.setText(fromHtml('<b><font color="#00ff00">'+amster_OS.fast_files.convertSize(amster_OS.downloadManager.actualsize)+'</font></b>')); 
+right.setText(fromHtml('<b><font color="#00ff00">'+parseInt(amster_OS.downloadManager.actualsize/amster_OS.downloadManager.totalsize*100)+' %</font></b>')); 
+
 if(amster_OS.downloadManager.actualsize>=amster_OS.downloadManager.totalsize&&amster_OS.downloadManager.totalsize>0&&amster_OS.downloadManager.actualsize>0){
-letsload=false;
+resetAll();
 var file1 = new File(testfile);
 file1.createNewFile();
-hand.removeCallbacksAndMessages(null);
-hand.removeCallbacks(runnable);
+tick.removeCallbacks(runb);
 SGUI.dismiss();
-//Thread.sleep(1500);   
-gameobject.startlevel();
+obj.startlevel();
 }
 }
-if(!amster_OS.downloadManager.getConnection(amster_OS.downloadManager.usemobile)&&letsload){
-amster_OS.downloadManager.totalsize=0;
-amster_OS.downloadManager.allsizes=[];
-amster_OS.downloadManager.actualsize=0;
-infoarr = [];
-for(var i in filestt){
-var newfile = new File(puthtt+filestt[i]);
+if(!amster_OS.downloadManager.getConnection(amster_OS.downloadManager.usemobile)){
+resetAll();
+lays.removeAllViews();
+createZag();
+startMenu();
+for(var i in files){
+var newfile = new File(path+files[i]);
 if(newfile.exists()){
 newfile.delete();
 }}
-lay.removeAllViews();
-lay.addView(zagal);
-zagal.setText("соединение потеряно");
-lay.addView(btn2);
-lay.addView(openbtn2);
-openbtn2.setText("повторить");
-letsload=false;
+tick.removeCallbacks(runb);
 }
 }catch(e){print(e+". #"+e.lineNumber)}
-hand.postDelayed(this, 100);
+tick.postDelayed(this, 1);
    }
 };
-hand.postDelayed(runnable, 100);
-SGUI = new PopupWindow(lay, MCH_PNT, MCH_PNT);
-SGUI.setAnimationStyle(animation);
-SGUI.setBackgroundDrawable(amster_OS.graphics.easyBg());
-ctx.runOnUiThread(new Runnable({ run: function(){
- 	SGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-}}));
+tick.postDelayed(runb, 1);
+}
+
+function resetAll(){
+amster_OS.downloadManager.isworking=false;
+amster_OS.downloadManager.totalsize=0;
+amster_OS.downloadManager.allsizes=[];
+amster_OS.downloadManager.actualsize=0;
+amster_OS.downloadManager.buttons=[];
+}
+
+SGUI = new amster_OS.graphics.easyPopup(lays, gradient);
  }catch(e){
     print("ошибка:"+e+"#на строке: "+e.lineNumber);
         }
@@ -7580,33 +7979,8 @@ amster_OS.downloadManager.allsizes.push(connection.getContentLength());
     var tr = new java.lang.Thread(o);
     tr.start();
 }
+},
 
-/*getDownloadFileInfo: function(url){
-try{
-var fileURL = new java.net.URL(url);
-var connection = fileURL.openConnection();
-connection.setRequestMethod("HEAD");
-var contentLength = connection.getContentLength();
-var name = amster_OS.downloadManager.getFileName(connection);
-var type = connection.getContentType();
-connection.disconnect();
-return {Name: name,Size:contentLength,ContentType:type};
-}catch(e){print(e+". #"+e.lineNumber)}
-},
-getFileName: function(cnct){
-var contentDisposition = cnct.getHeaderField("Content-Disposition");
-if (contentDisposition != null && contentDisposition.indexOf("attachment") != -1) {
-    var index = contentDisposition.indexOf("filename=");
-    if (index != -1) {
-        var filename = contentDisposition.substring(index + 9).trim();
-        filename = filename.replace("\"", "");
-        return filename;
-    }
-}
-var urld = cnct.getURL().toString();
-return urld.substring(urld.lastIndexOf("/") + 1);
-}*/
-},
 Text:{
 amster_key:"Ge9TIFd8mcOkPBBm2aHtvUbusFgvF5G2",
 encrypt: function(plainText, skey){
@@ -7866,6 +8240,7 @@ CMDEUI.dismiss();
 CMDUI.dismiss();
 BLACKPHONE.dismiss();
 GGUI.dismiss();
+GGGUI.dismiss();
 OSGUI.dismiss();
 }
 if(amster_OS.cmdclass.actualcmd=="/appsname"){
@@ -7913,21 +8288,7 @@ print("An error occured: " + err + err.lineNumber);
     }}));
 },
 openblack: function (){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
-     var black_bg = new GradientDrawable();
-black_bg.setColor(Color.parseColor('#000000'));
-black_bg.setAlpha(150);
-
-   var lays = new LinearLayout(ctx);
-  lays.setOrientation(1);
-  BLACKPHONE= new PopupWindow(lays, UiWidth/1, UiHeight/1);      
-BLACKPHONE.setBackgroundDrawable(black_bg); 
-            BLACKPHONE.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
+  BLACKPHONE= new amster_OS.graphics.black_back();
 },
 cmdexit: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
@@ -7958,6 +8319,7 @@ print("An error occured: " + err + err.lineNumber);
 }
 },
 start_os : {
+name:"system",
 actualcmd:"напишите /startos для запуска системы ",
 log:["введите команду"],
 data:[],
@@ -8182,7 +8544,7 @@ var diskid = "1Hq8HdCS_NlnP5Zf_QrSDGsew5ypooXTY";
 if(!amster_OS.start_os.getSystemFiles()){
 tickcontrol=false;
 hand.removeCallbacks(runnable);
-amster_OS.downloadManager.setupmenu(amster_OS.my_root.system_path+"data/get.amos",true,amster_OS.start_os,["icons.zip","table.png","bitmap.png"],amster_OS.my_root.system_path+"data/",["https://drive.Google.com/uc?export=download&id="+diskid,"https://drive.Google.com/uc?export=download&id=14smedAcdHzixMqKaKYcEUSq1pv7cWayK","https://drive.Google.com/uc?export=download&id=16hxscuBjss6lbQkXGIYJyEVYLYoZKh1o"])
+amster_OS.downloadManager.setupmenu(amster_OS.my_root.system_path+"data/get.amos",true,amster_OS.start_os,["icons.zip","table.png","bitmap.png"],amster_OS.my_root.system_path+"data/",["https://drive.Google.com/uc?export=download&id="+diskid,"https://drive.Google.com/uc?export=download&id=14smedAcdHzixMqKaKYcEUSq1pv7cWayK","https://drive.Google.com/uc?export=download&id=16hxscuBjss6lbQkXGIYJyEVYLYoZKh1o"],false);
 }else{
 tickcontrol=false;
 hand.removeCallbacks(runnable);
@@ -8249,7 +8611,7 @@ amster_OS.start_os.openedit(viewarg);
 }      
 }));
 lays.addView(pasbtn);
-var leavebtn = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var leavebtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 leavebtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(35), amster_OS.screen.dipSize(35),1));
 leavebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){
@@ -8489,7 +8851,7 @@ PHUI.dismiss();
 }));
 lays.addView(enterbtn);
 
-var leavebtn = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(96,96));
+var leavebtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 leavebtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27),1));
 leavebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){
@@ -8598,11 +8960,12 @@ bgmenu: function (bool){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
      var black_bg = new GradientDrawable();
-black_bg.setColors([Color.parseColor('#1565c0'),Color.parseColor('#81d4fa')])
-black_bg.setOrientation(GradientDrawable.Orientation.TL_BR);
+black_bg.setColors([Color.parseColor(amster_OS.graphics.system_design.cl1),Color.parseColor(amster_OS.graphics.system_design.cl2)])
+GradientDrawable.Orientation.TL_BR
+eval("black_bg.setOrientation(GradientDrawable.Orientation."+amster_OS.graphics.system_design.gr+")");
 var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
-var leavebtn = new amster_OS.launcher.statusbar.newbar.createpanelimg(amster_OS.launcher.statusbar.newbar.getbitmap(48,96));
+var leavebtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(48,96));
 leavebtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27)));
 leavebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){
@@ -8628,10 +8991,15 @@ this.fullstart();
 },
 fullstart: function (){
 try{
+amster_OS.createsystemapps.settings.seeprints=true;
+amster_OS.graphics.colors=["#2aa8d8","#5296b3","#0e1122"];
+amster_OS.graphics.system_design={cl1:"#1565c0",cl2:"#81d4fa",gr:GradientDrawable.Orientation.TL_BR};
+amster_OS.graphics.print_design={size:15,cl:"#ffffff",cl2:"#000000",al:150,cor:50};
 amster_OS.createsystemapps.settings.loadConfig();
+amster_OS.launcher.loadBg();
 amster_OS.launcher.init();
 if(amster_OS.createsystemapps.settings.seetablebar){
-amster_OS.launcher.statusbar.init();
+amster_OS.launcher.bar.init();
 }
 }catch(e){print(e)}
 }
