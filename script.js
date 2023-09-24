@@ -21,6 +21,7 @@ var SeekBar = android.widget.SeekBar;
 
 var ScrollView = android.widget.ScrollView;
 var LinearLayout = android.widget.LinearLayout;
+var LayoutParams = LinearLayout.LayoutParams; 
 var PopupWindow = android.widget.PopupWindow;
 var RelativeLayout = android.widget.RelativeLayout;
 var GridLayout = android.widget.GridLayout;
@@ -483,13 +484,13 @@ var lay = new LinearLayout(ctx);
   lay.setOrientation(0);
 lays.addView(lay);
 
-var params = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(150), amster_OS.screen.dipSize(150));
+var params = new LayoutParams(amster_OS.screen.dipSize(150), amster_OS.screen.dipSize(150));
 params.setMargins(1,5,7,5);
 
-var param = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(150));
+var param = new LayoutParams(amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(150));
 param.setMargins(5,5,7,1);
 
-var paramss = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(175), amster_OS.screen.dipSize(20));
+var paramss = new LayoutParams(amster_OS.screen.dipSize(175), amster_OS.screen.dipSize(20));
 paramss.setMargins(1,7,1,1);
 
 
@@ -973,7 +974,7 @@ var btn1 = new TextView(ctx);
  btn1.setGravity(Gravity.CENTER);   btn1.setTextColor(Color.parseColor('#000055'));
     btn1.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
 amster_OS.createsystemapps.crosszero.setfontbtn(btn1);
-btn1.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btn1.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btn1.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btn1.setId(0);
      btn1.setText(amster_OS.createsystemapps.crosszero.kletki[0]);   
@@ -986,7 +987,7 @@ lay1.addView(btn1);
  btn2.setGravity(Gravity.CENTER);   btn2.setTextColor(Color.parseColor('#000055'));
     btn2.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
 amster_OS.createsystemapps.crosszero.setfontbtn(btn2)
-btn2.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btn2.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btn2.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btn2.setId(1);
      btn2.setText(amster_OS.createsystemapps.crosszero.kletki[1]);   
@@ -1001,7 +1002,7 @@ var btn3 = new TextView(ctx);
  btn3.setGravity(Gravity.CENTER);   btn3.setTextColor(Color.parseColor('#000055'));
     btn3.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
 amster_OS.createsystemapps.crosszero.setfontbtn(btn3)
-btn3.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btn3.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btn3.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btn3.setId(2);
      btn3.setText(amster_OS.createsystemapps.crosszero.kletki[2]);   
@@ -1014,7 +1015,7 @@ var btns1 = new TextView(ctx);
  btns1.setGravity(Gravity.CENTER);   btns1.setTextColor(Color.parseColor('#000055'));
     btns1.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
 amster_OS.createsystemapps.crosszero.setfontbtn(btns1)
-btns1.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btns1.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btns1.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btns1.setId(3);
      btns1.setText(amster_OS.createsystemapps.crosszero.kletki[3]);   
@@ -1025,7 +1026,7 @@ lay2.addView(btns1);
 var btns2 = new TextView(ctx);
  btns2.setGravity(Gravity.CENTER);   btns2.setTextColor(Color.parseColor('#000055'));
     btns2.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
-btns2.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btns2.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btns2.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btns2.setId(4);
 amster_OS.createsystemapps.crosszero.setfontbtn(btns2)
@@ -1037,7 +1038,7 @@ lay2.addView(btns2);
 var btns3 = new TextView(ctx);
  btns3.setGravity(Gravity.CENTER);   btns3.setTextColor(Color.parseColor('#000055'));
     btns3.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
-btns3.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btns3.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btns3.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btns3.setId(5);
      btns3.setText(amster_OS.createsystemapps.crosszero.kletki[5]);   
@@ -1050,7 +1051,7 @@ lay2.addView(btns3);
 var btna1 = new TextView(ctx);
  btna1.setGravity(Gravity.CENTER);   btna1.setTextColor(Color.parseColor('#000055'));
     btna1.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
-btna1.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btna1.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btna1.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btna1.setId(6);
 amster_OS.createsystemapps.crosszero.setfontbtn(btna1)
@@ -1063,7 +1064,7 @@ lay3.addView(btna1);
 var btna2 = new TextView(ctx);
  btna2.setGravity(Gravity.CENTER);   btna2.setTextColor(Color.parseColor('#000055'));
     btna2.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
-btna2.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btna2.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btna2.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btna2.setId(7);
 amster_OS.createsystemapps.crosszero.setfontbtn(btna2)
@@ -1075,7 +1076,7 @@ lay3.addView(btna2);
 var btna3 = new TextView(ctx);
  btna3.setGravity(Gravity.CENTER);   btna3.setTextColor(Color.parseColor('#000055'));
     btna3.setBackground(amster_OS.createsystemapps.crosszero.getbgimg("bg_2"));
-btna3.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
+btna3.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(100)));
     btna3.setTextSize(amster_OS.createsystemapps.crosszero.settings[2]);
 btna3.setId(8);
 amster_OS.createsystemapps.crosszero.setfontbtn(btna3)
@@ -1132,7 +1133,7 @@ ctx.runOnUiThread(new Runnable({ run: function(){
 var exitbtn = new TextView(ctx);
  exitbtn.setGravity(Gravity.CENTER);   exitbtn.setTextColor(Color.parseColor('#000055'));
     exitbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-exitbtn.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
+exitbtn.setLayoutParams(new LayoutParams(MCH_PNT, MCH_PNT));
     exitbtn.setTextSize(20);
 amster_OS.createsystemapps.crosszero.setfontbtn(exitbtn);
      exitbtn.setText("выход");   
@@ -1167,7 +1168,7 @@ var scorebtm = new TextView(ctx);
  scorebtm.setGravity(Gravity.CENTER);   
 scorebtm.setTextColor(Color.parseColor('#000055'));
     amster_OS.createsystemapps.crosszero.setfontbtn(scorebtm)
-scorebtm.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
+scorebtm.setLayoutParams(new LayoutParams(MCH_PNT, MCH_PNT));
     scorebtm.setTextSize(33);
 
 layout.addView(scorebtm);
@@ -1232,7 +1233,7 @@ amster_OS.createsystemapps.crosszero.setfontbtn(resbtn)
 layout.addView(resbtn);
 var restartbtn = new TextView(ctx);
  restartbtn.setGravity(Gravity.CENTER);   restartbtn.setTextColor(Color.parseColor('#ffffff'));
-restartbtn.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
+restartbtn.setLayoutParams(new LayoutParams(MCH_PNT, MCH_PNT));
     restartbtn.setTextSize(45);
 amster_OS.createsystemapps.crosszero.setfontbtn(restartbtn)
      restartbtn.setText("ещё раз");   
@@ -1370,7 +1371,7 @@ var cbtn2 = new TextView(ctx);
     cbtn2.setTextSize(30);
 amster_OS.createsystemapps.crosszero.setfontbtn(cbtn2)
      cbtn2.setText("звук");   
-cbtn2.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/3, MCH_PNT));
+cbtn2.setLayoutParams(new LayoutParams(UiWidth/3, MCH_PNT));
 layout1.addView(cbtn2);
 var rottfile = new File(amster_OS.createsystemapps.crosszero.texturespath);
 if(!rottfile.exists()){
@@ -1434,7 +1435,7 @@ amster_OS.Data.setValue("gamevol",amster_OS.createsystemapps.crosszero.volume1,a
     cbtn3.setTextSize(30);
 amster_OS.createsystemapps.crosszero.setfontbtn(cbtn3)
      cbtn3.setText("ресурсы");   
-cbtn3.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/3, MCH_PNT));
+cbtn3.setLayoutParams(new LayoutParams(UiWidth/3, MCH_PNT));
 layout2.addView(cbtn3);
 
 if(!rottfile.exists()){
@@ -1501,7 +1502,7 @@ var cbtn4 = new TextView(ctx);
  cbtn4.setGravity(Gravity.CENTER);   cbtn4.setTextColor(Color.parseColor('#000055'));
     cbtn4.setTextSize(30);
 amster_OS.createsystemapps.crosszero.setfontbtn(cbtn4)
-cbtn4.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/3, MCH_PNT));
+cbtn4.setLayoutParams(new LayoutParams(UiWidth/3, MCH_PNT));
      cbtn4.setText("игра");   
 layout3.addView(cbtn4);
 var gamebtn1 = new TextView(ctx);
@@ -1583,7 +1584,7 @@ ctx.runOnUiThread(new Runnable({ run: function(){
             
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);   exitsetbtn.setTextColor(Color.parseColor('#000055'));
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
 amster_OS.createsystemapps.crosszero.setfontbtn(exitsetbtn);
      exitsetbtn.setText("×");   
@@ -1678,7 +1679,7 @@ var layout = new LinearLayout(ctx);
 layout.setOrientation(1);
 
 var b1utton1 = new Button(ctx);
-b1utton1.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
+b1utton1.setLayoutParams(new LayoutParams(MCH_PNT, MCH_PNT));
 b1utton1.setBackgroundDrawable(BitmapDrawable(bmp))
      layout.addView(b1utton1);
 
@@ -1948,7 +1949,7 @@ amster_OS.createsystemapps.simple_snake.fakeBtn(layout)
 var b1utton1 = new TextView(ctx);
 b1utton1.setText("ᐃ");   
 b1utton1.setTextSize(25);      
-b1utton1.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
+b1utton1.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
 b1utton1.setGravity(Gravity.CENTER);
 b1utton1.setTextColor(Color.parseColor('#ffffff'));
    b1utton1.setTextColor(Color.parseColor('#ffffff'));
@@ -1963,7 +1964,7 @@ amster_OS.createsystemapps.simple_snake.fakeBtn(layout)
 var b1utton2 = new TextView(ctx);
 b1utton2.setText("ᐊ");   
 b1utton2.setTextSize(25);      
-b1utton2.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
+b1utton2.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
 b1utton2.setGravity(Gravity.CENTER);
 b1utton2.setTextColor(Color.parseColor('#ffffff'));
  b1utton2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -1977,7 +1978,7 @@ amster_OS.createsystemapps.simple_snake.fakeBtn(layout)
 var b1utton3 = new TextView(ctx);
 b1utton3.setText("ᐅ");   
 b1utton3.setTextSize(25);      
-b1utton3.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
+b1utton3.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
 b1utton3.setGravity(Gravity.CENTER);
 b1utton3.setTextColor(Color.parseColor('#ffffff'));
     b1utton3.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -1991,7 +1992,7 @@ amster_OS.createsystemapps.simple_snake.fakeBtn(layout)
 var b1utton4 = new TextView(ctx);
 b1utton4.setText("ᐁ");   
 b1utton4.setTextSize(25);      
-b1utton4.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
+b1utton4.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
 b1utton4.setGravity(Gravity.CENTER);
 b1utton4.setTextColor(Color.parseColor('#ffffff'));
   b1utton4.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -2016,7 +2017,7 @@ fakeBtn: function(lay){
 var b1utton1 = new TextView(ctx);
 b1utton1.setText(" ");   
 b1utton1.setTextSize(10);      
-b1utton1.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(5), amster_OS.screen.dipSize(5)));
+b1utton1.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(5), amster_OS.screen.dipSize(5)));
 b1utton1.setGravity(Gravity.CENTER);
 b1utton1.setTextColor(Color.parseColor('#ffffff'));
      lay.addView(b1utton1);
@@ -2033,8 +2034,6 @@ this.calendexit();
 calendint: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var Calendar = new android.widget.CalendarView(MainActivity);
@@ -2051,13 +2050,11 @@ print("An error occured: " + err + err.lineNumber);
 calendexit: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);   exitsetbtn.setTextColor(Color.parseColor('#a93226'));
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText("×");   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -2110,7 +2107,7 @@ var layout = new LinearLayout(ctx);
 var layout1 = new LinearLayout(ctx);
   layout1.setOrientation(1);
 var layout4 = new LinearLayout(ctx);
-layout4.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
+layout4.setLayoutParams(new LayoutParams(MCH_PNT, MCH_PNT));
 layout4.setBackground(amster_OS.createsystemapps.calculator.autogenbg());
 layout4.setPadding(2,2,2,2);
   layout4.setOrientation(1);
@@ -2123,7 +2120,7 @@ grid.setBackground(amster_OS.createsystemapps.calculator.autogenbg());
 grid.setPadding(2,2,2,2);
 grid.setColumnCount(4);
 var grids = new GridLayout(ctx);
-grids.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, MCH_PNT));
+grids.setLayoutParams(new LayoutParams(WR_CNT, MCH_PNT));
 grids.setBackground(amster_OS.createsystemapps.calculator.autogenbg());
 grids.setPadding(2,2,2,2);
 grids.setColumnCount(4);
@@ -2142,7 +2139,7 @@ if(amster_OS.createsystemapps.calculator.textd != null){
     }
 button1.setMaxLines(1);  
 button1.setBackground(amster_OS.createsystemapps.calculator.autogenbg());
-button1.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/1, amster_OS.screen.dipSize(90)));
+button1.setLayoutParams(new LayoutParams(UiWidth/1, amster_OS.screen.dipSize(90)));
     button1.setGravity(Gravity.CENTER);
     button1.setTextSize(35);
     layout.addView(button1);
@@ -2157,7 +2154,7 @@ button12.setText(fromHtml('<b><font color="#000000">'+amster_OS.createsystemapps
     button12.setGravity(Gravity.CENTER);
     button12.setTextSize(30);
     button12.setId(i);
-    button12.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
+    button12.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
     button12.setBackground(bg_y);
     button12.setOnClickListener(new View.OnClickListener({
     onClick: function(view){
@@ -2184,7 +2181,7 @@ button12.setText(fromHtml('<b><font color="#e06a1b">'+amster_OS.createsystemapps
     button12.setGravity(Gravity.CENTER);
     button12.setTextSize(20);
     button12.setId(i);
-    button12.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
+    button12.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(60), amster_OS.screen.dipSize(60)));
     button12.setBackground(bg_y);
     button12.setOnClickListener(new View.OnClickListener({
     onClick: function(view){
@@ -2213,7 +2210,7 @@ button12515.setTextColor(Color.parseColor('#000000'));
     button12515.setText(fromHtml('<b><font color="black">результат</font></b>'));
     button12515.setGravity(Gravity.CENTER);
     button12515.setTextSize(20);
-    button12515.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+    button12515.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
     button12515.setOnClickListener(new View.OnClickListener({
     onClick: function(view){
    try{
@@ -2285,7 +2282,7 @@ button2551.setTextColor(Color.parseColor('#000000'));
     button2551.setText(fromHtml('<b><font color="black">стереть</font></b>'));
     button2551.setGravity(Gravity.CENTER);
     button2551.setTextSize(20);
-    button2551.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+    button2551.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
     button2551.setOnClickListener(new View.OnClickListener({
     onClick: function(view){
 amster_OS.createsystemapps.calculator.textd=amster_OS.createsystemapps.calculator.textd.slice(0,-1);
@@ -2298,7 +2295,7 @@ button12551.setTextColor(Color.parseColor('#000000'));
     button12551.setText(fromHtml('<b><font color="black">очистить</font></b>'));
     button12551.setGravity(Gravity.CENTER);
     button12551.setTextSize(20);
-    button12551.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+    button12551.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
     button12551.setOnClickListener(new View.OnClickListener({
     onClick: function(view){
     button1.setText("");
@@ -2309,7 +2306,7 @@ amster_OS.createsystemapps.calculator.textd="";
  var utton1 = new TextView(ctx);
 utton1.setTextColor(Color.parseColor('#000000'));
     utton1.setText(fromHtml('<b><font color="black">полностью</font></b>'));
-utton1.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+utton1.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
     utton1.setGravity(Gravity.CENTER);
     utton1.setTextSize(20);
     utton1.setOnClickListener(new View.OnClickListener({
@@ -2333,7 +2330,7 @@ var btnf773 = new TextView(ctx);
 btnf773.setTextColor(Color.parseColor('#000000'));
     btnf773.setText(fromHtml('<b><font color="black">выход</font></b>'));
     btnf773.setGravity(Gravity.CENTER);
-btnf773.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+btnf773.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
     btnf773.setTextSize(20);
     btnf773.setOnClickListener(new View.OnClickListener({
     onClick: function(view){
@@ -2486,7 +2483,7 @@ amster_OS.createsystemapps.simple_clicker.musicplaying=parseInt(amster_OS.Data.g
 clicker_scene: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-var LayoutParams = LinearLayout.LayoutParams;
+var LayoutParams = LayoutParams;
 var layout = new LinearLayout(ctx);
   layout.setOrientation(1);
  CLICKGAMEGUI = new PopupWindow(layout, MCH_PNT, MCH_PNT);
@@ -2502,13 +2499,11 @@ CLICKGAMEGUI.setBackgroundDrawable(amster_OS.createsystemapps.simple_clicker.get
 clickerexit: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);  
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText('');   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -2539,7 +2534,7 @@ print("An error occured: " + err + err.lineNumber);
 shop_scene: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-var LayoutParams = LinearLayout.LayoutParams;
+var LayoutParams = LayoutParams;
 var layout = new LinearLayout(ctx);
   layout.setOrientation(1);
  CLICKSHOPGUI = new PopupWindow(layout, MCH_PNT, MCH_PNT);
@@ -2555,13 +2550,11 @@ CLICKSHOPGUI.setBackgroundDrawable(amster_OS.createsystemapps.simple_clicker.get
 shopexit: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);  
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText('');   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -2585,13 +2578,11 @@ print("An error occured: " + err + err.lineNumber);
 openshop: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);  
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(130), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(130), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText('');   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -2632,14 +2623,12 @@ amster_OS.createsystemapps.simple_clicker.bg_player.setLooping(true);
 }},
 clicktomoney: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
+        try{ 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);  
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(180), amster_OS.screen.dipSize(200)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(180), amster_OS.screen.dipSize(200)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText('');   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -2663,13 +2652,11 @@ print("An error occured: " + err + err.lineNumber);
 moneypanel: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);  
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(50)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(100), amster_OS.screen.dipSize(50)));
     exitsetbtn.setTextSize(20);
      exitsetbtn.setText('');    
 lays.addView(exitsetbtn);
@@ -2701,8 +2688,6 @@ print("An error occured: " + err + err.lineNumber);
 shoppanel: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(0);
 
@@ -2731,7 +2716,7 @@ var telinfo = new Button(ctx);
  telinfo.setGravity(Gravity.CENTER);   
 telinfo.setTextColor(Color.parseColor('#FFFFFF'));
     telinfo.setTextSize(25);
-telinfo.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, UiHeight/8));
+telinfo.setLayoutParams(new LayoutParams(UiWidth/2, UiHeight/8));
  telinfo.setText(fromHtml('<b><font color="white">'+amster_OS.createsystemapps.simple_clicker.valueconverter(amster_OS.createsystemapps.simple_clicker.maxrandom)+'/click</font></b>'))
 telinfo.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 lay1.addView(telinfo);
@@ -2741,7 +2726,7 @@ var telega = new Button(ctx);
 telega.setTextColor(Color.parseColor('#FFFFFF'));
     telega.setTextSize(15);
 telega.setId(i);
-telega.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, UiHeight/10));
+telega.setLayoutParams(new LayoutParams(UiWidth/2, UiHeight/10));
     if(amster_OS.createsystemapps.simple_clicker.money>=amster_OS.createsystemapps.simple_clicker.getcost(amster_OS.createsystemapps.simple_clicker.tlcost[i],amster_OS.createsystemapps.simple_clicker.tlcount[i])){
 telega.setText(fromHtml('<b><font color="white">'+amster_OS.createsystemapps.simple_clicker.tlname[i]+' ('+amster_OS.createsystemapps.simple_clicker.tlcount[i]+')</font></b><b><font color="green">\n'+amster_OS.createsystemapps.simple_clicker.valueconverter(amster_OS.createsystemapps.simple_clicker.getcost(amster_OS.createsystemapps.simple_clicker.tlcost[i],amster_OS.createsystemapps.simple_clicker.tlcount[i]))+'</font></b>'))
 }else{
@@ -2775,7 +2760,7 @@ var helpinfo = new Button(ctx);
  helpinfo.setGravity(Gravity.CENTER);   
 helpinfo.setTextColor(Color.parseColor('#FFFFFF'));
     helpinfo.setTextSize(25);
-helpinfo.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, UiHeight/8));
+helpinfo.setLayoutParams(new LayoutParams(UiWidth/2, UiHeight/8));
  helpinfo.setText(fromHtml('<b><font color="white">'+amster_OS.createsystemapps.simple_clicker.valueconverter(amster_OS.createsystemapps.simple_clicker.getcoins)+'/sec</font></b>'))
 helpinfo.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 lay2.addView(helpinfo);
@@ -2785,7 +2770,7 @@ var helpers = new Button(ctx);
 helpers.setTextColor(Color.parseColor('#FFFFFF'));
     helpers.setTextSize(15);
 helpers.setId(i);
-helpers.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, UiHeight/10));
+helpers.setLayoutParams(new LayoutParams(UiWidth/2, UiHeight/10));
     if(amster_OS.createsystemapps.simple_clicker.money>=amster_OS.createsystemapps.simple_clicker.getcost(amster_OS.createsystemapps.simple_clicker.hpcost[i],amster_OS.createsystemapps.simple_clicker.hpcount[i])){
 helpers.setText(fromHtml('<b><font color="white">'+amster_OS.createsystemapps.simple_clicker.hpname[i]+' ('+amster_OS.createsystemapps.simple_clicker.hpcount[i]+')</font></b><b><font color="green">\n'+amster_OS.createsystemapps.simple_clicker.valueconverter(amster_OS.createsystemapps.simple_clicker.getcost(amster_OS.createsystemapps.simple_clicker.hpcost[i],amster_OS.createsystemapps.simple_clicker.hpcount[i]))+'</font></b>'))
 }else{
@@ -2881,7 +2866,7 @@ return number;
 settings_scene: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-var LayoutParams = LinearLayout.LayoutParams;
+var LayoutParams = LayoutParams;
 var layout = new LinearLayout(ctx);
   layout.setOrientation(1);
  CLICKSETGUI = new PopupWindow(layout, MCH_PNT, MCH_PNT);
@@ -2897,14 +2882,12 @@ CLICKSETGUI.setBackgroundDrawable(amster_OS.createsystemapps.simple_clicker.geti
 musicpanel: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);  
 exitsetbtn.setTextColor(Color.parseColor('#FFFFFF'));
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(250), amster_OS.screen.dipSize(65)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(250), amster_OS.screen.dipSize(65)));
     exitsetbtn.setTextSize(30);
 if(amster_OS.createsystemapps.simple_clicker.musicplaying==1){
 exitsetbtn.setText(fromHtml('<b><font color="white">музыка</font></b><b><font color="green"> вкл</font></b>'))        
@@ -2940,13 +2923,11 @@ print("An error occured: " + err + err.lineNumber);
 opensettings: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);  
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(130), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(130), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText('');   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -2968,14 +2949,12 @@ print("An error occured: " + err + err.lineNumber);
 },
 settingsexit: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
+        try{ 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);  
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText('');   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -3006,8 +2985,6 @@ this.browserint("https://google.com/");
 browserint: function(url){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 lays.addView(amster_OS.graphics.easyWebPage(url))
@@ -3023,14 +3000,12 @@ this.browserexit();
 },
 browserexit: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
+        try{ 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);   exitsetbtn.setTextColor(Color.parseColor('#a93226'));
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText("×");   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -3194,7 +3169,7 @@ var button5 = new TextView(ctx);
     button5.setBackground(amster_OS.createsystemapps.mpplayer.getbg("bg_nN4"));
 button5.setMaxLines(2);  
     button5.setTextSize(14);
-button5.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, UiHeight/10));
+button5.setLayoutParams(new LayoutParams(UiWidth/2, UiHeight/10));
  var text = amster_OS.createsystemapps.mpplayer.sortedtracks[i].split("-");
 var tect = amster_OS.createsystemapps.mpplayer.sortedtracks[i].replace(".mp3", "");
 tect=tect.replace(".ogg", "");
@@ -3280,7 +3255,7 @@ var button548 = new TextView(ctx);
  button548.setGravity(Gravity.CENTER);   button548.setTextColor(Color.parseColor('#FFFFFF'));
     button548.setBackground(amster_OS.createsystemapps.mpplayer.getbg("bg_nN4"));
     button548.setTextSize(19);
-button548.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/12, UiHeight/9));
+button548.setLayoutParams(new LayoutParams(UiWidth/12, UiHeight/9));
      button548.setText("♫");      
 button548.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
     	
@@ -3295,7 +3270,7 @@ var button53 = new TextView(ctx);
  button53.setGravity(Gravity.CENTER);   button53.setTextColor(Color.parseColor('#FFFFFF'));
     button53.setBackground(amster_OS.createsystemapps.mpplayer.getbg("bg_nN4"));
     button53.setTextSize(19);
-button53.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/12, UiHeight/9));
+button53.setLayoutParams(new LayoutParams(UiWidth/12, UiHeight/9));
    
     button53.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
     if(amster_OS.createsystemapps.mpplayer.main_player.isPlaying()){
@@ -3326,7 +3301,7 @@ btm1.setText((fromHtml('<b><font color="white">'+name+'</font></b>')));
 btm1.setTextSize(20);      
 btm1.setGravity(Gravity.CENTER);
 btm1.setTextColor(Color.parseColor('#ffffff'));
-btm1.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+btm1.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
 btm1.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
    	try{
 amster_OS.createsystemapps.mpplayer.trackinfo(pathu,idgg,button53);
@@ -3340,7 +3315,7 @@ btm2.setText((fromHtml('<b><font color="gray">'+author+'</font></b>')));
 btm2.setTextSize(12);      
 btm2.setGravity(Gravity.LEFT);
 btm2.setTextColor(Color.parseColor('#ffffff'));
-btm2.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+btm2.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
 btm2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
     try{
 	
@@ -3395,7 +3370,7 @@ ctx.runOnUiThread(new Runnable({ run: function(){
             layout.setOrientation(1);
             
 var exitsetbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(50)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(50)));
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
 if(amster_OS.createsystemapps.mpplayer.check){
@@ -3456,7 +3431,7 @@ var button548 = new TextView(ctx);
  button548.setGravity(Gravity.CENTER);   button548.setTextColor(Color.parseColor('#FFFFFF'));
     button548.setBackground(amster_OS.createsystemapps.mpplayer.getbg("bg_nN4"));
     button548.setTextSize(110);
-button548.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, MCH_PNT));
+button548.setLayoutParams(new LayoutParams(UiWidth/2, MCH_PNT));
      button548.setText("♫");      
 button548.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
     	TTTC.dismiss();
@@ -3468,14 +3443,14 @@ lays.addView(lay);
 var btn1 = new TextView(ctx);
  btn1.setGravity(Gravity.CENTER);   btn1.setTextColor(Color.parseColor('#FFFFFF'));
     btn1.setTextSize(25);
-btn1.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, UiHeight/6));
+btn1.setLayoutParams(new LayoutParams(UiWidth/2, UiHeight/6));
 btn1.setMaxLines(2);  
 btn1.setText(fromHtml('<b><font color="white">'+name+'</font></b>'));   
    lay.addView(btn1);    
 var btn2 = new TextView(ctx);
  btn2.setGravity(Gravity.CENTER);   btn2.setTextColor(Color.parseColor('#FFFFFF'));
     btn2.setTextSize(15);
-btn2.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, UiHeight/12));
+btn2.setLayoutParams(new LayoutParams(UiWidth/2, UiHeight/12));
 btn2.setMaxLines(1);  
 btn2.setText(fromHtml('<b><font color="gray">'+author+'</font></b>'));   
    lay.addView(btn2);    
@@ -3499,7 +3474,7 @@ btn3.setText(fromHtml('<b><font color="white">'+text[i]+'</font></b>'));
      }
 var btn33 = new TextView(ctx);
     btn33.setTextSize(10);
-btn33.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(1), amster_OS.screen.dipSize(150)));
+btn33.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(1), amster_OS.screen.dipSize(150)));
 btn33.setText(" ");   
    lay.addView(btn33);    
         var musicsbp = new SeekBar(ctx);
@@ -3523,14 +3498,14 @@ amster_OS.createsystemapps.mpplayer.main_player.seekTo(view.getProgress())
 var button007 = new TextView(ctx);
  button007.setGravity(Gravity.LEFT);   button007.setTextColor(Color.parseColor('#ffffff'));
     button007.setTextSize(15);
-button007.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, UiHeight/16));
+button007.setLayoutParams(new LayoutParams(UiWidth/4, UiHeight/16));
      button007.setText(""+amster_OS.createsystemapps.mpplayer.milliSecToMinString(amster_OS.createsystemapps.mpplayer.main_player.getCurrentPosition()));         
     layn.addView(button007);
 
 var button07 = new TextView(ctx);
  button07.setGravity(Gravity.RIGHT);   button07.setTextColor(Color.parseColor('#ffffff'));
     button07.setTextSize(15);
-button07.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, UiHeight/16));
+button07.setLayoutParams(new LayoutParams(UiWidth/4, UiHeight/16));
      button07.setText(""+amster_OS.createsystemapps.mpplayer.milliSecToMinString(amster_OS.createsystemapps.mpplayer.main_player.getDuration()))
 layn.addView(button07);
 
@@ -3542,7 +3517,7 @@ var btn22 = new TextView(ctx);
  btn22.setGravity(Gravity.CENTER);   btn22.setTextColor(Color.parseColor('#FFFFFF'));
     btn22.setBackground(amster_OS.createsystemapps.mpplayer.getbg("bg_nN4"));
     btn22.setTextSize(15);
-btn22.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/6, UiHeight/9));
+btn22.setLayoutParams(new LayoutParams(UiWidth/6, UiHeight/9));
 btn22.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
     	if(amster_OS.createsystemapps.mpplayer.main_player.isPlaying()){
@@ -3565,7 +3540,7 @@ if(amster_OS.createsystemapps.mpplayer.main_player.isLooping()){
 }
     btn11.setBackground(amster_OS.createsystemapps.mpplayer.getbg("bg_nN4"));
     btn11.setTextSize(15);
-btn11.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/6, UiHeight/9));
+btn11.setLayoutParams(new LayoutParams(UiWidth/6, UiHeight/9));
      btn11.setText("⟲");      
 btn11.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
@@ -3585,7 +3560,7 @@ var btn33 = new TextView(ctx);
  btn33.setGravity(Gravity.CENTER);   btn33.setTextColor(Color.parseColor('#FFFFFF'));
     btn33.setBackground(amster_OS.createsystemapps.mpplayer.getbg("bg_nN4"));
     btn33.setTextSize(15);
-btn33.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/6, UiHeight/9));
+btn33.setLayoutParams(new LayoutParams(UiWidth/6, UiHeight/9));
      btn33.setText("копировать имя");      
 btn33.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
@@ -3675,7 +3650,7 @@ video.stopPlayback();
 video.setVideoPath(pth);
 video.start();
 video.requestFocus();
-video.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
+video.setLayoutParams(new LayoutParams(MCH_PNT, MCH_PNT));
 video.setOnCompletionListener(new android.media.MediaPlayer.OnCompletionListener({onCompletion: function(mp) {
      if(amster_OS.createsystemapps.mediaview.replay)video.start();
 }}));
@@ -3694,7 +3669,7 @@ lays.addView(video);
 var photo = new ImageView(ctx);
 var bmp = BitmapFactory.decodeFile(file);
 photo.setImageDrawable(new BitmapDrawable(bmp));
-photo.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, MCH_PNT));
+photo.setLayoutParams(new LayoutParams(MCH_PNT, MCH_PNT));
 photo.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
 amster_OS.createsystemapps.mediaview.panel(file,"photo");
 }}));
@@ -3731,7 +3706,7 @@ lays.addView(time1);
     videobar.getThumb().setColorFilter(Color.parseColor("#909090"), android.graphics.PorterDuff.Mode.SRC);
     videobar.setProgress(res.getCurrentPosition());
     videobar.getProgressDrawable().setColorFilter(Color.parseColor("#ffffff"), android.graphics.PorterDuff.Mode.SRC_IN);
-  videobar.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+  videobar.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
   videobar.setOnSeekBarChangeListener(new android.widget.SeekBar.OnSeekBarChangeListener()
     {
     onStopTrackingTouch: function(view)
@@ -3844,7 +3819,7 @@ scr.addView(lay);
 lays.addView(lay1);
 lays.addView(scr);
 var exit = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-exit.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
+exit.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
 exit.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 menu_ui.dismiss();
 }}));
@@ -3876,7 +3851,7 @@ var searchbtn = new EditText(ctx);
  searchbtn.setGravity(Gravity.CENTER);  
  searchbtn.setTextColor(Color.parseColor("#ffffff"));
     searchbtn.setTextSize(15);
-searchbtn.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+searchbtn.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
 searchbtn.setHintTextColor(Color.parseColor("#ffffff"));
 searchbtn.setHint("нажмите для поиска заметок...");
 searchbtn.setImeOptions(android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI);
@@ -3933,7 +3908,7 @@ lays.addView(lay1);
 lays.addView(scsr);
 
 var exit = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-exit.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
+exit.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
 exit.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 note_ui.dismiss();
 }}));
@@ -4155,7 +4130,6 @@ amster_OS.graphics.print_design.cor=parseInt(amster_OS.Data.getValue("cor",amste
 }
 },
 settingui: function(){
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 
@@ -4167,11 +4141,11 @@ var layl1 = new LinearLayout(ctx);//разделЫ(инфо,рабочий ст�
   layl1.setOrientation(1);
 var layl2 = new LinearLayout(ctx);//менюшки с настройками
   layl2.setOrientation(1);
-layl2.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+layl2.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
 var scrl1 = new ScrollView(ctx);
 scrl1.setVerticalScrollBarEnabled(false)
 var scrl2 = new ScrollView(ctx);
-scrl2.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+scrl2.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
 scrl2.setVerticalScrollBarEnabled(false)
 scrl1.addView(layl1);
 scrl2.addView(layl2);
@@ -4179,9 +4153,13 @@ lay2.addView(scrl1);
 lay2.addView(scrl2);
 lays.addView(lay1);
 lays.addView(lay2);
+
+var params = new LayoutParams(UiWidth/6, amster_OS.screen.dipSize(50));
+params.setMargins(10,1,1,10);
+
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);   //exitsetbtn.setTextColor(Color.parseColor('#000000'));
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(50)));
+exitsetbtn.setLayoutParams(params);
     exitsetbtn.setTextSize(15);
 exitsetbtn.setAllCaps(false);
 exitsetbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -4192,7 +4170,7 @@ SETGUI.dismiss();
 lay1.addView(exitsetbtn);
 var namebtn = new Button(ctx);
  namebtn.setGravity(Gravity.CENTER);   namebtn.setTextColor(Color.parseColor('#ffffff'));
-namebtn.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, amster_OS.screen.dipSize(50)));
+namebtn.setLayoutParams(new LayoutParams(MCH_PNT, amster_OS.screen.dipSize(50)));
     namebtn.setTextSize(23);
 namebtn.setAllCaps(false);
 namebtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -4200,16 +4178,20 @@ namebtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 lay1.addView(namebtn);
 
 var pages = ["информация","язык","рабочий стол","приложения","пользователь","экран","память","библиотеки","персонализация"];
+var savewidgets = [];
 for(var i in pages){
-var razdelbtn = new Button(ctx);
- razdelbtn.setGravity(Gravity.LEFT);   razdelbtn.setTextColor(Color.parseColor('#000000'));
+var razdelbtn = new TextView(ctx);
+savewidgets.push(razdelbtn);
+ razdelbtn.setGravity(Gravity.LEFT);   
+razdelbtn.setTextColor(Color.parseColor('#ffffff'));
     razdelbtn.setTextSize(15);
 razdelbtn.setId(i);
-razdelbtn.setAllCaps(false);
-razdelbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-     razdelbtn.setText(fromHtml('<font color="#ffffff">'+pages[i]+'</font>'));   
+razdelbtn.setLayoutParams(params);
+     razdelbtn.setText(pages[i]);   
     razdelbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
+for(var a in savewidgets)savewidgets[a].setTextColor(Color.parseColor('#ffffff'));
+viewarg.setTextColor(Color.parseColor('#878787'));
 amster_OS.createsystemapps.settings.lastpage=viewarg.getId();
 genSet(amster_OS.createsystemapps.settings.lastpage);
 }catch(e){print (e+e.lineNumber)}
@@ -4449,7 +4431,7 @@ lau.addView(btnx2);
 var btnx3 = new amster_OS.graphics.easyButton("loading",[Gravity.RIGHT,15]);
 btnx3.setId(u);
 btnx3.setText(fromHtml('<b><font color="#ff0000">⌫</font><b>'));   
-btnx3.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+btnx3.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
 btnx3.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
 try{
 var file = new File(apppth+lista[v.getId()]);
@@ -4919,8 +4901,7 @@ var selector_blackbg = new GradientDrawable();
 selector_blackbg.setColor(Color.BLACK);
 var selector_graybg = new GradientDrawable();
 selector_graybg.setColor(Color.parseColor("#4f505e"));
-var params_for_buttons = new LinearLayout.LayoutParams(UiWidth/4, WR_CNT);
-        	var LayoutParams = LinearLayout.LayoutParams 
+var params_for_buttons = new LayoutParams(UiWidth/4, WR_CNT);
 var lay = new GridLayout(ctx);
   lay.setColumnCount(4);
 
@@ -4949,7 +4930,7 @@ list =  new File(amster_OS.createsystemapps.my_explorer.explor_dir).list();
     button57.setId(i)
     button57.setPadding(5, 15, 5, 15);
      button57.setText(fromHtml('<b><font color="#ffffff">'+dir[i]+'</font></b>'))                
- button57.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, WR_CNT));
+ button57.setLayoutParams(new LayoutParams(WR_CNT, WR_CNT));
      button57.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
      	try{
      amster_OS.createsystemapps.my_explorer.explor_dir = dir.slice(0,viewarg.getId()+1).join("/");
@@ -5159,7 +5140,7 @@ var infoobtn = new Button(ctx);
  infoobtn.setAllCaps(false);
 infoobtn.setTextSize(10);
 infoobtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-infoobtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, MCH_PNT));
+infoobtn.setLayoutParams(new LayoutParams(UiWidth/2, MCH_PNT));
 infoobtn.setGravity(Gravity.LEFT);
      layoutc.addView(infoobtn);
 var click = false;
@@ -5169,7 +5150,7 @@ var selectallbtn = new Button(ctx);
  selectallbtn.setAllCaps(false);
 selectallbtn.setTextSize(15);
 selectallbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-selectallbtn.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, MCH_PNT));
+selectallbtn.setLayoutParams(new LayoutParams(WR_CNT, MCH_PNT));
 selectallbtn.setGravity(Gravity.CENTER);
      selectallbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
@@ -5207,7 +5188,7 @@ var intervalbtn = new Button(ctx);
  intervalbtn.setAllCaps(false);
 intervalbtn.setTextSize(15);
 intervalbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-intervalbtn.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, MCH_PNT));
+intervalbtn.setLayoutParams(new LayoutParams(WR_CNT, MCH_PNT));
 intervalbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
 if(firstselector>lastselector){
@@ -5231,7 +5212,7 @@ var cancelbtn = new Button(ctx);
  cancelbtn.setAllCaps(false);
 cancelbtn.setTextSize(15);
 cancelbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-cancelbtn.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, MCH_PNT));
+cancelbtn.setLayoutParams(new LayoutParams(WR_CNT, MCH_PNT));
 cancelbtn.setGravity(Gravity.CENTER);
 cancelbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 try{
@@ -5334,7 +5315,7 @@ ctx.runOnUiThread(new Runnable({ run: function(){
             
 var opendopbtn = new TextView(ctx);
  opendopbtn.setGravity(Gravity.CENTER);   opendopbtn.setTextColor(Color.parseColor('#eb4c42'));
-opendopbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(35), amster_OS.screen.dipSize(35)));
+opendopbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(35), amster_OS.screen.dipSize(35)));
     opendopbtn.setTextSize(25);
      opendopbtn.setText(fromHtml('<b><font color="#ffffff">:</font></b>'))               
     opendopbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -5378,7 +5359,7 @@ var miscDialog = new android.app.Dialog(ctx);
      dialzagbtn.setTextColor(Color.parseColor('#FFFFFF'));   
 dialzagbtn.setBackground(bgac);
  dialzagbtn.setTextSize(35);
-dialzagbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+dialzagbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 dialzagbtn.setGravity(Gravity.CENTER);
      
      dialogLayout.addView(dialzagbtn);
@@ -5386,7 +5367,7 @@ var b1utton0 = new TextView(ctx);
      b1utton0.setText(fromHtml('<b><font color="#ffffff">Папка</font></b>')); 
      b1utton0.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton0.setTextSize(25);
-b1utton0.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton0.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton0.setGravity(Gravity.LEFT);
      b1utton0.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5399,7 +5380,7 @@ createObj("Папка",bgac)
      b1utton1.setText(fromHtml('<b><font color="#ffffff">Word</font></b>')); 
      b1utton1.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton1.setTextSize(25);
-b1utton1.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton1.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton1.setGravity(Gravity.LEFT);
      b1utton1.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5412,7 +5393,7 @@ var b1utton2 = new TextView(ctx);
      b1utton2.setText(fromHtml('<b><font color="#ffffff">Exel</font></b>')); 
      b1utton2.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton2.setTextSize(25);
-b1utton2.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton2.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton2.setGravity(Gravity.LEFT);
      b1utton2.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5425,7 +5406,7 @@ createObj("Exel",bgac)
      b1utton3.setText(fromHtml('<b><font color="#ffffff">PowerPoint</font></b>')); 
      b1utton3.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton3.setTextSize(25);
-b1utton3.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton3.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton3.setGravity(Gravity.LEFT);
      b1utton3.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5438,7 +5419,7 @@ var b1utton4 = new TextView(ctx);
      b1utton4.setText(fromHtml('<b><font color="#ffffff">Файл</font></b>')); 
      b1utton4.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton4.setTextSize(25);
-b1utton4.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton4.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton4.setGravity(Gravity.LEFT);
      b1utton4.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5650,7 +5631,7 @@ var dialogLayout1 = new LinearLayout(ctx);
      dialzagbtn.setTextColor(Color.parseColor('#FFFFFF'));   
 dialzagbtn.setBackground(bg);
  dialzagbtn.setTextSize(35);
-dialzagbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+dialzagbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 dialzagbtn.setGravity(Gravity.CENTER);
      
      dialogLayout.addView(dialzagbtn);
@@ -5669,7 +5650,7 @@ dialogLayout.addView(dialogLayout1);
      b1utton1.setText(fromHtml('<b><font color="#ffffff">отмена</font></b>')); 
      b1utton1.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton1.setTextSize(25);
-b1utton1.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, WR_CNT));
+b1utton1.setLayoutParams(new LayoutParams(UiWidth/4, WR_CNT));
 b1utton1.setGravity(Gravity.CENTER);
      b1utton1.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5681,7 +5662,7 @@ var b1utton2 = new TextView(ctx);
      b1utton2.setText(fromHtml('<b><font color="#ffffff">ок</font></b>')); 
      b1utton2.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton2.setTextSize(25);
-b1utton2.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, WR_CNT));
+b1utton2.setLayoutParams(new LayoutParams(UiWidth/4, WR_CNT));
 b1utton2.setGravity(Gravity.CENTER);
      b1utton2.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5739,14 +5720,14 @@ var dialogLayout1 = new LinearLayout(ctx);
      dialzagbtn.setTextColor(Color.parseColor('#FFFFFF'));   
 dialzagbtn.setBackground(bgac);
  dialzagbtn.setTextSize(25);
-dialzagbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+dialzagbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 dialzagbtn.setGravity(Gravity.CENTER);  
      dialogLayout.addView(dialzagbtn);
 var b1utton0 = new TextView(ctx);
      b1utton0.setText(fromHtml('<b><font color="#ffffff">'+tecb+'</font></b>')); 
      b1utton0.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton0.setTextSize(15);
-b1utton0.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton0.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton0.setGravity(Gravity.LEFT);
      dialogLayout.addView(b1utton0);
 dialogLayout.addView(dialogLayout1);
@@ -5756,7 +5737,7 @@ dialogLayout.addView(dialogLayout1);
      b1utton1.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton1.setTextSize(20);
 b1utton1.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
-b1utton1.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, WR_CNT));
+b1utton1.setLayoutParams(new LayoutParams(UiWidth/4, WR_CNT));
 b1utton1.setGravity(Gravity.CENTER);
      b1utton1.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5770,7 +5751,7 @@ var b1utton2 = new Button(ctx);
      b1utton2.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton2.setTextSize(20);
 b1utton2.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
-b1utton2.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, WR_CNT));
+b1utton2.setLayoutParams(new LayoutParams(UiWidth/4, WR_CNT));
 b1utton2.setGravity(Gravity.CENTER);
      b1utton2.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5855,7 +5836,7 @@ var dialogLayout1 = new LinearLayout(ctx);
      dialzagbtn.setTextColor(Color.parseColor('#FFFFFF'));   
 dialzagbtn.setBackground(bgac);
  dialzagbtn.setTextSize(25);
-dialzagbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+dialzagbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 dialzagbtn.setGravity(Gravity.CENTER);  
      dialogLayout.addView(dialzagbtn);
 var b1utton0 = new EditText(ctx);
@@ -5876,7 +5857,7 @@ b1utton0.setText(new File(selectorputhes1[o]).getName());
 b1utton0.setMaxLines(1);  
      b1utton0.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton0.setTextSize(15);
-b1utton0.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton0.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton0.setGravity(Gravity.LEFT);
      dialogLayout.addView(b1utton0);
 dialogLayout.addView(dialogLayout1);
@@ -5886,7 +5867,7 @@ dialogLayout.addView(dialogLayout1);
      b1utton1.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton1.setTextSize(20);
 b1utton1.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
-b1utton1.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, WR_CNT));
+b1utton1.setLayoutParams(new LayoutParams(UiWidth/4, WR_CNT));
 b1utton1.setGravity(Gravity.CENTER);
      b1utton1.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5900,7 +5881,7 @@ var b1utton2 = new Button(ctx);
      b1utton2.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton2.setTextSize(20);
 b1utton2.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
-b1utton2.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, WR_CNT));
+b1utton2.setLayoutParams(new LayoutParams(UiWidth/4, WR_CNT));
 b1utton2.setGravity(Gravity.CENTER);
      b1utton2.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -5978,7 +5959,7 @@ selector66blackbg.setColor(Color.BLACK);
 var guibg123 = new GradientDrawable();
 guibg123.setColor(Color.TRANSPARENT);
 guibg123.setStroke(5, Color.BLACK);
-var params66buttons = new LinearLayout.LayoutParams(MCH_PNT, WR_CNT);
+var params66buttons = new LayoutParams(MCH_PNT, WR_CNT);
 params66buttons.setMargins(2,2,2,2);
 
 var lay66 = new LinearLayout(ctx);
@@ -6006,7 +5987,7 @@ lays66.setBackgroundDrawable(bg66ac);
     button57.setId(i)
     button57.setPadding(5, 15, 5, 15);
      button57.setText(dir66[i])
- button57.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, UiWidth/16));
+ button57.setLayoutParams(new LayoutParams(WR_CNT, UiWidth/16));
      button57.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
      	try{
      selmgdir = dir66.slice(0,viewarg.getId()+1).join("/");
@@ -6164,7 +6145,7 @@ var bg1 = new GradientDrawable();
 bg1.setColor(Color.TRANSPARENT);
 bg1.setStroke(5, Color.BLACK);
 
-var params = new LinearLayout.LayoutParams(MCH_PNT, WR_CNT);
+var params = new LayoutParams(MCH_PNT, WR_CNT);
 params.setMargins(2,2,2,2);
 
 var lay1 = new LinearLayout(ctx);
@@ -6213,7 +6194,7 @@ lays.addView(searchbtn);
     file_btn7.setId(i)
     file_btn7.setPadding(5, 15, 5, 15);
      file_btn7.setText(split_cur_path[i])
- file_btn7.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, UiWidth/16));
+ file_btn7.setLayoutParams(new LayoutParams(WR_CNT, UiWidth/16));
      file_btn7.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
      	try{
      copy_exp_dir = split_cur_path.slice(0,viewarg.getId()+1).join("/");
@@ -6436,7 +6417,7 @@ lay.addView(layss);
 var uttoncopy1 = new TextView(ctx);
  uttoncopy1.setGravity(Gravity.CENTER);   uttoncopy1.setTextColor(Color.parseColor('#FFFFFF'));
     uttoncopy1.setTextSize(10);    
-uttoncopy1.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/8, WR_CNT));
+uttoncopy1.setLayoutParams(new LayoutParams(UiWidth/8, WR_CNT));
      uttoncopy1.setText("копировать имя");   
 uttoncopy1.setOnClickListener(new View.OnClickListener({
     onClick: function(view){
@@ -6448,7 +6429,7 @@ layss.addView(uttoncopy1);
 var uttoncopy2 = new TextView(ctx);
  uttoncopy2.setGravity(Gravity.CENTER);   uttoncopy2.setTextColor(Color.parseColor('#FFFFFF'));
     uttoncopy2.setTextSize(10);    
-uttoncopy2.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/8, WR_CNT));
+uttoncopy2.setLayoutParams(new LayoutParams(UiWidth/8, WR_CNT));
      uttoncopy2.setText("копировать путь");   
 uttoncopy2.setOnClickListener(new View.OnClickListener({
     onClick: function(view){
@@ -6492,7 +6473,7 @@ menu: function(){
 var lays = new LinearLayout(ctx);
 lays.setOrientation(1);
 var exitbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-exitbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
+exitbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
     exitbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 menu_ui.dismiss();
    }}));
@@ -6556,7 +6537,7 @@ lays.addView(lay);
 lays.addView(scroll);
 
 var exitbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-exitbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
+exitbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(40), amster_OS.screen.dipSize(40)));
     exitbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 menushka.dismiss();
    }}));
@@ -6959,8 +6940,6 @@ checkRootMethod3: function() {
 rootInfo: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 
@@ -6975,8 +6954,6 @@ print("An error occured: " + err + err.lineNumber);
 function rootAct(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var bg_d2 = new GradientDrawable();
@@ -6988,7 +6965,7 @@ var rootbtn = new TextView(ctx);
  rootbtn.setGravity(Gravity.CENTER);   
 rootbtn.setTextColor(Color.parseColor('#ffffff'));
     rootbtn.setTextSize(30);
-rootbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, UiWidth/4));
+rootbtn.setLayoutParams(new LayoutParams(UiWidth/4, UiWidth/4));
 rootbtn.setBackground(bg_d2);
      rootbtn.setText(fromHtml('<b><font color="gray">check root</font></b>'))
     rootbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -7023,12 +7000,10 @@ print("An error occured: " + err + err.lineNumber);
 function rootExit(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(0);
 var exitsetbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(45), amster_OS.screen.dipSize(45)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(45), amster_OS.screen.dipSize(45)));
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
 CRAGUI.dismiss();
 ROOTGUI.dismiss();
@@ -7038,7 +7013,7 @@ lays.addView(exitsetbtn);
 
 var namebtn = new Button(ctx);
  namebtn.setGravity(Gravity.RIGHT);   namebtn.setTextColor(Color.parseColor('#ffffff'));
-namebtn.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, amster_OS.screen.dipSize(45)));
+namebtn.setLayoutParams(new LayoutParams(MCH_PNT, amster_OS.screen.dipSize(45)));
     namebtn.setTextSize(20);
 namebtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
      namebtn.setText("root checker");   
@@ -7075,11 +7050,10 @@ ctx.runOnUiThread(new Runnable({ run: function(){
         try{
      var black_bg = new GradientDrawable();
 black_bg.setColor(Color.parseColor('#ffffff'));
-var LayoutParams = LinearLayout.LayoutParams 
    if(texting!=null)searchapps=texting;
 var lays = new GridLayout(ctx);
 lays.setColumnCount(2);
-lays.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, UiHeight/6));
+lays.setLayoutParams(new LayoutParams(MCH_PNT, UiHeight/6));
 var layss = new LinearLayout(ctx);
   layss.setOrientation(1);
 var scroll = new ScrollView(ctx);
@@ -7097,7 +7071,7 @@ var icon = appget.loadIcon(ctx.getPackageManager())
 
 var appiconbtn = new TextView(ctx);
 appiconbtn.setBackgroundDrawable(icon)
- appiconbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/10, UiHeight/8));
+ appiconbtn.setLayoutParams(new LayoutParams(UiWidth/10, UiHeight/8));
 appiconbtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){        
  var bgac = new GradientDrawable();
@@ -7190,7 +7164,7 @@ var updbtn = new Button(ctx);
  updbtn.setGravity(Gravity.LEFT); 
 updbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
  updbtn.setTextColor(Color.parseColor('#000000'));
-updbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, WR_CNT));
+updbtn.setLayoutParams(new LayoutParams(UiWidth/4, WR_CNT));
 updbtn.setTextSize(20);
 updbtn.setText(fromHtml('<b><font color="#000000">обновить</font></b>'))
 updbtn.setOnClickListener(new View.OnClickListener({ 
@@ -7203,7 +7177,7 @@ var searchbtn = new EditText(ctx);
 searchbtn.setGravity(Gravity.CENTER);  
 searchbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 searchbtn.setTextColor(Color.parseColor('#000000'));
-searchbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+searchbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 searchbtn.setHintTextColor(Color.parseColor("#000000"));
 searchbtn.setImeOptions(android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI);
     searchbtn.setTextSize(20);
@@ -7219,7 +7193,7 @@ var exitbtn = new Button(ctx);
  exitbtn.setGravity(Gravity.RIGHT);  
 exitbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
  exitbtn.setTextColor(Color.parseColor('#878787'));
-exitbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/4, WR_CNT));
+exitbtn.setLayoutParams(new LayoutParams(UiWidth/4, WR_CNT));
 exitbtn.setText(fromHtml('<b><font color="#000000">выход</font></b>'))
     exitbtn.setTextSize(20);
 exitbtn.setOnClickListener(new View.OnClickListener({ 
@@ -7250,7 +7224,7 @@ var searchbtn = new EditText(ctx);
 searchbtn.setGravity(Gravity.CENTER);  
 searchbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 searchbtn.setTextColor(Color.parseColor('#000000'));
-searchbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+searchbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 searchbtn.setHintTextColor(Color.parseColor("#000000"));
 searchbtn.setImeOptions(android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI);
 searchbtn.setMaxLines(2);  
@@ -7293,7 +7267,7 @@ print("An error occured: " + err + err.lineNumber);
 },
 informationapps: function(info,appbg){
 var layss = new LinearLayout(ctx);
-layss.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, WR_CNT));
+layss.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
 layss.setBackgroundDrawable(appbg)
   layss.setOrientation(1);
 var appinfobtn = new TextView(ctx);
@@ -7342,7 +7316,7 @@ getName: function(){
 return "Amster_OS"
 },
 getVersion: function(){
-return "1.3"
+return "b1.4"
 },
 getUsers: function(){
 var abs = new File(amster_OS.my_root.system_path).list();
@@ -7437,13 +7411,13 @@ var app = list[id];
 
 var lay2=new LinearLayout(ctx);
  lay2.setOrientation(1);
-var params = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
+var params = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
 params.setMargins(25,1,25,1);
 
-var param = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
+var param = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
 param.setMargins(25,1,25,25);
 
-var paramss = new LinearLayout.LayoutParams(WR_CNT,WR_CNT);
+var paramss = new LayoutParams(WR_CNT,WR_CNT);
 paramss.setMargins(25,5,25,5);
 lay2.setLayoutParams(paramss);
 
@@ -7485,13 +7459,13 @@ var abcd = amster_OS.fast_files.containsEntry(amster_OS.my_root.system_path+"dat
 }
 var lay2=new LinearLayout(ctx);
  lay2.setOrientation(1);
-var params = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
+var params = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
 params.setMargins(25,1,25,1);
 
-var param = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
+var param = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
 param.setMargins(25,1,25,25);
 
-var paramss = new LinearLayout.LayoutParams(WR_CNT,WR_CNT);
+var paramss = new LayoutParams(WR_CNT,WR_CNT);
 paramss.setMargins(25,5,25,5);
 lay2.setLayoutParams(paramss);
 
@@ -7528,7 +7502,7 @@ init: function(){
         try{
 var lays = new LinearLayout(ctx);
 lays.setOrientation(0);
-lays.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, amster_OS.screen.dipSize(27)));
+lays.setLayoutParams(new LayoutParams(MCH_PNT, amster_OS.screen.dipSize(27)));
 var black_bg = new GradientDrawable();
 black_bg.setColors([Color.parseColor(amster_OS.graphics.system_design.cl1),Color.parseColor(amster_OS.graphics.system_design.cl2)])
 eval("black_bg.setOrientation(GradientDrawable.Orientation."+amster_OS.graphics.system_design.gr+")");
@@ -7551,7 +7525,7 @@ createpanelbtn: function (text){
 var tablebtn = new TextView(ctx);
 tablebtn.setGravity(Gravity.CENTER);  
  tablebtn.setTextColor(Color.parseColor('#ffffff'));
-tablebtn.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),0));
+tablebtn.setLayoutParams(new LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),0));
 tablebtn.setText(fromHtml('<b><font color="#ffffff">'+text+'</font></b>')); 
     tablebtn.setTextSize(12);
 tablebtn.setAllCaps(false);
@@ -7568,13 +7542,13 @@ return BitmapDrawable(bmp1);
 createpanelimg: function (bml){
 var image = new ImageView(ctx); 
 image.setImageDrawable(bml);
-image.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27),0));   
+image.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27),0));   
 return image;
 },
 createpanellayout: function (){
 var lay1= new LinearLayout(ctx);
 lay1.setOrientation(0);
-lay1.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, amster_OS.screen.dipSize(27)));
+lay1.setLayoutParams(new LayoutParams(MCH_PNT, amster_OS.screen.dipSize(27)));
 var exit = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
 exit.setOnClickListener(new View.OnClickListener({
                 onClick: function(v){         
@@ -7586,7 +7560,7 @@ OSGUI.dismiss();
 }}));
 lay1.addView(exit);
 var otstup = new TextView(ctx);
-otstup.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),8));
+otstup.setLayoutParams(new LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),8));
 otstup.setText(""); 
 otstup.setTextSize(1);
 lay1.addView(otstup);
@@ -7608,7 +7582,7 @@ lay1.addView(wifiimg);
 var blueimg = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,47));
 lay1.addView(blueimg);
 var cons = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(1,47));
-cons.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),2));
+cons.setLayoutParams(new LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),2));
 cons.setOnClickListener(new View.OnClickListener({
                 onClick: function(v){         
 amster_OS.cmdclass.init();
@@ -7873,10 +7847,10 @@ var loadbar = new SeekBar(ctx);
     loadbar.setProgress(1);
     lay.addView(loadbar);
 var left = new amster_OS.graphics.easyButton("0b",[Gravity.LEFT,20]);
-left.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+left.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 lau.addView(left);
 var right = new amster_OS.graphics.easyButton("0%",[Gravity.RIGHT,20]);
-right.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+right.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 lau.addView(right);
 
 var tick = android.os.Handler();
@@ -8293,13 +8267,11 @@ openblack: function (){
 cmdexit: function(){
 ctx.runOnUiThread(new Runnable({ run: function(){
         try{
-     
-var LayoutParams = LinearLayout.LayoutParams 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
  exitsetbtn.setGravity(Gravity.CENTER);   exitsetbtn.setTextColor(Color.parseColor('#a93226'));
-exitsetbtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
+exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
     exitsetbtn.setTextSize(60);
      exitsetbtn.setText("×");   
     exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -8582,7 +8554,7 @@ var alltxttbtn = new Button(ctx);
      alltxttbtn.setTextColor(Color.parseColor('#ffffff'));   
  alltxttbtn.setTextSize(25);
 alltxttbtn.setShadowLayer(35, 1, 1, Color.parseColor('#102e52'));
-alltxttbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+alltxttbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 alltxttbtn.setAllCaps(false);
 alltxttbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 alltxttbtn.setGravity(Gravity.CENTER);
@@ -8597,7 +8569,7 @@ lays.addView(textms);
 var pasbtn = new EditText(ctx);
      pasbtn.setTextColor(Color.parseColor('#000000'));   
  pasbtn.setTextSize(15);
-pasbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+pasbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 pasbtn.setAllCaps(false);
 pasbtn.setImeOptions(android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI);
 pasbtn.setHint("введите пароль...");
@@ -8612,7 +8584,7 @@ amster_OS.start_os.openedit(viewarg);
 }));
 lays.addView(pasbtn);
 var leavebtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-leavebtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(35), amster_OS.screen.dipSize(35),1));
+leavebtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(35), amster_OS.screen.dipSize(35),1));
 leavebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){
 ERDUI.dismiss();
@@ -8624,7 +8596,7 @@ lay1.addView(leavebtn);
 var enterbtn = new TextView(ctx);
 enterbtn.setText(fromHtml('<b><font color="#ffffff">войти</font></b>')); 
 enterbtn.setTextColor(Color.parseColor('#ffffff'));
-enterbtn.setLayoutParams(new LinearLayout.LayoutParams(MCH_PNT, amster_OS.screen.dipSize(35),1));   
+enterbtn.setLayoutParams(new LayoutParams(MCH_PNT, amster_OS.screen.dipSize(35),1));   
  enterbtn.setTextSize(20);
 enterbtn.setGravity(Gravity.RIGHT);
 enterbtn.setOnClickListener(new View.OnClickListener({
@@ -8676,7 +8648,7 @@ var alltxttbtn = new Button(ctx);
      alltxttbtn.setTextColor(Color.parseColor('#ffffff'));   
  alltxttbtn.setTextSize(25);
 alltxttbtn.setShadowLayer(35, 1, 1, Color.parseColor('#102e52'));
-alltxttbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+alltxttbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 alltxttbtn.setAllCaps(false);
 alltxttbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 alltxttbtn.setGravity(Gravity.CENTER);
@@ -8719,7 +8691,7 @@ var b1utton1 = new TextView(ctx);
      b1utton1.setText(fromHtml('<b><font color="#ffffff">'+amster_OS.my_root.current_user+'</font></b>')); 
      b1utton1.setTextColor(Color.parseColor('#FFFFFF'));   
  b1utton1.setTextSize(25);
-b1utton1.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton1.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton1.setGravity(Gravity.CENTER);
      b1utton1.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -8759,7 +8731,7 @@ b1utton0.setText(fromHtml("<b><font color='#ffffff'>Login: </font><u>"+list[i]+"
 b1utton0.setId(i);
 b1utton0.setAllCaps(false);
 b1utton0.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-b1utton0.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+b1utton0.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 b1utton0.setGravity(Gravity.CENTER);
      b1utton0.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -8800,7 +8772,7 @@ lays.addView(enterbtn);
 var pasbtn = new EditText(ctx);
      pasbtn.setTextColor(Color.parseColor('#000000'));   
  pasbtn.setTextSize(15);
-pasbtn.setLayoutParams(new LinearLayout.LayoutParams(UiWidth/2, WR_CNT));
+pasbtn.setLayoutParams(new LayoutParams(UiWidth/2, WR_CNT));
 pasbtn.setAllCaps(false);
 pasbtn.setImeOptions(android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI);
 pasbtn.setHint("введите пароль...");
@@ -8852,7 +8824,7 @@ PHUI.dismiss();
 lays.addView(enterbtn);
 
 var leavebtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-leavebtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27),1));
+leavebtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27),1));
 leavebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){
 ENDUI.dismiss();
@@ -8862,14 +8834,14 @@ java.lang.System.exit(1);
 }));
 lay.addView(leavebtn);
 var otst = new TextView(ctx);
-otst.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),3));
+otst.setLayoutParams(new LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),3));
 lay.addView(otst);
     var datbtn = new TextView(ctx);
     datbtn.setText('запомнить  ');
 datbtn.setGravity(Gravity.CENTER);
 datbtn.setTextColor(Color.parseColor('#ffffff'));   
  datbtn.setTextSize(15);
-datbtn.setLayoutParams(new LinearLayout.LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),1));
+datbtn.setLayoutParams(new LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),1));
 datbtn.setAllCaps(false);
 datbtn.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -8892,7 +8864,7 @@ datbtns.setBackgroundDrawable(bgss);
 }else{
 datbtns.setBackgroundDrawable(bgs);
 }
-datbtns.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(20),0));
+datbtns.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(20),0));
      datbtns.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
 if(!savedats){
@@ -8966,7 +8938,7 @@ eval("black_bg.setOrientation(GradientDrawable.Orientation."+amster_OS.graphics.
 var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var leavebtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(48,96));
-leavebtn.setLayoutParams(new LinearLayout.LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27)));
+leavebtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27)));
 leavebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){
 ENDUI.dismiss();
