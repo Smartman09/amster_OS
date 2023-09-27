@@ -404,9 +404,7 @@ fasttxt.setTextColor(Color.parseColor(amster_OS.graphics.colors[0]));
 fasttxt.setText(fromHtml('<b><font color='+amster_OS.graphics.colors[0]+'>'+txt+'</font></b>'));
 fasttxt.getBackground().mutate().setColorFilter(Color.parseColor(amster_OS.graphics.colors[0]), android.graphics.PorterDuff.Mode.SRC_IN);
 fasttxt.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
-     	try{
      amster_OS.start_os.openedit(viewarg);
-     }catch(e){print(e+" #"+e.lineNumber)}
      }}));
 return fasttxt;
 },
@@ -431,7 +429,7 @@ linkbtn.setTextSize(size);
 linkbtn.setPadding(10, 0, 10, 10);
 linkbtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(view){
-amster_OS.createsystemapps.systembrowser.browserint(url);
+amster_OS.createsystemapps.systembrowser.openPage(url);
         	}
 }));
 return linkbtn;
@@ -476,7 +474,6 @@ lays.setOrientation(1);
 return amster_OS.graphics.easyPopup(lays,black_bg);
 },
 colorPicker: function(v,text){
-try{
 var current_color = "#ff0000";
 var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
@@ -591,11 +588,8 @@ generate();
 var ui= new PopupWindow(lays, WR_CNT, WR_CNT);      
 ui.setFocusable(true);
 ui.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
-ctx.runOnUiThread(new Runnable({ run: function(){
 ui.setAnimationStyle(animations.toast);
 ui.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-}}));
-}catch(e){print(e+e.lineNumber)}
 }
 },
 createsystemapps:{
@@ -956,8 +950,6 @@ if(a[id]==" ")return id;
 return 0;
 },
 pole: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layout = new LinearLayout(ctx);
             layout.setOrientation(1);
             var lay1 = new LinearLayout(ctx);
@@ -1118,15 +1110,8 @@ tick.removeCallbacks(runb);
 GUYA.setBackgroundDrawable(amster_OS.createsystemapps.crosszero.getbgimg("bg_1"));  
 GUYA.setAnimationStyle(animation);
  	GUYA.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 exitgame: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layout = new LinearLayout(ctx);
             layout.setOrientation(1);
             
@@ -1152,15 +1137,8 @@ GUY = new PopupWindow(layout, amster_OS.screen.dipSize(65), amster_OS.screen.dip
 GUY.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
  GUY.setAnimationStyle(animation);
 	GUY.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.TOP, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 scoregame: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layout = new LinearLayout(ctx);
             layout.setOrientation(1);
             
@@ -1192,14 +1170,8 @@ tick.removeCallbacks(runb);
 GUYs.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
 	GUYs.setTouchable(false);
 GUYs.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.TOP, 0, 0);
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 backgroundmenu: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layout = new LinearLayout(ctx);
             layout.setOrientation(1);
             
@@ -1208,11 +1180,6 @@ GUYK= new PopupWindow(layout, MCH_PNT, MCH_PNT);
 GUYK.setBackgroundDrawable(amster_OS.createsystemapps.crosszero.getbgimg("bg_4"));  
 GUYK.setAnimationStyle(animation);
  	GUYK.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.TOP, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 restartgame: function(){
  
@@ -1220,8 +1187,6 @@ GUYs.dismiss()
 GUY.dismiss();
 GUYA.dismiss();
 amster_OS.createsystemapps.crosszero.backgroundblack();
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layout = new LinearLayout(ctx);
             layout.setOrientation(1);
  
@@ -1249,18 +1214,11 @@ layout.addView(restartbtn);
 GUYLD = new PopupWindow(layout, amster_OS.screen.dipSize(550), amster_OS.screen.dipSize(350));
 GUYLD.setBackgroundDrawable(amster_OS.createsystemapps.crosszero.getbgimg("bg_3"));  
  	GUYLD.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 backgroundblack: function(){
   GUYKS= new amster_OS.graphics.black_back();
 },
 startgamingmenu: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layout1 = new LinearLayout(ctx);
             layout1.setOrientation(1);
             
@@ -1333,15 +1291,8 @@ GULO = new PopupWindow(layout1, MCH_PNT, MCH_PNT);
 GULO.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
  GULO.setAnimationStyle(animation);
 	GULO.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 settingsmenu: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
 var lay = new LinearLayout(ctx);
             lay.setOrientation(1);
             var layout = new LinearLayout(ctx);
@@ -1570,15 +1521,8 @@ GULA = new PopupWindow(lay, MCH_PNT, MCH_PNT);
 GULA.setAnimationStyle(animation);
 GULA.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
  	GULA.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 exitsettings: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layout = new LinearLayout(ctx);
             layout.setOrientation(1);
             
@@ -1600,15 +1544,8 @@ GUC = new PopupWindow(layout, amster_OS.screen.dipSize(80), amster_OS.screen.dip
 GUC.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
  GUC.setAnimationStyle(animation);
 	GUC.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.TOP, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 linksmenu: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
 var lay = new LinearLayout(ctx);
 lay.setOrientation(1);
 
@@ -1619,7 +1556,7 @@ amster_OS.createsystemapps.crosszero.setfontbtn(openbtn2)
 openbtn2.setGravity(Gravity.CENTER);
 openbtn2.setTextColor(Color.parseColor('#000055'));
 openbtn2.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
-amster_OS.createsystemapps.systembrowser.browserint("https://vk.com/idkomandavk");
+amster_OS.createsystemapps.systembrowser.openPage("https://vk.com/idkomandavk");
    }}));
 lay.addView(openbtn2);
 
@@ -1631,7 +1568,7 @@ amster_OS.createsystemapps.crosszero.setfontbtn(openbtn3)
 openbtn3.setGravity(Gravity.CENTER);
 openbtn3.setTextColor(Color.parseColor('#000055'));
 openbtn3.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
-amster_OS.createsystemapps.systembrowser.browserint("https://youtube.com/@smartmanmcpe8952");
+amster_OS.createsystemapps.systembrowser.openPage("https://youtube.com/@smartmanmcpe8952");
    }}));
 lay.addView(openbtn3);
 
@@ -1640,11 +1577,6 @@ AGUI = new PopupWindow(lay, amster_OS.screen.dipSize(40), amster_OS.screen.dipSi
 AGUI.setAnimationStyle(animation);
 AGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
  	AGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.BOTTOM, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 }
 },
 simple_snake:{
@@ -1667,7 +1599,6 @@ amster_OS.createsystemapps.simple_snake.exitSnake()
 },
 snakeUI: function(){
 gametimer = amster_OS.createsystemapps.simple_snake.max-amster_OS.createsystemapps.simple_snake.savetime;
-        try{
    var bmp = new Bitmap.createBitmap(510, 510,Bitmap.Config.ARGB_8888)
 var c = new android.graphics.Canvas(bmp);//Слой
 var p = new android.graphics.Paint();//Кисточка
@@ -1826,13 +1757,8 @@ KSUI.setAnimationStyle(animation);
 ctx.runOnUiThread(new Runnable({ run: function(){
 KSUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.CENTER,0, 0);
 }}));
-}catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
 },
 gameUI: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var bg_s1 = new GradientDrawable();
 bg_s1.setColor(Color.BLACK);
 bg_s1.setStroke(10, Color.parseColor("#9acd32"));
@@ -1893,13 +1819,8 @@ tick.removeCallbacks(runb);
 FSUI.setBackgroundDrawable(bg_s1);
 FSUI.setAnimationStyle(animation);
 FSUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.CENTER,0, 0);
-}catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 exitSnake: function(){
-        try{
    var bg_s1 = new GradientDrawable();
 bg_s1.setColor(Color.TRANSPARENT);
 
@@ -1928,16 +1849,9 @@ layout.addView(b1utton1);
   GAGUI= new PopupWindow(layout, amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80));      
 GAGUI.setBackgroundDrawable(bg_s1);
 GAGUI.setAnimationStyle(animation);
-ctx.runOnUiThread(new Runnable({ run: function(){
 GAGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.TOP,0, 0);
-}}));
-}catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
 },
 gameJoystick: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var bg_s1 = new GradientDrawable();
 bg_s1.setColor(Color.TRANSPARENT);
 
@@ -2008,10 +1922,6 @@ amster_OS.createsystemapps.simple_snake.fakeBtn(layout)
 GGYUL.setBackgroundDrawable(bg_s1);
 GGYUL.setAnimationStyle(animation);
 GGYUL.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.BOTTOM,0, 0);
-}catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 fakeBtn: function(lay){
 var b1utton1 = new TextView(ctx);
@@ -2032,24 +1942,16 @@ this.calendint();
 this.calendexit();
 },
 calendint: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
-var Calendar = new android.widget.CalendarView(MainActivity);
+var Calendar = new android.widget.CalendarView(ctx);
 lays.addView(Calendar)
   CALGUI= new PopupWindow(lays, MCH_PNT, MCH_PNT);      
 CALGUI.setAnimationStyle(animation);
 CALGUI.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
             CALGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 calendexit: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2066,10 +1968,6 @@ lays.addView(exitsetbtn);
 CALCGUI.setAnimationStyle(animation);
 CALCGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             CALCGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.BOTTOM,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
 },
 calculator:{
@@ -2100,8 +1998,6 @@ var bg_z=new GradientDrawable();
 bg_z.setColor(Color.parseColor('#ffffff'));
 var bg_y=new GradientDrawable();
 bg_y.setColor(Color.parseColor('#ffffff'));
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
 var layout = new LinearLayout(ctx);
   layout.setOrientation(1);
 var layout1 = new LinearLayout(ctx);
@@ -2357,11 +2253,6 @@ layout.addView(hidetbtn);
 CALIGUI.setBackgroundDrawable(bg_z);  
  CALIGUI.setAnimationStyle(animation);
  	CALIGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
- 
- }catch(e){
-    print("Error:"+e+"#On line: "+e.lineNumber);
-        }
-    }}));
 },
 fixParenthesis: function (text){
 var copy = text;
@@ -2481,8 +2372,6 @@ amster_OS.createsystemapps.simple_clicker.musicplaying=parseInt(amster_OS.Data.g
 }
 },
 clicker_scene: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
 var LayoutParams = LayoutParams;
 var layout = new LinearLayout(ctx);
   layout.setOrientation(1);
@@ -2490,15 +2379,8 @@ var layout = new LinearLayout(ctx);
 CLICKGAMEGUI.setBackgroundDrawable(amster_OS.createsystemapps.simple_clicker.getimgbg("game"));  
  CLICKGAMEGUI.setAnimationStyle(animation);
  	CLICKGAMEGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
- 
- }catch(e){
-    print("Error:"+e+"#On line: "+e.lineNumber);
-        }
-    }}));
 },
 clickerexit: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2526,14 +2408,8 @@ lays.addView(exitsetbtn);
 CLICKGAMEEXIT.setAnimationStyle(animation);
 CLICKGAMEEXIT.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             CLICKGAMEEXIT.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.TOP,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 shop_scene: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
 var LayoutParams = LayoutParams;
 var layout = new LinearLayout(ctx);
   layout.setOrientation(1);
@@ -2541,15 +2417,8 @@ var layout = new LinearLayout(ctx);
 CLICKSHOPGUI.setBackgroundDrawable(amster_OS.createsystemapps.simple_clicker.getimgbg("shop"));  
  CLICKSHOPGUI.setAnimationStyle(animation);
  	CLICKSHOPGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
- 
- }catch(e){
-    print("Error:"+e+"#On line: "+e.lineNumber);
-        }
-    }}));
 },
 shopexit: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2570,14 +2439,8 @@ lays.addView(exitsetbtn);
 CLICKSHOPEXIT.setAnimationStyle(animation);
 CLICKSHOPEXIT.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             CLICKSHOPEXIT.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.TOP,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 openshop: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2598,10 +2461,6 @@ lays.addView(exitsetbtn);
 CLICKSHOPOPEN.setAnimationStyle(animation);
 CLICKSHOPOPEN.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             CLICKSHOPOPEN.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.BOTTOM,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 moneysound: function(peth){
 amster_OS.createsystemapps.simple_clicker.money_player.pause();
@@ -2622,8 +2481,6 @@ amster_OS.createsystemapps.simple_clicker.bg_player.start();
 amster_OS.createsystemapps.simple_clicker.bg_player.setLooping(true);
 }},
 clicktomoney: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{ 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2644,14 +2501,8 @@ lays.addView(exitsetbtn);
 moneyCLICKUI.setAnimationStyle(animation);
 moneyCLICKUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
           moneyCLICKUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 moneypanel: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2680,14 +2531,8 @@ tick.removeCallbacks(runb);
 }}));
 moneyUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
            moneyUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.TOP,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 shoppanel: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(0);
 
@@ -2826,10 +2671,6 @@ tick.removeCallbacks(runb);
 }}));
 SHOPUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             SHOPUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 valueconverter: function(number){
 let text = number;
@@ -2864,8 +2705,6 @@ number=cost*count;
 return number;
 },
 settings_scene: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
 var LayoutParams = LayoutParams;
 var layout = new LinearLayout(ctx);
   layout.setOrientation(1);
@@ -2873,15 +2712,8 @@ var layout = new LinearLayout(ctx);
 CLICKSETGUI.setBackgroundDrawable(amster_OS.createsystemapps.simple_clicker.getimgbg("settings"));  
  CLICKSETGUI.setAnimationStyle(animation);
  	CLICKSETGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
- 
- }catch(e){
-    print("Error:"+e+"#On line: "+e.lineNumber);
-        }
-    }}));
 },
 musicpanel: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2915,14 +2747,8 @@ lays.addView(exitsetbtn);
   GUIMUSIC= new PopupWindow(lays, amster_OS.screen.dipSize(250), amster_OS.screen.dipSize(65));      
 GUIMUSIC.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
            GUIMUSIC.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 opensettings: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2942,14 +2768,8 @@ lays.addView(exitsetbtn);
 CLICKSETOPEN.setAnimationStyle(animation);
 CLICKSETOPEN.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             CLICKSETOPEN.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.BOTTOM,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 settingsexit: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{ 
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -2969,60 +2789,182 @@ lays.addView(exitsetbtn);
 CLICKSETEXIT.setAnimationStyle(animation);
 CLICKSETEXIT.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             CLICKSETEXIT.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.TOP,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
 },
 systembrowser:{
 name:"Браузер",
 version:"1.0",
 labels:"none",
+current:null,
+urls:[],
+pageid:0,
 init: function (){
-this.browserint("https://google.com/");
+this.openPage("https://google.com/");
 },
-browserint: function(url){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
+
+openPage: function(url){
+amster_OS.createsystemapps.systembrowser.urls.push(url);
+amster_OS.createsystemapps.systembrowser.current = url;
+
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
-lays.addView(amster_OS.graphics.easyWebPage(url))
+var lay = new LinearLayout(ctx);
+  lay.setOrientation(0);
+var scr = new android.widget.HorizontalScrollView(ctx);
+scr.setHorizontalScrollBarEnabled(false)
+scr.addView(lay);
+
+var params = new LayoutParams(UiWidth/8, WR_CNT);
+params.setMargins(5,1,1,5);
+var bg = new GradientDrawable();
+bg.setColor(Color.parseColor("#878787"));
+bg.setCornerRadius(50);
+
+function generate(){
+lays.removeAllViews();
+lay.removeAllViews();
+lays.addView(scr);
+for(var i in amster_OS.createsystemapps.systembrowser.urls){
+var btnurl = new TextView(ctx);
+btnurl.setGravity(Gravity.CENTER);
+btnurl.setTextSize(12);
+btnurl.setId(i);
+btnurl.setMaxLines(1);
+btnurl.setBackground(bg);
+btnurl.setLayoutParams(params);
+if(amster_OS.createsystemapps.systembrowser.pageid==i){
+btnurl.setTextColor(Color.parseColor('#959595'));
+btnurl.setText(fromHtml('<b><fontcolor="gray">'+amster_OS.createsystemapps.systembrowser.urls[i]+'</font></b>'));
+}else{
+btnurl.setTextColor(Color.parseColor('#ffffff'));
+btnurl.setText(fromHtml('<b><fontcolor="white">'+amster_OS.createsystemapps.systembrowser.urls[i]+'</font></b>'));
+}
+btnurl.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
+amster_OS.createsystemapps.systembrowser.current=amster_OS.createsystemapps.systembrowser.urls[v.getId()];
+amster_OS.createsystemapps.systembrowser.pageid=v.getId();
+generate();
+   }}));
+btnurl.setOnLongClickListener(function(v,t) {
+ctx.getSystemService(android.content.Context.VIBRATOR_SERVICE).vibrate(37);
+amster_OS.createsystemapps.systembrowser.urls.splice(v.getId(),1);
+generate();
+return true;
+				});
+lay.addView(btnurl);
+}
+var btnexit = new TextView(ctx);
+btnexit.setGravity(Gravity.CENTER);
+btnexit.setTextSize(12);
+btnexit.setBackground(bg);
+btnexit.setLayoutParams(params);
+btnexit.setText(fromHtml('<b><fontcolor="white">настройки</font></b>'));
+btnexit.setTextColor(Color.parseColor('#ffffff'));
+btnexit.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
+try{
+lays.removeAllViews();
+lays.addView(scr);
+genSertings();
+}catch(e){print(e)}
+   }}));
+lay.addView(btnexit);
+lays.addView(amster_OS.graphics.easyWebPage(amster_OS.createsystemapps.systembrowser.current))
+}
+function genSertings(){
+var gradient = new GradientDrawable();
+gradient.setColors([Color.parseColor(amster_OS.graphics.system_design.cl1),Color.parseColor(amster_OS.graphics.system_design.cl2)])
+eval("gradient.setOrientation(GradientDrawable.Orientation."+amster_OS.graphics.system_design.gr+")");
+
+var btnclear = new TextView(ctx);
+btnclear.setGravity(Gravity.CENTER);
+btnclear.setTextSize(20);
+btnclear.setBackground(gradient);
+btnclear.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
+btnclear.setText(fromHtml('<b><fontcolor="white">очистить историю</font></b>'));
+btnclear.setTextColor(Color.parseColor('#ffffff'));
+btnclear.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
+amster_OS.createsystemapps.systembrowser.urls=[];
+amster_OS.createsystemapps.systembrowser.urls.push(amster_OS.createsystemapps.systembrowser.current);
+generate();
+   }}));
+lays.addView(btnclear);
+var btnadd = new TextView(ctx);
+btnadd.setGravity(Gravity.CENTER);
+btnadd.setTextSize(20);
+btnadd.setBackground(gradient);
+btnadd.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
+btnadd.setText(fromHtml('<b><fontcolor="white">создать ярлык</font></b>'));
+btnadd.setTextColor(Color.parseColor('#ffffff'));
+btnadd.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
+amster_OS.createsystemapps.systembrowser.setlink();
+   }}));
+lays.addView(btnadd);
+var btnclise = new TextView(ctx);
+btnclise.setGravity(Gravity.CENTER);
+btnclise.setTextSize(20);
+btnclise.setBackground(gradient);
+btnclise.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
+btnclise.setText(fromHtml('<b><fontcolor="white">закрыть</font></b>'));
+btnclise.setTextColor(Color.parseColor('#ffffff'));
+btnclise.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
+BRGUI.dismiss();
+   }}));
+lays.addView(btnclise);
+}
+generate();
   BRGUI= new PopupWindow(lays, MCH_PNT, MCH_PNT);      
 BRGUI.setAnimationStyle(animation);
 BRGUI.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
             BRGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
-this.browserexit();
 },
-browserexit: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{ 
-   var lays = new LinearLayout(ctx);
+setlink: function(){
+var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
-var exitsetbtn = new TextView(ctx);
- exitsetbtn.setGravity(Gravity.CENTER);   exitsetbtn.setTextColor(Color.parseColor('#a93226'));
-exitsetbtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80)));
-    exitsetbtn.setTextSize(60);
-     exitsetbtn.setText("×");   
-    exitsetbtn.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
-BROGUI.dismiss();
-BRGUI.dismiss();
-   }}));
-lays.addView(exitsetbtn);
-  BROGUI= new PopupWindow(lays, amster_OS.screen.dipSize(80), amster_OS.screen.dipSize(80));      
-BROGUI.setAnimationStyle(animation);
-BROGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            BROGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.BOTTOM,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
+var btn1 = new EditText(ctx);
+ btn1.setGravity(Gravity.CENTER);  
+ btn1.setTextColor(Color.parseColor("#ffffff"));
+    btn1.setTextSize(15);
+btn1.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
+btn1.setHintTextColor(Color.parseColor("#ffffff"));
+btn1.setHint("введите ссылку...");
+btn1.setImeOptions(android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+btn1.getBackground().mutate().setColorFilter(Color.parseColor("#878787"), android.graphics.PorterDuff.Mode.SRC_IN);
+lays.addView(btn1);
+var btn2 = new EditText(ctx);
+ btn2.setGravity(Gravity.CENTER);  
+ btn2.setTextColor(Color.parseColor("#ffffff"));
+    btn2.setTextSize(15);
+btn2.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
+btn2.setHintTextColor(Color.parseColor("#ffffff"));
+btn2.setHint("введите имя...");
+btn2.setImeOptions(android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+btn2.getBackground().mutate().setColorFilter(Color.parseColor("#878787"), android.graphics.PorterDuff.Mode.SRC_IN);
+lays.addView(btn2);
+
+var btnclise = new TextView(ctx);
+btnclise.setGravity(Gravity.CENTER);
+btnclise.setTextSize(20);
+btnclise.setLayoutParams(new LayoutParams(MCH_PNT, WR_CNT));
+btnclise.setText(fromHtml('<b><fontcolor="white">добавить</font></b>'));
+btnclise.setTextColor(Color.parseColor('#ffffff'));
+btnclise.setOnClickListener(new View.OnClickListener({ onClick: function(v) {        
+if(btn1.getText()!=""&&btn1.getText()!=null&&btn1.getText()!="введите ссылку..."&&btn2.getText()!=""&&btn2.getText()!=null&&btn2.getText()!="введите имя..."){
+if(new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/links.amos").exists()){
+amster_OS.fast_files.writeFile(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/links.amos",btn2.getText()+"|"+btn1.getText());
 }
-},
+amster_OS.graphics.print("добавлено");
+FGUI.dismiss();
+}else{
+amster_OS.graphics.print("ошибка добавления");
+}
+   }}));
+lays.addView(btnclise);
+
+FGUI= new PopupWindow(lays, UiWidth/6, WR_CNT);      
+FGUI.setAnimationStyle(animations.toast);
+FGUI.setFocusable(true);
+FGUI.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+FGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
+}},
 mpplayer : {
 name:"MP3 Плеер",
 zsearching:null,
@@ -3095,8 +3037,6 @@ amster_OS.createsystemapps.mpplayer.strokeinfo(filename,parseInt(trackid)+1);
 this.exitplayer();
 },
 mpplayers: function(onlypath){
-	ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
 
         	var lay = new LinearLayout(ctx);
   lay.setOrientation(1);
@@ -3214,11 +3154,6 @@ genarateBtn(amster_OS.createsystemapps.mpplayer.zsearching);
             RUF.setFocusable(true);
 RUF.setAnimationStyle(animation);
             	RUF.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-            
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 milliSecToMinString: function(mSec) {
   let minutes = parseInt(((mSec / (1000*60)) % 60)).toString();
@@ -3235,9 +3170,6 @@ milliSecToMinString: function(mSec) {
   return minutes + ":" + seconds;
  },
  strokeinfo: function(pathu,idgg){
-
-	ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
         	var lay = new LinearLayout(ctx);
         var lays = new LinearLayout(ctx);
         lays.setOrientation(1);
@@ -3357,15 +3289,8 @@ tick.removeCallbacks(runb);
    GTT.setBackgroundDrawable(amster_OS.createsystemapps.mpplayer.getbg("bg_nN3")); 
             GTT.setAnimationStyle(animation);
             	GTT.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM, 0, 0);
-            
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 exitplayer: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layout = new LinearLayout(ctx);
             layout.setOrientation(1);
             
@@ -3394,15 +3319,8 @@ JGUI = new PopupWindow(layout, amster_OS.screen.dipSize(50), amster_OS.screen.di
 JGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
  JGUI.setAnimationStyle(animation);
 	JGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.TOP, 0, 0);
-
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
-    }}));
 },
 trackinfo: function(pathu,idgg){
-	ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
         	var lay = new LinearLayout(ctx);
         var lays = new LinearLayout(ctx);
     var layss = new LinearLayout(ctx);
@@ -3599,11 +3517,6 @@ tick.removeCallbacks(runb);
  TTTC.setBackgroundDrawable(amster_OS.createsystemapps.mpplayer.getbg("bg_nN3")); 
             TTTC.setAnimationStyle(animation);
             	TTTC.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-            
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
 },
 mediaview:{
@@ -3788,10 +3701,8 @@ tick.removeCallbacks(runb);
 }}));
 paneluis.setBackgroundDrawable(bg);
 paneluis.setFocusable(true);
-ctx.runOnUiThread(new Runnable({ run: function(){
 paneluis.setAnimationStyle(animations.toast);
 paneluis.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM,0, 0);
-}}));
 }
 },
 notes : {
@@ -4024,10 +3935,8 @@ BLACKPHONE.dismiss();
 lays.addView(closebtn);
 my_ui= new PopupWindow(lays, UiWidth/6, WR_CNT);      
 my_ui.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#202020"))); 
-      ctx.runOnUiThread(new Runnable({ run: function(){
 my_ui.setAnimationStyle(animations.toast);
 my_ui.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-}}));
 }
 },
 settings:{
@@ -4037,6 +3946,8 @@ labels:"none",
 lastpage:0,
 seetablebar:true,
 seesystem:true,
+seelinks:true,
+seefiles:true,
 seeprints:true,
 seeuser:true,
 alphabar:250,
@@ -4049,6 +3960,17 @@ if(!file.exists()){
 file.createNewFile();
 }
 this.settingui();
+},
+resetConfig: function(){
+amster_OS.launcher.table_path="";
+amster_OS.launcher.size=10;
+amster_OS.launcher.padding=25;
+amster_OS.launcher.maxlines=2;
+amster_OS.launcher.colums=9;
+amster_OS.createsystemapps.settings.seeprints=true;
+amster_OS.graphics.colors=["#2aa8d8","#5296b3","#0e1122"];
+amster_OS.graphics.system_design={cl1:"#1565c0",cl2:"#81d4fa",gr:GradientDrawable.Orientation.TL_BR};
+amster_OS.graphics.print_design={size:15,cl:"#ffffff",cl2:"#000000",al:150,cor:50};
 },
 loadConfig: function(){
 amster_OS.createsystemapps.settings.path = amster_OS.my_root.getDir()[13]+"settings/dats.txt";
@@ -4067,6 +3989,21 @@ if(abs=="true"){
 amster_OS.createsystemapps.settings.seesystem=true;
 }else{
 amster_OS.createsystemapps.settings.seesystem=false;
+}}
+if(amster_OS.Data.getValue("seelinks",amster_OS.createsystemapps.settings.path)!=null){
+var abs=amster_OS.Data.getValue("seelinks",amster_OS.createsystemapps.settings.path);
+if(abs=="true"){
+amster_OS.createsystemapps.settings.seelinks=true;
+}else{
+amster_OS.createsystemapps.settings.seelinks=false;
+}}
+
+if(amster_OS.Data.getValue("seefiles",amster_OS.createsystemapps.settings.path)!=null){
+var abs=amster_OS.Data.getValue("seefiles",amster_OS.createsystemapps.settings.path);
+if(abs=="true"){
+amster_OS.createsystemapps.settings.seefiles=true;
+}else{
+amster_OS.createsystemapps.settings.seefiles=false;
 }}
 if(amster_OS.Data.getValue("seeuser",amster_OS.createsystemapps.settings.path)!=null){
 var abs=amster_OS.Data.getValue("seeuser",amster_OS.createsystemapps.settings.path);
@@ -4126,6 +4063,18 @@ amster_OS.createsystemapps.settings.seeprints=false;
 }}
 if(amster_OS.Data.getValue("cor",amster_OS.createsystemapps.settings.path)!=null){
 amster_OS.graphics.print_design.cor=parseInt(amster_OS.Data.getValue("cor",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("colums",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.launcher.colums=parseInt(amster_OS.Data.getValue("colums",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("launcherlines",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.launcher.maxlines=parseInt(amster_OS.Data.getValue("launcherlines",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("launcherpadding",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.launcher.padding=parseInt(amster_OS.Data.getValue("launcherpadding",amster_OS.createsystemapps.settings.path));
+}
+if(amster_OS.Data.getValue("launchersize",amster_OS.createsystemapps.settings.path)!=null){
+amster_OS.launcher.size=parseInt(amster_OS.Data.getValue("launchersize",amster_OS.createsystemapps.settings.path));
 }
 }
 },
@@ -4364,6 +4313,40 @@ viewarg.setChecked(amster_OS.createsystemapps.settings.seeuser);
     }
     }));
 layl2.addView(btn8);
+var btj1 = new amster_OS.graphics.easyToggle("показывать ссылки", amster_OS.createsystemapps.settings.seelinks);
+btj1.setOnClickListener(new View.OnClickListener({
+    onClick: function(viewarg){
+      if(!amster_OS.createsystemapps.settings.seelinks){
+    amster_OS.createsystemapps.settings.seelinks = true;
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+    }else{
+    amster_OS.createsystemapps.settings.seelinks = false;
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+   }
+amster_OS.Data.setValue("seelinks",amster_OS.createsystemapps.settings.seelinks,amster_OS.createsystemapps.settings.path);
+viewarg.setChecked(amster_OS.createsystemapps.settings.seelinks);
+    }
+    }));
+layl2.addView(btj1);
+var btj2 = new amster_OS.graphics.easyToggle("показывать файлы", amster_OS.createsystemapps.settings.seefiles);
+btj2.setOnClickListener(new View.OnClickListener({
+    onClick: function(viewarg){
+      if(!amster_OS.createsystemapps.settings.seefiles){
+    amster_OS.createsystemapps.settings.seefiles = true;
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[0])));
+    }else{
+    amster_OS.createsystemapps.settings.seefiles = false;
+    viewarg.setTrackTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+viewarg.setThumbTintList(ColorStateList.valueOf(Color.parseColor(amster_OS.graphics.colors[1])));
+   }
+amster_OS.Data.setValue("seefiles",amster_OS.createsystemapps.settings.seefiles,amster_OS.createsystemapps.settings.path);
+viewarg.setChecked(amster_OS.createsystemapps.settings.seefiles);
+    }
+    }));
+layl2.addView(btj2);
 var btn6 = new amster_OS.graphics.easyButton("обои (png или zip)",[Gravity.LEFT,10]);
 layl2.addView(btn6);
 var btn5c = new amster_OS.graphics.easyButton(amster_OS.launcher.table_path,[Gravity.LEFT,10]);
@@ -4372,15 +4355,74 @@ amster_OS.createsystemapps.my_explorer.setdir("file",viewarg,[".zip",".7z",".png
    }}));
 layl2.addView(btn5c);
 var btn9 = new amster_OS.graphics.easyButton("вернуть навигационную панель",[Gravity.CENTER,15]);
-btn9.setText(fromHtml('<b><font color="#ffffff">вернуть навигационную панель</font><b>'));   
+btn9.setText(fromHtml('<b><font color="#ffffff">обновить навигационную панель</font><b>'));   
 btn9.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
-if(!amster_OS.createsystemapps.settings.seetablebar){
-amster_OS.createsystemapps.settings.seetablebar = true;
-amster_OS.Data.setValue("seetablebar",amster_OS.createsystemapps.settings.seetablebar,amster_OS.createsystemapps.settings.path);
+if(OSGUI){
+OSGUI.dismiss();
+OSGUI=null;
+amster_OS.launcher.bar.init();
+}else{
 amster_OS.launcher.bar.init();
 }
    }}));
 layl2.addView(btn9);
+
+var btr1 = new amster_OS.graphics.easyButton("размер текста приложений: "+amster_OS.launcher.size,[Gravity.LEFT,10]);
+layl2.addView(btr1);
+var btr2 = new amster_OS.graphics.easyBar([30, amster_OS.launcher.size]);
+btr2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+    amster_OS.launcher.size=view.getProgress();
+    btr1.setText("размер текста приложений: "+amster_OS.launcher.size);
+amster_OS.Data.setValue("launchersize",amster_OS.launcher.size,amster_OS.createsystemapps.settings.path);
+    }
+    });
+layl2.addView(btr2);
+
+var btr3 = new amster_OS.graphics.easyButton("отступ: "+amster_OS.launcher.padding,[Gravity.LEFT,10]);
+layl2.addView(btr3);
+var btr4 = new amster_OS.graphics.easyBar([50, amster_OS.launcher.padding]);
+btr4.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+    amster_OS.launcher.padding=view.getProgress();
+    btr3.setText("отступ: "+amster_OS.launcher.padding);
+amster_OS.Data.setValue("launcherpadding",amster_OS.launcher.padding,amster_OS.createsystemapps.settings.path);
+    }
+    });
+layl2.addView(btr4);
+
+var btr5 = new amster_OS.graphics.easyButton("линий текста: "+amster_OS.launcher.maxlines,[Gravity.LEFT,10]);
+layl2.addView(btr5);
+var btr6 = new amster_OS.graphics.easyBar([4, amster_OS.launcher.maxlines]);
+btr6.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+    amster_OS.launcher.maxlines=view.getProgress();
+    btr5.setText("линий текста: "+amster_OS.launcher.maxlines);
+amster_OS.Data.setValue("launcherlines",amster_OS.launcher.maxlines,amster_OS.createsystemapps.settings.path);
+    }
+    });
+layl2.addView(btr6);
+
+var btr7 = new amster_OS.graphics.easyButton("столбиков: "+amster_OS.launcher.colums,[Gravity.LEFT,10]);
+layl2.addView(btr7);
+var btr8 = new amster_OS.graphics.easyBar([15, amster_OS.launcher.colums]);
+btr8.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+    {
+    onStopTrackingTouch: function(view)
+    {
+    amster_OS.launcher.colums=view.getProgress();
+    btr7.setText("столбиков: "+amster_OS.launcher.colums);
+amster_OS.Data.setValue("colums",amster_OS.launcher.colums,amster_OS.createsystemapps.settings.path);
+    }
+    });
+layl2.addView(btr8);
+
 var btn10 = new amster_OS.graphics.easyButton("сохранить изменения",[Gravity.CENTER,15]);
 btn10.setText(fromHtml('<b><font color="#ffffff">сохранить изменения</font><b>'));   
 btn10.setOnClickListener(new View.OnClickListener({ onClick: function(viewarg) {        
@@ -4480,26 +4522,35 @@ layl2.addView(btn3);
 break;
 case 5:
 var display = ctx.getWindowManager().getDefaultDisplay();
-var dens = ctx.getResources().getDisplayMetrics().density;
-var btn1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
-btn1.setText(fromHtml('<b><font color="#ffffff">Размер: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+display.getWidth()+'x'+display.getHeight()+'</font><b>'));   
+var disp = ctx.getResources().getDisplayMetrics();
+
+var point = android.graphics.Point;
+var size = new point();
+display.getRealSize(size);
+
+var btn0 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
+btn0.setText(fromHtml('<b><font color="#ffffff">Размер: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+size.x+'x'+size.y+'</font><b>'));   
+layl2.addView(btn0);
+
+var btn1 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
+btn1.setText(fromHtml('<b><font color="#ffffff">Размер окна: </font><font color="'+amster_OS.graphics.colors[0]+'"> '+display.getWidth()+'x'+display.getHeight()+'</font><b>'));   
 layl2.addView(btn1);
 
 var btn2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
 btn2.setText(fromHtml('<b><font color="#ffffff">Частота обновления </font><font color="'+amster_OS.graphics.colors[0]+'"> '+display.getRefreshRate()+'</font><b>'));   
 layl2.addView(btn2);
 var btn3 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
-btn3.setText(fromHtml('<b><font color="#ffffff">Плотность пикселей </font><font color="'+amster_OS.graphics.colors[0]+'"> '+dens+'</font><b>'));   
+btn3.setText(fromHtml('<b><font color="#ffffff">Плотность пикселей </font><font color="'+amster_OS.graphics.colors[0]+'"> '+disp.density+'</font><b>'));   
 layl2.addView(btn3);
 var btn4 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
-var msh = ctx.getResources().getDisplayMetrics().widthPixels/ctx.getResources().getDisplayMetrics().heightPixels;
+var msh = disp.widthPixels/disp.heightPixels;
 btn4.setText(fromHtml('<b><font color="#ffffff">Соотношение </font><font color="'+amster_OS.graphics.colors[0]+'"> '+msh.toFixed(2)+'</font><b>'));   
 layl2.addView(btn4);
 var btn5 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
-btn5.setText(fromHtml('<b><font color="#ffffff">X DPI </font><font color="'+amster_OS.graphics.colors[0]+'"> '+ctx.getResources().getDisplayMetrics().xdpi+'</font><b>'));   
+btn5.setText(fromHtml('<b><font color="#ffffff">X DPI </font><font color="'+amster_OS.graphics.colors[0]+'"> '+disp.xdpi+'</font><b>'));   
 layl2.addView(btn5);
 var btn6 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,12]);
-btn6.setText(fromHtml('<b><font color="#ffffff">Y DPI </font><font color="'+amster_OS.graphics.colors[0]+'"> '+ctx.getResources().getDisplayMetrics().ydpi+'</font><b>'));   
+btn6.setText(fromHtml('<b><font color="#ffffff">Y DPI </font><font color="'+amster_OS.graphics.colors[0]+'"> '+disp.ydpi+'</font><b>'));   
 layl2.addView(btn6);
 var space2 = new amster_OS.graphics.easyButton("",[Gravity.LEFT,15]);
 layl2.addView(space2);
@@ -4869,16 +4920,15 @@ break;
 },
 my_explorer:{
 name:"Проводник",
-version:"1.1",
+version:"1.2",
 labels:"none",
-init: function (){
-this.explorermenu();
-},
 explor_dir:sdcard,
-explorermenu: function(){
+init: function (){
+this.explorermenu(amster_OS.createsystemapps.my_explorer.explor_dir);
+},
+explorermenu: function(newdir){
+amster_OS.createsystemapps.my_explorer.explor_dir=newdir;
 var file_search;
-	ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
 var select_puth = "";
 var selectmode = false;
 var showhidden = false;
@@ -5025,8 +5075,7 @@ longclick=false;
     btns();
 lays.setBackgroundDrawable(bg_ac);
 }
-           }catch(err){
-print("An error occured: " + err + err.lineNumber)}
+           }catch(e){print(e+" #"+e.lineNumber)}
   }
    }));
 utton5.setOnLongClickListener(function(v,t) {
@@ -5042,8 +5091,7 @@ folderselector[v.getId()]=true;
 selectorputhes1[v.getId()]=amster_OS.createsystemapps.my_explorer.explor_dir+"/"+sort1[v.getId()]
 selcetorview();parametersview();
 }
-}catch(err){
-print("An error occured: " + err + err.lineNumber)}
+}catch(e){print(e+" #"+e.lineNumber)}
   
 					return false;
 				});
@@ -5098,8 +5146,7 @@ amster_OS.createsystemapps.mediaview.menu(amster_OS.createsystemapps.my_explorer
 }
 lays.setBackgroundDrawable(bg_ac);
 }
-           }catch(err){
-print("An error occured: " + err + err.lineNumber)}
+           }catch(e){print(e+" #"+e.lineNumber)}
   }
    }));
 button5.setOnLongClickListener(function(v,t) {
@@ -5127,8 +5174,6 @@ lay.addView(button5);
 }
 buttons(file_search);
 function selcetorview(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layoutc = new LinearLayout(ctx);
             layoutc.setOrientation(0);
 var bgac = new GradientDrawable();
@@ -5249,15 +5294,9 @@ handler.removeCallbacks(runnable);
 }}));
 GUILAB.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 	GUILAB.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.TOP, 0, 0);
- }catch(e){
-    print("ошибка: "+e+" на строке #"+e.lineNumber);
-        }
-    }}));
 }
 
 function parametersview(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layoutc = new LinearLayout(ctx);
             layoutc.setOrientation(0);
 var bgac = new GradientDrawable();
@@ -5301,15 +5340,9 @@ GUILAC = new PopupWindow(layoutc, MCH_PNT, WR_CNT);
 GUILAC.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
  GUILAC.setAnimationStyle(animation);
 	GUILAC.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM, 0, 0);
- }catch(e){
-    print("ошибка: "+e+" на строке #"+e.lineNumber);
-        }
-    }}));
 }
 
 function openerdops(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var abobalay = new LinearLayout(ctx);
             abobalay.setOrientation(1);
             
@@ -5328,15 +5361,8 @@ abobalay.addView(opendopbtn);
 DGUI = new PopupWindow(abobalay, amster_OS.screen.dipSize(35), amster_OS.screen.dipSize(35));
 DGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 	DGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.TOP, 0, 0);
-
- }catch(e){
-    print("ошибка: "+e+" на строке #"+e.lineNumber);
-        }
-    }}));
 }
 function exitexplor(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layoutc = new LinearLayout(ctx);
             layoutc.setOrientation(1);
 var bgac = new GradientDrawable();
@@ -5523,22 +5549,15 @@ GUILAA.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 GUILAA.setFocusable(true);
  GUILAA.setAnimationStyle(animation);
 	GUILAA.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.TOP, 0, 0);
-
- }catch(e){
-    print("ошибка: "+e+" на строке #"+e.lineNumber);
-        }
-    }}));
 }
 function otherexplor(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
             var layoutc = new LinearLayout(ctx);
             layoutc.setOrientation(1);
 var bgac = new GradientDrawable();
 bgac.setColor(Color.parseColor("#2374E7")); // #282923
 layoutc.setBackgroundDrawable(bgac);
             
-var names = ["свойства","отправить","открыть через"]
+var names = ["свойства","отправить","открыть через","создать ярлык"]
 
 for(var h in names){
 var explexit = new TextView(ctx);
@@ -5570,6 +5589,22 @@ ctx.startActivity(intent);
 }
 }
 }
+if(viewarg.getId()==3){
+for(var o in selectorputhes2){
+if(selectorputhes2[o]!="pust"){
+if(new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/paths.amos").exists()){
+amster_OS.fast_files.writeFile(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/paths.amos",selectorputhes2[o]);
+}
+}
+}
+for(var o in selectorputhes1){
+if(selectorputhes1[o]!="pust"){
+if(new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/paths.amos").exists()){
+amster_OS.fast_files.writeFile(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/paths.amos",selectorputhes1[o]);
+}
+}
+}
+}
 if(viewarg.getId()==2){
 for(var o in selectorputhes1){
 if(selectorputhes1[o]!="pust"){
@@ -5597,10 +5632,7 @@ ctx.startActivity(i);
 GUILAY.dismiss();
 }catch(e){print(e)}
    }}));
-if(countselector==1&&names[h]=="отправить"){
-layoutc.addView(explexit);
-}
-if(countselector==1&&names[h]=="открыть через"){
+if(countselector==1&&(names[h]=="отправить"||names[h]=="открыть через"||names[h]=="создать ярлык")){
 layoutc.addView(explexit);
 }
 if(names[h]=="свойства"){
@@ -5608,16 +5640,11 @@ layoutc.addView(explexit);
 }
 }
 
-GUILAY = new PopupWindow(layoutc, UiWidth/6, UiWidth/12);
+GUILAY = new PopupWindow(layoutc, UiWidth/6, WR_CNT);
 GUILAY.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 GUILAY.setFocusable(true);
  GUILAY.setAnimationStyle(animation);
 	GUILAY.showAtLocation(ctx.getWindow().getDecorView(), Gravity.RIGHT | Gravity.BOTTOM, 0, 0);
-
- }catch(e){
-    print("ошибка: "+e+" на строке #"+e.lineNumber);
-        }
-    }}));
 }
         function createObj(obj,bg){
 var miscDialog = new android.app.Dialog(ctx);
@@ -5821,8 +5848,6 @@ miscDialog.dismiss();
  miscDialog.show();
 }
 function renamemenu(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try {
 var bgac = new GradientDrawable();
 bgac.setColor(Color.parseColor("#2374E7")); // #282923
 var miscDialog = new android.app.Dialog(ctx);
@@ -5941,14 +5966,8 @@ miscDialog.dismiss();
      dialogLayout.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
   miscDialog.setContentView(dialogLayout);
  miscDialog.show();
-}catch(e){
-    print("ошибка: "+e+" на строке #"+e.lineNumber);
-        }
-    }}));
 }
 function dirmenu(type,event){
-	ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
 var selmgdir=amster_OS.createsystemapps.my_explorer.explor_dir;
 var bg66ad= new GradientDrawable();
 bg66ad.setColor(Color.parseColor("#2374E7")); // #282923
@@ -6041,8 +6060,7 @@ var utton5 = new TextView(ctx);
     buttons66();
     btns66();
 lays66.setBackgroundDrawable(bg66ac);
-           }catch(err){
-print("An error occured: " + err + err.lineNumber)}
+           }catch(e){print(e+" #"+e.lineNumber)}
   }
    }));
 lay66.addView(utton5);
@@ -6061,8 +6079,7 @@ if(type=="file"){
 select_puth=selmgdir+"/"+sort266[viewarg.getId()]
 }
 lays66.setBackgroundDrawable(bg66ac);
-           }catch(err){
-print("An error occured: " + err + err.lineNumber)}
+           }catch(e){print(e+" #"+e.lineNumber)}
   }
    }));
 
@@ -6090,8 +6107,7 @@ GUIL66.dismiss();
 dopddialog(2,"вырезка элемента","вырезать "+countselector+" элемент"+wordcorrect(countselector)+"\n из "+amster_OS.createsystemapps.my_explorer.explor_dir+"/ \n в"+select_puth+" ?",bg66ac)
 }
 amster_OS.graphics.print("выбранный путь: "+select_puth);
-           }catch(err){
-print("An error occured: " + err + err.lineNumber)}
+           }catch(e){print(e+" #"+e.lineNumber)}
   }
    }));
 if(type=="folder"){
@@ -6104,20 +6120,13 @@ buttons66();
             GUIL66.setBackgroundDrawable(guibg123); 
 GUIL66.setFocusable(true); 
             GUIL66.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
         GUILA= new PopupWindow(lays, MCH_PNT, MCH_PNT);
             GUILA.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
 GUILA.setAnimationStyle(animation);
             GUILA.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
 openerdops();
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
+   
 function wordcorrect(numb){
 let txt = "";
 if(numb>0)txt = "";
@@ -6247,8 +6256,7 @@ var folder_btn = new TextView(ctx);
     generateCatalog();
     gen_path();
 lays.setBackgroundDrawable(bg2);
-           }catch(err){
-print("An error occured: " + err + err.lineNumber)}
+           }catch(e){print(e+" #"+e.lineNumber)}
   }
    }));
 if(sort_folders[i]!="amster_OS"){
@@ -6273,8 +6281,7 @@ view.setText(curdir);
 amster_OS.graphics.print("Выбранный файл: "+sort_files[viewarg.getId()]+"\nЕго путь: "+curdir);
 CGUI.dismiss();
 lays.setBackgroundDrawable(bg2);
-           }catch(err){
-print("An error occured: " + err + err.lineNumber)}
+           }catch(e){print(e+" #"+e.lineNumber)}
   }
    }));
 file_btn.setLayoutParams(params);
@@ -6315,8 +6322,7 @@ var curdir =copy_exp_dir+"/"
 view.setText(curdir);
 CGUI.dismiss();
 amster_OS.graphics.print("выбранный путь: "+curdir);
-           }catch(err){
-print("An error occured: " + err + err.lineNumber)}
+           }catch(e){print(e+" #"+e.lineNumber)}
   }
    }));
 if(type=="folder"){
@@ -6328,15 +6334,11 @@ generateCatalog();
 CGUI= new PopupWindow(lays, UiWidth/3.5, UiHeight/1.4);
 CGUI.setBackgroundDrawable(bg1); 
 CGUI.setFocusable(true); 
-ctx.runOnUiThread(new Runnable({ run: function(){
 CGUI.setAnimationStyle(animations.toast);
 CGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-    }}));
 },
 settings: function(dir,nam1,nam2,vibrano){
 dir=dir+"/"
-	ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
        var selector_blackbg = new GradientDrawable();
 selector_blackbg.setColor(Color.BLACK);
 var bg_ac = new GradientDrawable();
@@ -6444,10 +6446,7 @@ layss.addView(uttoncopy2);
             GUIS.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); 
             GUIS.setFocusable(true); 
             GUIS.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
+
 function getLastMod(fl123){
 var unix = fl123.lastModified()
 var aunix = new Date(unix).toLocaleTimeString("en-US");
@@ -6626,10 +6625,8 @@ lay1.addView(amster_OS.createsystemapps.txt_editor.curtext);
 menushka= new PopupWindow(lays, UiWidth/1, UiHeight/1);      
 menushka.setBackgroundDrawable(amster_OS.createsystemapps.txt_editor.setBg("#ffffff")); 
 menushka.setFocusable(true);
-ctx.runOnUiThread(new Runnable({ run: function(){
 menushka.setAnimationStyle(animation);
 menushka.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-}}));
 },
 openblack: function (){
   BLACKPHONE= new amster_OS.graphics.black_back();
@@ -6642,7 +6639,6 @@ bg.setStroke(5,Color.parseColor('#878787'));
 return bg;
 },
 window: function(id){
-try{
 amster_OS.createsystemapps.txt_editor.openblack();
 var lays = new LinearLayout(ctx);
  lays.setOrientation(1);
@@ -6849,11 +6845,8 @@ lays.addView(openfile);
 
 my_ui= new PopupWindow(lays, UiWidth/6, WR_CNT);      
 my_ui.setBackgroundDrawable(amster_OS.createsystemapps.txt_editor.getwindbg()); 
-      ctx.runOnUiThread(new Runnable({ run: function(){
 my_ui.setAnimationStyle(animations.toast);
 my_ui.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-}}));
-}catch(e){print(e)}
 },
 highlightSyntax: function(code) {
         var stringBuilder = new android.text.SpannableStringBuilder(code);
@@ -6938,8 +6931,6 @@ checkRootMethod3: function() {
   }
 },
 rootInfo: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 
@@ -6947,13 +6938,8 @@ ctx.runOnUiThread(new Runnable({ run: function(){
 ROOTINFGUI.setAnimationStyle(animation);
 ROOTINFGUI.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
             ROOTINFGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
+
 function rootAct(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var bg_d2 = new GradientDrawable();
@@ -6992,14 +6978,8 @@ lays.addView(otrtup);
 ROOTGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 ROOTGUI.setAnimationStyle(animation);
             ROOTGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
 function rootExit(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(0);
 var exitsetbtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
@@ -7023,10 +7003,6 @@ lays.addView(namebtn);
 CRAGUI.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#039be5")));
 CRAGUI.setAnimationStyle(animation);
             CRAGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.TOP,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
 rootAct();
 rootExit();
@@ -7046,8 +7022,6 @@ this.inited=true;
 applicationMenu: function(texting){
 var searchapps;
 var metadat;
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
      var black_bg = new GradientDrawable();
 black_bg.setColor(Color.parseColor('#ffffff'));
    if(texting!=null)searchapps=texting;
@@ -7153,8 +7127,6 @@ lays.addView(amster_OS.createsystemapps.myapps.informationapps(info,appbg));
 updatebtn(searchapps)
 
 function shapkaMenu(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
      var uh_bg = new GradientDrawable();
 uh_bg.setColor(Color.parseColor('#ffffff'));
 uh_bg.setStroke(5,Color.parseColor("#878787"));
@@ -7207,14 +7179,8 @@ lauoutop.addView(exitbtn)
   SHAPGUI= new PopupWindow(lauoutop, MCH_PNT, WR_CNT);      
 SHAPGUI.setBackgroundDrawable(uh_bg); 
             SHAPGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.TOP,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
 function searchMenu(textgc){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
      var uh_bg = new GradientDrawable();
 uh_bg.setColor(Color.parseColor('#ffffff'));
 var lauoutop = new LinearLayout(ctx);
@@ -7250,20 +7216,11 @@ lauoutop.addView(searchbtn)
 SEARXHUI.setBackgroundDrawable(uh_bg); 
 SEARXHUI.setFocusable(true);      
             SEARXHUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.TOP,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
   ACTIBGUI= new PopupWindow(layss, UiWidth/1, UiHeight/1);      
 ACTIBGUI.setBackgroundDrawable(black_bg); 
-
             ACTIBGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
    shapkaMenu();
-}catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 informationapps: function(info,appbg){
 var layss = new LinearLayout(ctx);
@@ -7335,6 +7292,10 @@ return abs.length-1;
 
 launcher:{
 table_path:"",
+size:10,
+padding:25,
+maxlines:2,
+colums:9,
 getTableCover: function(){
 if(amster_OS.launcher.table_path==""||amster_OS.launcher.table_path==null||!new File(amster_OS.launcher.table_path).exists()||!new File(amster_OS.launcher.table_path).getName().endsWith(".png")){
 amster_OS.launcher.table_path=amster_OS.my_root.system_path+"data/table.png";
@@ -7354,14 +7315,13 @@ table =  BitmapDrawable(BitmapFactory.decodeFile(tbfile));
 return table;
 },
 init: function(){
-        try {
 var lays = new LinearLayout(ctx);
 lays.setOrientation(1);
 
 var menuScroll = new ScrollView(ctx);
 menuScroll.setVerticalScrollBarEnabled(false);
 var lay = new GridLayout(ctx);
-lay.setColumnCount(9); 
+lay.setColumnCount(amster_OS.launcher.colums); 
 
 menuScroll.addView(lay);
 lays.addView(menuScroll);
@@ -7372,36 +7332,38 @@ lay.addView(amster_OS.launcher.icon.addSystemApp(ah));
 }}
 var apppth = amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/userapps/";
 var list = new File(apppth).list();
+if(amster_OS.createsystemapps.settings.seeuser){
 for(var ah = 0; ah<list.length; ah++){
-if(new File(apppth+list[ah]).getName().endsWith(".aoua")&&amster_OS.createsystemapps.settings.seeuser){
+if(new File(apppth+list[ah]).getName().endsWith(".aoua")){
 lay.addView(amster_OS.launcher.icon.addUserApp(ah));
+}}
 }
-}
+
+if(new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/paths.amos").exists()&&amster_OS.createsystemapps.settings.seefiles){
+var text = amster_OS.fast_files.readFile(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/paths.amos");
+var text1 = (""+text).split("\n");
+for(var ah = 0; ah<text1.length-1; ah++){
+lay.addView(amster_OS.launcher.icon.addFolder(ah));
+}}
+
+if(new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/links.amos").exists()&&amster_OS.createsystemapps.settings.seelinks){
+var text = amster_OS.fast_files.readFile(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/links.amos");
+var text1 = (""+text).split("\n");
+for(var ah = 0; ah<text1.length-1; ah++){
+lay.addView(amster_OS.launcher.icon.addLink(ah));
+}}
 
 GGUI = new PopupWindow(lays, WR_CNT, UiHeight/1.2);
 GGUI.setAnimationStyle(animation);
 GGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-ctx.runOnUiThread(new Runnable({ run: function(){
- 	GGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-}}));
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
+GGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
 },
 loadBg: function(){
-try{
 var lays = new LinearLayout(ctx);
-lays.setOrientation(1);
-
 GGGUI = new PopupWindow(lays, UiWidth/1, UiHeight/1);
 GGGUI.setAnimationStyle(animation);
 GGGUI.setBackgroundDrawable(amster_OS.launcher.getTableCover());
-ctx.runOnUiThread(new Runnable({ run: function(){
- 	GGGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
-}}));
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
+GGGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER, 0, 0);
 },
 icon:{
 addUserApp: function (id){
@@ -7412,13 +7374,13 @@ var app = list[id];
 var lay2=new LinearLayout(ctx);
  lay2.setOrientation(1);
 var params = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
-params.setMargins(25,1,25,1);
+params.setMargins(amster_OS.launcher.padding,1,amster_OS.launcher.padding,1);
 
 var param = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
-param.setMargins(25,1,25,25);
+param.setMargins(amster_OS.launcher.padding,1,amster_OS.launcher.padding,amster_OS.launcher.padding);
 
 var paramss = new LayoutParams(WR_CNT,WR_CNT);
-paramss.setMargins(25,5,25,5);
+paramss.setMargins(amster_OS.launcher.padding,5,amster_OS.launcher.padding,5);
 lay2.setLayoutParams(paramss);
 
 var iconbtn = new ImageView(ctx);
@@ -7435,14 +7397,123 @@ var tablebtn = new TextView(ctx);
 tablebtn.setText(fromHtml('<b><font color="#ffffff">'+(amster_OS.userapps.getInfoByProject(app).Name).toString()+'</font><b>'));   
 tablebtn.setShadowLayer(7,0,0,Color.BLACK);
 tablebtn.setLayoutParams(param);
-tablebtn.setMaxLines(2);  
+tablebtn.setMaxLines(amster_OS.launcher.maxlines);  
 tablebtn.setGravity(Gravity.CENTER);  
  tablebtn.setTextColor(Color.parseColor('#ffffff'));
-    tablebtn.setTextSize(10);
+    tablebtn.setTextSize(amster_OS.launcher.size);
 tablebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){         
 try{
 amster_OS.userapps.readScripts(apppth+app,".js");
+}catch(e){print(e+". #"+e.lineNumber)}
+}}));
+lay2.addView(tablebtn);
+return lay2;
+},
+addFolder: function (id){
+var text = amster_OS.fast_files.readFile(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/paths.amos");
+var text1 = (""+text).split("\n");
+var file = new File(text1[id]);
+var current = file.getName();
+
+var lay2=new LinearLayout(ctx);
+ lay2.setOrientation(1);
+var params = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
+params.setMargins(amster_OS.launcher.padding,1,amster_OS.launcher.padding,1);
+
+var param = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
+param.setMargins(amster_OS.launcher.padding,1,amster_OS.launcher.padding,amster_OS.launcher.padding);
+
+var paramss = new LayoutParams(WR_CNT,WR_CNT);
+paramss.setMargins(amster_OS.launcher.padding,5,amster_OS.launcher.padding,5);
+lay2.setLayoutParams(paramss);
+
+var abcd = amster_OS.fast_files.containsEntry(amster_OS.my_root.system_path+"data/icons.zip","icon6.png")
+
+var iconbtn = new ImageView(ctx);
+iconbtn.setImageDrawable(abcd);
+iconbtn.setLayoutParams(params);
+iconbtn.setOnClickListener(new View.OnClickListener({
+                onClick: function(viewarg){         
+try{
+if(file.isFile()){
+amster_OS.createsystemapps.my_explorer.explorermenu(file.getParent());
+}else{
+amster_OS.createsystemapps.my_explorer.explorermenu(file.getAbsolutePath());
+}
+}catch(e){print(e+". #"+e.lineNumber)}
+}}));
+lay2.addView(iconbtn);
+var tablebtn = new TextView(ctx);
+tablebtn.setText(fromHtml('<b><font color="#ffffff">'+(current).toString()+'</font><b>'));   
+tablebtn.setShadowLayer(7,0,0,Color.BLACK);
+tablebtn.setLayoutParams(param);
+tablebtn.setMaxLines(amster_OS.launcher.maxlines);  
+tablebtn.setGravity(Gravity.CENTER);  
+ tablebtn.setTextColor(Color.parseColor('#ffffff'));
+    tablebtn.setTextSize(amster_OS.launcher.size);
+tablebtn.setOnClickListener(new View.OnClickListener({
+                onClick: function(viewarg){         
+try{
+if(file.isFile()){
+amster_OS.createsystemapps.my_explorer.explorermenu(file.getParent());
+}else{
+amster_OS.createsystemapps.my_explorer.explorermenu(file.getAbsolutePath());
+}
+}catch(e){print(e+". #"+e.lineNumber)}
+}}));
+lay2.addView(tablebtn);
+return lay2;
+},
+addLink: function (id){
+var text = amster_OS.fast_files.readFile(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/links.amos");
+var text1 = (""+text).split("\n");
+var current = text1[id].split ("|");
+
+var lay2=new LinearLayout(ctx);
+ lay2.setOrientation(1);
+var params = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
+params.setMargins(amster_OS.launcher.padding,1,amster_OS.launcher.padding,1);
+
+var param = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
+param.setMargins(amster_OS.launcher.padding,1,amster_OS.launcher.padding,amster_OS.launcher.padding);
+
+var paramss = new LayoutParams(WR_CNT,WR_CNT);
+paramss.setMargins(amster_OS.launcher.padding,5,amster_OS.launcher.padding,5);
+lay2.setLayoutParams(paramss);
+
+var abcd = amster_OS.fast_files.containsEntry(amster_OS.my_root.system_path+"data/icons.zip","icon5.png")
+
+var iconbtn = new ImageView(ctx);
+iconbtn.setImageDrawable(abcd);
+iconbtn.setLayoutParams(params);
+iconbtn.setOnClickListener(new View.OnClickListener({
+                onClick: function(viewarg){         
+try{
+if(amster_OS.web.getType()=="mobile"||amster_OS.web.getType()=="wifi"){
+amster_OS.createsystemapps.systembrowser.openPage(current[1]);
+}else{
+amster_OS.graphics.print("connection failed");
+}
+}catch(e){print(e+". #"+e.lineNumber)}
+}}));
+lay2.addView(iconbtn);
+var tablebtn = new TextView(ctx);
+tablebtn.setText(fromHtml('<b><font color="#ffffff">'+(current[0]).toString()+'</font><b>'));   
+tablebtn.setShadowLayer(7,0,0,Color.BLACK);
+tablebtn.setLayoutParams(param);
+tablebtn.setMaxLines(amster_OS.launcher.maxlines);  
+tablebtn.setGravity(Gravity.CENTER);  
+ tablebtn.setTextColor(Color.parseColor('#ffffff'));
+    tablebtn.setTextSize(amster_OS.launcher.size);
+tablebtn.setOnClickListener(new View.OnClickListener({
+                onClick: function(viewarg){         
+try{
+if(amster_OS.web.getType()=="mobile"||amster_OS.web.getType()=="wifi"){
+amster_OS.createsystemapps.systembrowser.openPage(current[1]);
+}else{
+amster_OS.graphics.print("connection failed");
+}
 }catch(e){print(e+". #"+e.lineNumber)}
 }}));
 lay2.addView(tablebtn);
@@ -7460,13 +7531,13 @@ var abcd = amster_OS.fast_files.containsEntry(amster_OS.my_root.system_path+"dat
 var lay2=new LinearLayout(ctx);
  lay2.setOrientation(1);
 var params = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(40));
-params.setMargins(25,1,25,1);
+params.setMargins(amster_OS.launcher.padding,1,amster_OS.launcher.padding,1);
 
 var param = new LayoutParams(amster_OS.screen.dipSize(50), amster_OS.screen.dipSize(30));
-param.setMargins(25,1,25,25);
+param.setMargins(amster_OS.launcher.padding,1,amster_OS.launcher.padding,amster_OS.launcher.padding);
 
 var paramss = new LayoutParams(WR_CNT,WR_CNT);
-paramss.setMargins(25,5,25,5);
+paramss.setMargins(amster_OS.launcher.padding,5,amster_OS.launcher.padding,5);
 lay2.setLayoutParams(paramss);
 
 var iconbtn = new ImageView(ctx);
@@ -7483,10 +7554,10 @@ var tablebtn = new TextView(ctx);
 tablebtn.setText(fromHtml('<b><font color="#ffffff">'+info.name+'</font><b>'));   
 tablebtn.setShadowLayer(7,0,0,Color.BLACK);
 tablebtn.setLayoutParams(param);
-tablebtn.setMaxLines(2);  
+tablebtn.setMaxLines(amster_OS.launcher.maxlines);  
 tablebtn.setGravity(Gravity.CENTER);  
  tablebtn.setTextColor(Color.parseColor('#ffffff'));
-    tablebtn.setTextSize(10);
+    tablebtn.setTextSize(amster_OS.launcher.size);
 tablebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){         
 try{
@@ -7499,8 +7570,12 @@ return lay2;
 },
 bar:{
 init: function(){
-        try{
 var lays = new LinearLayout(ctx);
+if(amster_OS.createsystemapps.settings.seetablebar){
+lays.setVisibility(View.VISIBLE);
+}else{
+lays.setVisibility(View.GONE);
+}
 lays.setOrientation(0);
 lays.setLayoutParams(new LayoutParams(MCH_PNT, amster_OS.screen.dipSize(27)));
 var black_bg = new GradientDrawable();
@@ -7514,12 +7589,7 @@ lays.addView(amster_OS.launcher.bar.createpanellayout());
   OSGUI= new PopupWindow(lays, MCH_PNT, amster_OS.screen.dipSize(27));      
 OSGUI.setAnimationStyle(animation);
 OSGUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-ctx.runOnUiThread(new Runnable({ run: function(){
-            OSGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM,0, 0);
-}}));
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
+OSGUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.BOTTOM,0, 0);
 },
 createpanelbtn: function (text){
 var tablebtn = new TextView(ctx);
@@ -7623,12 +7693,10 @@ return lay1;
 
 web:{
 getType: function(){
-try{
 var webts = ctx.getSystemService(android.content.Context.CONNECTIVITY_SERVICE);
 if(webts.getNetworkInfo(android.net.ConnectivityManager.TYPE_MOBILE).isConnected()) return "mobile";
 if(webts.getNetworkInfo(android.net.ConnectivityManager.TYPE_WIFI).isConnected()) return "wifi";
 return "none";
-} catch (e){print(e + e.lineNumber)}
 },
 getBluetooth: function (){
 var check = false;
@@ -7684,7 +7752,6 @@ getConnection: function (mobile){
 return (amster_OS.web.getType()=="mobile"&&mobile)||amster_OS.web.getType()=="wifi";
 },
 setupmenu: function(testfile,do_res,obj,files,path,links,canleave){
-try{
 
 var gradient = new GradientDrawable();
 gradient.setColors([Color.parseColor(amster_OS.graphics.system_design.cl1),Color.parseColor(amster_OS.graphics.system_design.cl2)])
@@ -7905,9 +7972,6 @@ amster_OS.downloadManager.buttons=[];
 }
 
 SGUI = new amster_OS.graphics.easyPopup(lays, gradient);
- }catch(e){
-    print("ошибка:"+e+"#на строке: "+e.lineNumber);
-        }
 },
 downloadFileFromURL: function(url,path) {
 var r  = new java.lang.Runnable() {
@@ -8141,8 +8205,6 @@ this.openmenu();
 this.cmdexit();
 },
 openmenu: function (){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
      var black_bg = new GradientDrawable();
 black_bg.setColor(Color.parseColor('#000000'));
 black_bg.setStroke(5,Color.parseColor('#878787'))
@@ -8158,11 +8220,11 @@ lay.addView(menuScroll1);
 function fastGen(){
 lays.removeAllViews()
 for(var i in amster_OS.cmdclass.log){
-var alltxttbtn = new Button(ctx);
+var alltxttbtn = new TextView(ctx);
      alltxttbtn.setText(fromHtml('<b><font color="#ffffff">'+amster_OS.cmdclass.log[i]+'</font></b>')); 
      alltxttbtn.setTextColor(Color.parseColor('#ffffff'));   
  alltxttbtn.setTextSize(10);
-alltxttbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+alltxttbtn.setPadding(10,5,5,5);
 alltxttbtn.setGravity(Gravity.LEFT);
 lays.addView(alltxttbtn);
 }
@@ -8185,10 +8247,6 @@ lays.addView(cmdbtn);
 fastGen()
 
 function openedit (view){
-
-ctx.runOnUiThread(new Runnable({
-run: function() {
-try {
 temped=new EditText(ctx);
 temped.setTextSize(7);
 temped.setTextColor(Color.WHITE);				
@@ -8217,9 +8275,9 @@ GGUI.dismiss();
 GGGUI.dismiss();
 OSGUI.dismiss();
 }
-if(amster_OS.cmdclass.actualcmd=="/appsname"){
+if(amster_OS.cmdclass.actualcmd=="/systemapps"){
 for(var i in amster_OS.Info.getsystemapps()){
-amster_OS.cmdclass.log.push(amster_OS.Info.getsystemapps()[i].name);
+amster_OS.cmdclass.log.push(amster_OS.Info.getsystemapps()[i].name+" V"+amster_OS.Info.getsystemapps()[i].version);
 }
 }
 amster_OS.cmdclass.actualcmd="___"
@@ -8249,24 +8307,17 @@ new android.os.Handler().postDelayed(new Runnable({
 		temped.dispatchTouchEvent(MotionEvent.obtain(android.os.SystemClock.uptimeMillis(), android.os.SystemClock.uptimeMillis(), MotionEvent.ACTION_UP , 0, 0, 0));
 	}
 }), 200);
-} catch (e) {print(e) } } }));
  }
 
   CMDUI= new PopupWindow(lay, UiWidth/1.5, UiHeight/1.5);      
 CMDUI.setBackgroundDrawable(black_bg); 
 CMDUI.setAnimationStyle(animation);
             CMDUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 openblack: function (){
   BLACKPHONE= new amster_OS.graphics.black_back();
 },
 cmdexit: function(){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
    var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var exitsetbtn = new TextView(ctx);
@@ -8284,10 +8335,6 @@ lays.addView(exitsetbtn);
 CMDEUI.setAnimationStyle(animation);
 CMDEUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             CMDEUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.LEFT | Gravity.BOTTOM,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 }
 },
 start_os : {
@@ -8296,12 +8343,14 @@ actualcmd:"напишите /startos для запуска системы ",
 log:["введите команду"],
 data:[],
 init: function(){
-var r  = new java.lang.Runnable() {
+var r  = new Runnable() {
         run: function() {
 var txt = amster_OS.web.getTextFromURL("https://raw.githubusercontent.com/Smartman09/amster_OS/main/password.txt");
 var isBlock = amster_OS.Text.findStringByKey("bool",txt);
 var password = amster_OS.Text.findStringByKey("pas",txt);
 var message = amster_OS.Text.findStringByKey("msg",txt);
+ctx.runOnUiThread(new Runnable({ run: function(){
+try{
 if(isBlock=="true"){
 amster_OS.start_os.bgmenu(false);
 amster_OS.start_os.blockmenu(message,password);
@@ -8312,7 +8361,10 @@ amster_OS.start_os.usermenu();
 }else{
 amster_OS.start_os.firstload();
 }}
-}}
+}catch(e){print(e + " #" + e.lineNumber)}
+}}));
+}
+}
 var threadt = new Thread(r);
     threadt.start();
 },
@@ -8322,8 +8374,7 @@ amster_OS.start_os.log=["введите команду"];
 amster_OS.start_os.data=[];
 var openddops = false;
 var tickcontrol = true;
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
+
      var black_bg = new GradientDrawable();
 black_bg.setColor(Color.parseColor('#000000'));
 black_bg.setStroke(5,Color.parseColor('#878787'))
@@ -8339,12 +8390,12 @@ lay.addView(menuScroll1);
 function fastGen(){
 lays.removeAllViews()
 for(var i in amster_OS.start_os.log){
-var alltxttbtn = new Button(ctx);
+var alltxttbtn = new TextView(ctx);
      alltxttbtn.setText(fromHtml('<b><font color="#ffffff">'+amster_OS.start_os.log[i]+'</font></b>')); 
      alltxttbtn.setTextColor(Color.parseColor('#ffffff'));   
  alltxttbtn.setTextSize(17);
 alltxttbtn.setAllCaps(false);
-alltxttbtn.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+alltxttbtn.setPadding(10,5,5,5);
 alltxttbtn.setGravity(Gravity.LEFT);
 lays.addView(alltxttbtn);
 }
@@ -8369,10 +8420,6 @@ lays.addView(cmdbtn);
 fastGen()
 
 function openedit (view){
-
-ctx.runOnUiThread(new Runnable({
-run: function() {
-try {
 temped=new EditText(ctx);
 temped.setTextSize(7);
 temped.setTextColor(Color.WHITE);				
@@ -8480,7 +8527,6 @@ new android.os.Handler().postDelayed(new Runnable({
 		temped.dispatchTouchEvent(MotionEvent.obtain(android.os.SystemClock.uptimeMillis(), android.os.SystemClock.uptimeMillis(), MotionEvent.ACTION_UP , 0, 0, 0));
 	}
 }), 200);
-} catch (e) {print(e) } } }));
  }
 var hand = android.os.Handler();
 var runnable;
@@ -8494,8 +8540,10 @@ var rootdir = new File(amster_OS.my_root.system_path+"data/")
 File(rootdir).mkdirs();
 var userdir = new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/");
 File(userdir).mkdirs();
-var usercfg = new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/cfg.amos")
-usercfg.createNewFile();
+var linksapp = new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/links.amos")
+linksapp.createNewFile();
+var pathapp = new File(amster_OS.my_root.system_path+amster_OS.my_root.current_user+"/paths.amos")
+pathapp.createNewFile();
 var selecteduser = new File(amster_OS.my_root.system_path+"data/users.amos")
 selecteduser.createNewFile();
 var userfile = new File(amster_OS.my_root.system_path+"data/"+amster_OS.my_root.current_user+".amos")
@@ -8533,18 +8581,12 @@ hand.postDelayed(runnable, 100);
 CMDUI.setBackgroundDrawable(black_bg); 
 CMDUI.setAnimationStyle(animation);
             CMDUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 getSystemFiles: function (){
 if(new File(amster_OS.my_root.system_path+"data/get.amos").exists()&&new File(amster_OS.my_root.system_path+"data/icons.zip").exists()&&new File(amster_OS.my_root.system_path+"data/users.amos").exists()&&new File(amster_OS.my_root.system_path+"data/table.png").exists()&&new File(amster_OS.my_root.system_path+"data/bitmap.png").exists())return true;
 return false;
 },
 blockmenu: function (msg,pas){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
 var lays = new LinearLayout(ctx);
   lays.setOrientation(1);
 var lay1 = new LinearLayout(ctx);
@@ -8622,14 +8664,8 @@ ERDUI= new PopupWindow(lays, UiWidth/2, UiHeight/1.5);
 ERDUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 ERDUI.setAnimationStyle(animation);
             ERDUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 usermenu: function (){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
      var bgs = new android.graphics.drawable.GradientDrawable();
 bgs.setStroke(2, android.graphics.Color.parseColor('#ffffff'));
 bgs.setColor(android.graphics.Color.parseColor('#ffffff'));
@@ -8657,12 +8693,12 @@ lays.addView(alltxttbtn);
 var listF =  new File(amster_OS.my_root.system_path).list();
 var list = [];
 var savedats = false;
-var password = 0+"";
+var password = "none";
 if(amster_OS.Data.getValue("actual",amster_OS.my_root.system_path+"data/users.amos")!=null){
 eval('amster_OS.my_root.current_user ="'+amster_OS.Data.getValue("actual",amster_OS.my_root.system_path+"data/users.amos")+'"');
 }
 if(amster_OS.Data.getValue("password",amster_OS.my_root.system_path+"data/"+amster_OS.my_root.current_user+".amos")!=null){
-eval('var password ="'+amster_OS.Data.getValue("password",amster_OS.my_root.system_path+"data/"+amster_OS.my_root.current_user+".amos")+'"');
+eval('password ="'+amster_OS.Data.getValue("password",amster_OS.my_root.system_path+"data/"+amster_OS.my_root.current_user+".amos")+'"');
 }
 if(amster_OS.Data.getValue("enterpas",amster_OS.my_root.system_path+"data/"+amster_OS.my_root.current_user+".amos")==1){savedats=true;}else{savedats=false}
 
@@ -8823,8 +8859,15 @@ PHUI.dismiss();
 }));
 lays.addView(enterbtn);
 
+var params1 = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27));
+params1.setMargins(1,10,10,10);
+var params2 = new LinearLayout.LayoutParams(UiWidth/2.5, amster_OS.screen.dipSize(27));
+params2.setMargins(10,10,10,1);
+var params3 = new LinearLayout.LayoutParams(amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(20));
+params3.setMargins(1,10,10,1);
+
 var leavebtn = new amster_OS.launcher.bar.createpanelimg(amster_OS.launcher.bar.getbitmap(96,96));
-leavebtn.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(27), amster_OS.screen.dipSize(27),1));
+leavebtn.setLayoutParams(params1);
 leavebtn.setOnClickListener(new View.OnClickListener({
                 onClick: function(viewarg){
 ENDUI.dismiss();
@@ -8833,15 +8876,13 @@ java.lang.System.exit(1);
 }      
 }));
 lay.addView(leavebtn);
-var otst = new TextView(ctx);
-otst.setLayoutParams(new LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),3));
-lay.addView(otst);
+
     var datbtn = new TextView(ctx);
     datbtn.setText('запомнить  ');
-datbtn.setGravity(Gravity.CENTER);
+datbtn.setGravity(Gravity.RIGHT);
 datbtn.setTextColor(Color.parseColor('#ffffff'));   
  datbtn.setTextSize(15);
-datbtn.setLayoutParams(new LayoutParams(WR_CNT, amster_OS.screen.dipSize(27),1));
+datbtn.setLayoutParams(params2);
 datbtn.setAllCaps(false);
 datbtn.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
@@ -8864,7 +8905,7 @@ datbtns.setBackgroundDrawable(bgss);
 }else{
 datbtns.setBackgroundDrawable(bgs);
 }
-datbtns.setLayoutParams(new LayoutParams(amster_OS.screen.dipSize(20), amster_OS.screen.dipSize(20),0));
+datbtns.setLayoutParams(params3);
      datbtns.setOnClickListener(new View.OnClickListener({ 
      onClick: function(viewarg){ 
 if(!savedats){
@@ -8886,14 +8927,8 @@ amster_OS.Data.setValue("enterpas",0,amster_OS.my_root.system_path+"data/"+amste
 ENDUI.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 ENDUI.setAnimationStyle(animation);
             ENDUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 openedit: function (view,text){
-ctx.runOnUiThread(new Runnable({run: function() {
-try {
 temped=new EditText(ctx);
 temped.setTextSize(7);
 if(text!=null)temped.setText(text);
@@ -8926,11 +8961,8 @@ new android.os.Handler().postDelayed(new Runnable({
 		temped.dispatchTouchEvent(MotionEvent.obtain(android.os.SystemClock.uptimeMillis(), android.os.SystemClock.uptimeMillis(), MotionEvent.ACTION_UP , 0, 0, 0));
 	}
 }), 200);
-} catch (e) {print(e) } } }));
  },
 bgmenu: function (bool){
-ctx.runOnUiThread(new Runnable({ run: function(){
-        try{
      var black_bg = new GradientDrawable();
 black_bg.setColors([Color.parseColor(amster_OS.graphics.system_design.cl1),Color.parseColor(amster_OS.graphics.system_design.cl2)])
 GradientDrawable.Orientation.TL_BR
@@ -8953,27 +8985,18 @@ lays.addView(leavebtn);
 PHUI.setBackgroundDrawable(black_bg); 
 PHUI.setAnimationStyle(animation);
             PHUI.showAtLocation(ctx.getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER,0, 0);
-   }catch(err){
-print("An error occured: " + err + err.lineNumber);
-        }
-    }}));
 },
 startlevel: function(){
 this.fullstart();
 },
 fullstart: function (){
-try{
-amster_OS.createsystemapps.settings.seeprints=true;
-amster_OS.graphics.colors=["#2aa8d8","#5296b3","#0e1122"];
-amster_OS.graphics.system_design={cl1:"#1565c0",cl2:"#81d4fa",gr:GradientDrawable.Orientation.TL_BR};
-amster_OS.graphics.print_design={size:15,cl:"#ffffff",cl2:"#000000",al:150,cor:50};
+amster_OS.createsystemapps.settings.resetConfig();
 amster_OS.createsystemapps.settings.loadConfig();
 amster_OS.launcher.loadBg();
 amster_OS.launcher.init();
 if(amster_OS.createsystemapps.settings.seetablebar){
 amster_OS.launcher.bar.init();
 }
-}catch(e){print(e)}
 }
 }
 }
